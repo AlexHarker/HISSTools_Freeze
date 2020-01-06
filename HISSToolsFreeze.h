@@ -13,6 +13,11 @@ enum EParams
     kOverlap,
     kBlur,
     kTime,
+    kFiltInterval,
+    kFiltRandom,
+    kFiltTilt,
+    kFiltStrength,
+    kFiltNum,
     kNumParams
 };
 
@@ -32,8 +37,11 @@ public:
     
     void ProcessBlock(sample** inputs, sample** outputs, int nFrames) override;
     void OnReset() override;
-    void OnTimeChange();
     void OnParamChange(int paramIdx, EParamSource source, int sampleOffset) override;
+
+    void OnTimeChange();
+    void OnFilterStrengthChange();
+    void OnFilterTimeChange();
 
 private:
     

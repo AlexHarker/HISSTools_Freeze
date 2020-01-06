@@ -73,6 +73,12 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     GetParam(kBlur)->InitDouble("Blur", 200., 0., 2000.0, 0.1, "ms");
 
     GetParam(kTime)->InitDouble("Time", 0., 0., 10000.0, 0.1, "ms");
+
+    GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 0., 4000.0, 0.1, "ms");
+    GetParam(kFiltRandom)->InitDouble("Filter Random", 100., 0., 4000.0, 0.1, "ms");
+    GetParam(kFiltTilt)->InitDouble("Filter Tilt", 0.0, -100.0, 100.0, 0.1, "%");
+    GetParam(kFiltStrength)->InitDouble("Filter Strength", 0.0, 0.0, 24.0, 0.1, "dB");
+    GetParam(kFiltNum)->InitInt("Number Filters", 12, 2, 60, "");
     
     mMakeGraphicsFunc = [&]() {
         return MakeGraphics(*this, PLUG_WIDTH, PLUG_HEIGHT, PLUG_FPS, 1.);
@@ -83,11 +89,24 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
         pGraphics->AttachPanelBackground(COLOR_GRAY);
         pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
         const IRECT b = pGraphics->GetBounds();
-        pGraphics->AttachControl(new ITextControl(b.GetMidVPadded(50).GetVShifted(200), "HISSTools Freeze", IText(50)));
+        pGraphics->AttachControl(new ITextControl(b.GetMidVPadded(50).GetVShifted(-240), "HISSTools Freeze", IText(50)));
         pGraphics->AttachControl(new IVMenuControl(b.GetCentredInside(100, 40).GetVShifted(-160), kFFTSize));
         pGraphics->AttachControl(new IVMenuControl(b.GetCentredInside(100, 40).GetVShifted(-110), kOverlap));
         pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-20), kBlur));
         pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(100), kTime));
+        
+        auto smallDial = [](const IRECT& b, int idx, int hs) {
+            IVStyle smallStyle;
+            smallStyle.labelText = IText(12.0);
+            IRECT cb = b.GetCentredInside(80).GetVShifted(200).GetHShifted(hs);
+            return new IVKnobControl(cb, idx, "", smallStyle);
+        };
+        
+        pGraphics->AttachControl(smallDial(b, kFiltInterval, -200));
+        pGraphics->AttachControl(smallDial(b, kFiltRandom, -100));
+        pGraphics->AttachControl(smallDial(b, kFiltStrength, 0));
+        pGraphics->AttachControl(smallDial(b, kFiltTilt, 100));
+        pGraphics->AttachControl(smallDial(b, kFiltNum, 200));
     };
 }
 
@@ -108,6 +127,27 @@ void HISSToolsFreeze::OnTimeChange()
     mProxy->sendFromHost(2, "num_frames", &frames, 1);
 }
 
+void HISSToolsFreeze::OnFilterTimeChange()
+{
+    double lo = GetParam(kFiltInterval)->Value();
+    double random = GetParam(kFiltRandom)->Value();
+    double hi = lo + random;
+    
+    mProxy->sendFromHost(4, "outlo", &lo, 1);
+    mProxy->sendFromHost(4, "outhi", &hi, 1);
+}
+
+void HISSToolsFreeze::OnFilterStrengthChange()
+{
+    double tilt = GetParam(kFiltTilt)->Value() / 100.0;
+    double strength = GetParam(kFiltStrength)->Value();
+    double lo = (1.0 - std::max(0.0,  tilt)) * strength;
+    double hi = (1.0 - std::max(0.0, -tilt)) * strength;
+    
+    mProxy->sendFromHost(6, "outlo", &lo, 1);
+    mProxy->sendFromHost(6, "outhi", &hi, 1);
+}
+
 void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampleOffset)
 {
     switch (paramIdx)
@@ -117,6 +157,7 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
             double FFT = 1 << (GetParam(kFFTSize)->Int() + 9);
             mProxy->sendFromHost(1, &FFT, 1);
             OnTimeChange();
+            break;
         }
         
         case kOverlap:
@@ -124,19 +165,43 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
             double overlap = 1 << (GetParam(kOverlap)->Int() + 1);
             mProxy->sendFromHost(0, &overlap, 1);
             OnTimeChange();
+            break;
         }
             
         case kBlur:
         {
             OnTimeChange();
+            break;
         }
             
         case kTime:
         {
             double time = GetParam(kTime)->Value();
             mProxy->sendFromHost(3, &time, 1);
+            break;
         }
         
+        case kFiltInterval:
+        case kFiltRandom:
+        {
+            OnFilterTimeChange();
+            break;
+        }
+            
+        case kFiltTilt:
+        case kFiltStrength:
+        {
+            OnFilterStrengthChange();
+            break;
+        }
+         
+        case kFiltNum:
+        {
+            double num = GetParam(kFiltNum)->Value();
+            mProxy->sendFromHost(5, "length", &num, 1);
+            break;
+        }
+            
         default:
             break;
     }
@@ -147,14 +212,32 @@ void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrame
     sample triggers[nFrames];
     sample* allInputs[3];
     
-    allInputs[0] = inputs[0];
-    allInputs[1] = inputs[1];
+    double rootTwo = 1.0 / sqrt(2.0);
+    
+    allInputs[0] = outputs[0];
+    allInputs[1] = outputs[1];
     allInputs[2] = triggers;
 
+    for (int i = 0; i < nFrames; i++)
+    {
+        double L = inputs[0][i];
+        double R = inputs[1][i];
+        
+        outputs[0][i] = (L + R) * rootTwo;
+        outputs[1][i] = (L - R) * rootTwo;;
+    }
+    
     for (int i = 0; i < nFrames; i++)
         triggers[i] = (std::rand() / (RAND_MAX + 1.0)) > 0.9999;
     
     mDSP.process(allInputs, outputs, nFrames);
+    
+    for (int i = 0; i < nFrames; i++)
+    {
+        double M = outputs[0][i];
+        double S = outputs[1][i];
+        
+        outputs[0][i] = (M + S) * rootTwo;
+        outputs[1][i] = (M - S) * rootTwo;;
+    }
 }
-
-
