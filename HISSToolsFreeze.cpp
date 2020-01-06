@@ -70,7 +70,7 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     GetParam(kOverlap)->SetDisplayText(1, "4");
     GetParam(kOverlap)->SetDisplayText(2, "8");
 
-    GetParam(kBlur)->InitDouble("Blur", 0., 0., 2000.0, 0.1, "ms");
+    GetParam(kBlur)->InitDouble("Blur", 200., 0., 2000.0, 0.1, "ms");
 
     GetParam(kTime)->InitDouble("Time", 0., 0., 10000.0, 0.1, "ms");
     
@@ -91,13 +91,9 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     };
 }
 
-//const IRECT& bounds, const char* label = "", const IVStyle& style = DEFAULT_STYLE, EDirection dir = EDirection::Vertical, float lo = 0., float hi = 1.f, float defaultVal = 0., uint32_t bufferSize = 100
-
 void HISSToolsFreeze::OnReset()
 {
-    mDSP.reset(GetSampleRate(), GetBlockSize());
-    
-    
+    mDSP.reset(GetSampleRate(), GetBlockSize());    
 }
 
 void HISSToolsFreeze::OnTimeChange()
@@ -109,7 +105,7 @@ void HISSToolsFreeze::OnTimeChange()
     double hopTime = 1000 * FFT / (overlap * GetSampleRate());
     double frames = std::round(blurTime / hopTime) + 1;
     
-    mProxy->sendFromHost(2, &frames, 1);
+    mProxy->sendFromHost(2, "num_frames", &frames, 1);
 }
 
 void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampleOffset)
