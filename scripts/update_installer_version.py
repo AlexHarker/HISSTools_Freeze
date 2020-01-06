@@ -60,9 +60,9 @@ def main():
       line="AppVersion=" + config['FULL_VER_STR'] + "\n"
     if "OutputBaseFilename" in line:
       if demo:
-        line="OutputBaseFilename=HISSTools_Freeze Demo Installer\n"
+        line="OutputBaseFilename=HISSToolsFreeze Demo Installer\n"
       else:
-        line="OutputBaseFilename=HISSTools_Freeze Installer\n"
+        line="OutputBaseFilename=HISSToolsFreeze Installer\n"
         
     if 'Source: "readme' in line:
      if demo:
@@ -72,15 +72,15 @@ def main():
     
     if "WelcomeLabel1" in line:
      if demo:
-       line="WelcomeLabel1=Welcome to the HISSTools_Freeze Demo installer\n"
+       line="WelcomeLabel1=Welcome to the HISSToolsFreeze Demo installer\n"
      else:
-       line="WelcomeLabel1=Welcome to the HISSTools_Freeze installer\n"
+       line="WelcomeLabel1=Welcome to the HISSToolsFreeze installer\n"
        
     if "SetupWindowTitle" in line:
      if demo:
-       line="SetupWindowTitle=HISSTools_Freeze Demo installer\n"
+       line="SetupWindowTitle=HISSToolsFreeze Demo installer\n"
      else:
-       line="SetupWindowTitle=HISSTools_Freeze installer\n"
+       line="SetupWindowTitle=HISSToolsFreeze installer\n"
        
     sys.stdout.write(line)
     

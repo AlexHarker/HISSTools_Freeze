@@ -9,7 +9,7 @@
 #define PLUG_COPYRIGHT_STR "Copyright 2019 Alex Harker"
 #define PLUG_CLASS_NAME HISSToolsFreeze
 
-#define BUNDLE_NAME "HISSTools_Freeze"
+#define BUNDLE_NAME "HISSToolsFreeze"
 #define BUNDLE_MFR "AlexHarker"
 #define BUNDLE_DOMAIN "co.uk"
 

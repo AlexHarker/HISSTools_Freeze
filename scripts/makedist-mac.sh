@@ -253,8 +253,8 @@ sudo rm -R -f installer/build-mac/
 
 if [ $DEMO == 1 ]
 then
-git checkout installer/HISSTools_Freeze.iss
-git checkout installer/HISSTools_Freeze.pkgproj
+git checkout installer/HISSToolsFreeze.iss
+git checkout installer/HISSToolsFreeze.pkgproj
 git checkout resources/img/AboutBox.png
 fi
 

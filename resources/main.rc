@@ -65,7 +65,7 @@ END
 
 IDD_DIALOG_MAIN DIALOG 0, 0, 300, 300
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "HISSTools_Freeze"
+CAPTION "HISSToolsFreeze"
 MENU IDR_MENU1
 FONT 8, "MS Sans Serif"
 BEGIN
@@ -162,7 +162,7 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "HISSTools_Freeze.ico"
+IDI_ICON1               ICON                    "HISSToolsFreeze.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -204,10 +204,10 @@ BEGIN
         BEGIN
             VALUE "FileVersion", "0.0.1"
             VALUE "ProductVersion", "0.0.1"
-            VALUE "FileDescription", "HISSTools_Freeze"
-            VALUE "InternalName", "HISSTools_Freeze"
-            VALUE "ProductName", "HISSTools_Freeze"
-            VALUE "CompanyName", "AHAR"
+            VALUE "FileDescription", "HISSToolsFreeze"
+            VALUE "InternalName", "HISSToolsFreeze"
+            VALUE "ProductName", "HISSToolsFreeze"
+            VALUE "CompanyName", "AlexHarker"
             VALUE "LegalCopyright", "Copyright 2019 Acme Inc"
             VALUE "LegalTrademarks", "VST is a trademark of Steinberg Media Technologies GmbH, Audio Unit is a trademark of Apple, Inc."
         END

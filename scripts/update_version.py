@@ -33,7 +33,7 @@ def main():
   print "update_version.py - setting version to " + config['FULL_VER_STR']
   print "Updating plist version info..."
   
-  plistpath = scriptpath + "/resources/HISSTools_Freeze-VST2-Info.plist"
+  plistpath = scriptpath + "/resources/HISSToolsFreeze-VST2-Info.plist"
   vst2 = plistlib.readPlist(plistpath)
   vst2['CFBundleGetInfoString'] = CFBundleGetInfoString
   vst2['CFBundleVersion'] = CFBundleVersion
@@ -41,7 +41,7 @@ def main():
   plistlib.writePlist(vst2, plistpath)
   replacestrs(plistpath, "//Apple//", "//Apple Computer//");
   
-  plistpath = scriptpath + "/resources/HISSTools_Freeze-AU-Info.plist"
+  plistpath = scriptpath + "/resources/HISSToolsFreeze-AU-Info.plist"
   au = plistlib.readPlist(plistpath)
   au['CFBundleGetInfoString'] = CFBundleGetInfoString
   au['CFBundleVersion'] = CFBundleVersion
@@ -49,7 +49,7 @@ def main():
   plistlib.writePlist(au, plistpath)
   replacestrs(plistpath, "//Apple//", "//Apple Computer//");
   
-  plistpath = scriptpath + "/resources/HISSTools_Freeze-VST3-Info.plist"
+  plistpath = scriptpath + "/resources/HISSToolsFreeze-VST3-Info.plist"
   vst3 = plistlib.readPlist(plistpath)
   vst3['CFBundleGetInfoString'] = CFBundleGetInfoString
   vst3['CFBundleVersion'] = CFBundleVersion
@@ -57,7 +57,7 @@ def main():
   plistlib.writePlist(vst3, plistpath)
   replacestrs(plistpath, "//Apple//", "//Apple Computer//");
   
-  plistpath = scriptpath + "/resources/HISSTools_Freeze-macOS-Info.plist"
+  plistpath = scriptpath + "/resources/HISSToolsFreeze-macOS-Info.plist"
   app = plistlib.readPlist(plistpath)
   app['CFBundleGetInfoString'] = CFBundleGetInfoString
   app['CFBundleVersion'] = CFBundleVersion
@@ -65,7 +65,7 @@ def main():
   plistlib.writePlist(app, plistpath)
   replacestrs(plistpath, "//Apple//", "//Apple Computer//");
   
-  plistpath = scriptpath + "/resources/HISSTools_Freeze-AAX-Info.plist"
+  plistpath = scriptpath + "/resources/HISSToolsFreeze-AAX-Info.plist"
   aax = plistlib.readPlist(plistpath)
   aax['CFBundleGetInfoString'] = CFBundleGetInfoString
   aax['CFBundleVersion'] = CFBundleVersion
@@ -75,7 +75,7 @@ def main():
 
   print "Updating Mac Installer version info..."
   
-  plistpath = scriptpath + "/installer/HISSTools_Freeze.pkgproj"
+  plistpath = scriptpath + "/installer/HISSToolsFreeze.pkgproj"
   installer = plistlib.readPlist(plistpath)
   
   for x in range(0,5):
@@ -86,7 +86,7 @@ def main():
   
   print "Updating Windows Installer version info..."
   
-  for line in fileinput.input(scriptpath + "/installer/HISSTools_Freeze.iss",inplace=1):
+  for line in fileinput.input(scriptpath + "/installer/HISSToolsFreeze.iss",inplace=1):
     if "AppVersion" in line:
       line="AppVersion=" + config['FULL_VER_STR'] + "\n"
     sys.stdout.write(line)

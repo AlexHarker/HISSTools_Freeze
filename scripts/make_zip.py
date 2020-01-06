@@ -15,16 +15,16 @@ def  main():
   else:
     demo=int(sys.argv[1])
    
-  installer = "\installer\HISSTools_Freeze Installer.exe"
+  installer = "\installer\HISSToolsFreeze Installer.exe"
    
   if demo:
-    installer = "\installer\HISSTools_Freeze Demo Installer.exe"
+    installer = "\installer\HISSToolsFreeze Demo Installer.exe"
    
   FILES_TO_ZIP = [
     projectpath + installer,
     projectpath + "\installer\changelog.txt",
     projectpath + "\installer\known-issues.txt",
-    projectpath + "\manual\HISSTools_Freeze manual.pdf" 
+    projectpath + "\manual\HISSToolsFreeze manual.pdf" 
   ]
 
   # extract values from config.h
@@ -43,10 +43,10 @@ def  main():
 
   FULLVERSIONSTR = MAJORSTR + "." + MINORSTR + "." + BUGFIXSTR
 
-  ZIPNAME = "HISSTools_Freeze-v" + FULLVERSIONSTR + "-win.zip"
+  ZIPNAME = "HISSToolsFreeze-v" + FULLVERSIONSTR + "-win.zip"
   
   if demo:
-    ZIPNAME = "HISSTools_Freeze-v" + FULLVERSIONSTR + "-win-demo.zip"
+    ZIPNAME = "HISSToolsFreeze-v" + FULLVERSIONSTR + "-win-demo.zip"
   
   zf = zipfile.ZipFile(projectpath + "\installer\/" + ZIPNAME, mode="w")
 

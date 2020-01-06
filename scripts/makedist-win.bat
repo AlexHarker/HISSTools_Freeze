@@ -6,7 +6,7 @@ REM - zipping requires 7zip in %ProgramFiles%\7-Zip\7z.exe
 REM - building installer requires innotsetup in "%ProgramFiles(x86)%\Inno Setup 5\iscc"
 REM - AAX codesigning requires wraptool tool added to %PATH% env variable and aax.key/.crt in .\..\..\..\Certificates\
 
-if %1 == 1 (echo Making HISSTools_Freeze Windows DEMO VERSION distribution ...) else (echo Making HISSTools_Freeze Windows FULL VERSION distribution ...)
+if %1 == 1 (echo Making HISSToolsFreeze Windows DEMO VERSION distribution ...) else (echo Making HISSToolsFreeze Windows FULL VERSION distribution ...)
 
 echo "touching source"
 
@@ -49,21 +49,21 @@ REM -copy ".\resources\img\AboutBox_Registered.png" ".\resources\img\AboutBox.pn
 )
 
 REM - Could build individual targets like this:
-REM - msbuild HISSTools_Freeze-app.vcxproj /p:configuration=release /p:platform=win32
+REM - msbuild HISSToolsFreeze-app.vcxproj /p:configuration=release /p:platform=win32
 
 echo Building 32 bit binaries...
-msbuild HISSTools_Freeze.sln /p:configuration=release /p:platform=win32 /nologo /verbosity:minimal /fileLogger /m /flp:logfile=build-win.log;errorsonly 
+msbuild HISSToolsFreeze.sln /p:configuration=release /p:platform=win32 /nologo /verbosity:minimal /fileLogger /m /flp:logfile=build-win.log;errorsonly 
 
 echo Building 64 bit binaries...
-msbuild HISSTools_Freeze.sln /p:configuration=release /p:platform=x64 /nologo /verbosity:minimal /fileLogger /m /flp:logfile=build-win.log;errorsonly;append
+msbuild HISSToolsFreeze.sln /p:configuration=release /p:platform=x64 /nologo /verbosity:minimal /fileLogger /m /flp:logfile=build-win.log;errorsonly;append
 
 REM --echo Copying AAX Presets
 
 REM --echo ------------------------------------------------------------------
 REM --echo Code sign AAX binary...
 REM --info at pace central, login via iLok license manager https://www.paceap.com/pace-central.html
-REM --wraptool sign --verbose --account XXXXX --wcguid XXXXX --keyfile XXXXX.p12 --keypassword XXXXX --in .\build-win\aax\bin\HISSTools_Freeze.aaxplugin\Contents\Win32\HISSTools_Freeze.aaxplugin --out .\build-win\aax\bin\HISSTools_Freeze.aaxplugin\Contents\Win32\HISSTools_Freeze.aaxplugin
-REM --wraptool sign --verbose --account XXXXX --wcguid XXXXX --keyfile XXXXX.p12 --keypassword XXXXX --in .\build-win\aax\bin\HISSTools_Freeze.aaxplugin\Contents\x64\HISSTools_Freeze.aaxplugin --out .\build-win\aax\bin\HISSTools_Freeze.aaxplugin\Contents\x64\HISSTools_Freeze.aaxplugin
+REM --wraptool sign --verbose --account XXXXX --wcguid XXXXX --keyfile XXXXX.p12 --keypassword XXXXX --in .\build-win\aax\bin\HISSToolsFreeze.aaxplugin\Contents\Win32\HISSToolsFreeze.aaxplugin --out .\build-win\aax\bin\HISSToolsFreeze.aaxplugin\Contents\Win32\HISSToolsFreeze.aaxplugin
+REM --wraptool sign --verbose --account XXXXX --wcguid XXXXX --keyfile XXXXX.p12 --keypassword XXXXX --in .\build-win\aax\bin\HISSToolsFreeze.aaxplugin\Contents\x64\HISSToolsFreeze.aaxplugin --out .\build-win\aax\bin\HISSToolsFreeze.aaxplugin\Contents\x64\HISSToolsFreeze.aaxplugin
 
 REM - Make Installer (InnoSetup)
 
@@ -73,21 +73,21 @@ echo Making Installer ...
 if exist "%ProgramFiles(x86)%" (goto 64-Bit-is) else (goto 32-Bit-is)
 
 :32-Bit-is
-"%ProgramFiles%\Inno Setup 5\iscc" /Q /cc ".\installer\HISSTools_Freeze.iss"
+"%ProgramFiles%\Inno Setup 5\iscc" /Q /cc ".\installer\HISSToolsFreeze.iss"
 goto END-is
 
 :64-Bit-is
-"%ProgramFiles(x86)%\Inno Setup 5\iscc" /Q /cc ".\installer\HISSTools_Freeze.iss"
+"%ProgramFiles(x86)%\Inno Setup 5\iscc" /Q /cc ".\installer\HISSToolsFreeze.iss"
 goto END-is
 
 :END-is
 
 REM - Codesign Installer for Windows 8+
-REM -"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Bin\signtool.exe" sign /f "XXXXX.p12" /p XXXXX /d "HISSTools_Freeze Installer" ".\installer\HISSTools_Freeze Installer.exe"
+REM -"C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A\Bin\signtool.exe" sign /f "XXXXX.p12" /p XXXXX /d "HISSToolsFreeze Installer" ".\installer\HISSToolsFreeze Installer.exe"
 
 REM -if %1 == 1 (
-REM -copy ".\installer\HISSTools_Freeze Installer.exe" ".\installer\HISSTools_Freeze Demo Installer.exe"
-REM -del ".\installer\HISSTools_Freeze Installer.exe"
+REM -copy ".\installer\HISSToolsFreeze Installer.exe" ".\installer\HISSToolsFreeze Demo Installer.exe"
+REM -del ".\installer\HISSToolsFreeze Installer.exe"
 REM -)
 
 REM - ZIP
