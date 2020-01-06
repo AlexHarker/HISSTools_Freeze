@@ -2,7 +2,7 @@
 #include "Freeze.h"
 #include "FrameLib_Objects.h"
 
-Freeze::Freeze(FrameLib_Proxy *proxy) : mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)
+Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)
 {
     using Connection = FrameLib_Object<FrameLib_Multistream>::Connection;
 
