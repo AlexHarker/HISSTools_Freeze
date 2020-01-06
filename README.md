@@ -1,2 +1,2 @@
-# HISSTools_Freeze
-A basic volume control effect plug-in with IGraphics GUI
+# HISSToolsFreeze
+A spectral freeze plugin using framelib and iPlug2
