@@ -20,6 +20,7 @@ public:
     HISSToolsFreeze(const InstanceInfo& info);
     
     void ProcessBlock(sample** inputs, sample** outputs, int nFrames) override;
+    void OnReset() override;
     
 private:
     

@@ -21,15 +21,13 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     };
 }
 
+void HISSToolsFreeze::OnReset()
+{
+    mDSP.reset(GetSampleRate(), GetBlockSize());
+}
+
 void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
 {
-    const double gain = GetParam(kGain)->Value() / 100.;
-    const int nChans = NOutChansConnected();
-    
-    for (int s = 0; s < nFrames; s++) {
-        for (int c = 0; c < nChans; c++) {
-            outputs[c][s] = inputs[c][s] * gain;
-        }
-    }
+    mDSP.process(inputs, outputs, nFrames);
 }
 
