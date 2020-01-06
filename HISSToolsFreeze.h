@@ -11,6 +11,7 @@ enum EParams
 {
     kFFTSize = 0,
     kOverlap,
+    kBlur,
     kTime,
     kNumParams
 };
@@ -31,6 +32,7 @@ public:
     
     void ProcessBlock(sample** inputs, sample** outputs, int nFrames) override;
     void OnReset() override;
+    void OnTimeChange();
     void OnParamChange(int paramIdx, EParamSource source, int sampleOffset) override;
 
 private:
