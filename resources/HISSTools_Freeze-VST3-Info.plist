@@ -7,9 +7,9 @@
 	<key>CFBundleExecutable</key>
 	<string>HISSTools_Freeze</string>
 	<key>CFBundleGetInfoString</key>
-	<string>HISSTools_Freeze v1.0.0 Copyright 2019 Acme Inc</string>
+	<string>HISSTools_Freeze v1.0.0 Copyright 2019 Alex Harker</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.AHAR.vst3.HISSTools_Freeze</string>
+	<string>co.uk.AlexHarker.vst3.HISSTools_Freeze</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleSignature</key>
-	<string>Ipef</string>
+	<string>8OcP</string>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>CSResourcesFileMapped</key>

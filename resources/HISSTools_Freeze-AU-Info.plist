@@ -6,17 +6,17 @@
 	<array>
 		<dict>
 			<key>description</key>
-			<string>HISSTools_Freeze</string>
+			<string>HISSTools Freeze</string>
 			<key>factoryFunction</key>
-			<string>HISSTools_Freeze_Factory</string>
+			<string>HISSToolsFreeze_Factory</string>
 			<key>manufacturer</key>
-			<string>Acme</string>
+			<string>AHAR</string>
 			<key>name</key>
-			<string>AHAR: HISSTools_Freeze</string>
+			<string>Alex Harker: HISSTools Freeze</string>
 			<key>sandboxSafe</key>
 			<true/>
 			<key>subtype</key>
-			<string>Ipef</string>
+			<string>8OcP</string>
 			<key>type</key>
 			<string>aufx</string>
 			<key>version</key>
@@ -30,9 +30,9 @@
 	<key>CFBundleExecutable</key>
 	<string>HISSTools_Freeze</string>
 	<key>CFBundleGetInfoString</key>
-	<string>HISSTools_Freeze v1.0.0 Copyright 2019 Acme Inc</string>
+	<string>HISSTools_Freeze v1.0.0 Copyright 2019 Alex Harker</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.AHAR.audiounit.HISSTools_Freeze</string>
+	<string>co.uk.AlexHarker.audiounit.HISSTools_Freeze</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -42,7 +42,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleSignature</key>
-	<string>Ipef</string>
+	<string>8OcP</string>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
 	<key>CSResourcesFileMapped</key>
