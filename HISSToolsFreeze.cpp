@@ -74,7 +74,7 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
 
     GetParam(kTime)->InitDouble("Time", 0., 0., 10000.0, 0.1, "ms");
 
-    GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 0., 4000.0, 0.1, "ms");
+    GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 20., 4000.0, 0.1, "ms");
     GetParam(kFiltRandom)->InitDouble("Filter Random", 100., 0., 4000.0, 0.1, "ms");
     GetParam(kFiltTilt)->InitDouble("Filter Tilt", 0.0, -100.0, 100.0, 0.1, "%");
     GetParam(kFiltStrength)->InitDouble("Filter Strength", 0.0, 0.0, 24.0, 0.1, "dB");
