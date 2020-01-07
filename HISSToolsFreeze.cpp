@@ -70,9 +70,11 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     GetParam(kOverlap)->SetDisplayText(1, "4");
     GetParam(kOverlap)->SetDisplayText(2, "8");
 
+    GetParam(kSampleTime)->InitDouble("Sampling", 200., 20., 5000.0, 0.1, "ms");
+    GetParam(kFreeze)->InitBool("Freeze", false);
+    
     GetParam(kBlur)->InitDouble("Blur", 200., 0., 2000.0, 0.1, "ms");
-
-    GetParam(kTime)->InitDouble("Time", 0., 0., 10000.0, 0.1, "ms");
+    GetParam(kXFadeTime)->InitDouble("Time", 0., 0., 10000.0, 0.1, "ms");
 
     GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 20., 4000.0, 0.1, "ms");
     GetParam(kFiltRandom)->InitDouble("Filter Random", 100., 0., 4000.0, 0.1, "ms");
@@ -92,8 +94,10 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
         pGraphics->AttachControl(new ITextControl(b.GetMidVPadded(50).GetVShifted(-240), "HISSTools Freeze", IText(50)));
         pGraphics->AttachControl(new IVMenuControl(b.GetCentredInside(100, 40).GetVShifted(-160), kFFTSize));
         pGraphics->AttachControl(new IVMenuControl(b.GetCentredInside(100, 40).GetVShifted(-110), kOverlap));
-        pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-20), kBlur));
-        pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(100), kTime));
+        pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-20).GetHShifted(-100), kSampleTime));
+        pGraphics->AttachControl(new IVSwitchControl(b.GetCentredInside(100).GetVShifted(100).GetHShifted(-100), kFreeze));
+        pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-20).GetHShifted(100), kBlur));
+        pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(100).GetHShifted(100), kXFadeTime));
         
         auto smallDial = [](const IRECT& b, int idx, int hs) {
             IVStyle smallStyle;
@@ -102,11 +106,11 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
             return new IVKnobControl(cb, idx, "", smallStyle);
         };
         
-        pGraphics->AttachControl(smallDial(b, kFiltInterval, -200));
-        pGraphics->AttachControl(smallDial(b, kFiltRandom, -100));
-        pGraphics->AttachControl(smallDial(b, kFiltStrength, 0));
-        pGraphics->AttachControl(smallDial(b, kFiltTilt, 100));
-        pGraphics->AttachControl(smallDial(b, kFiltNum, 200));
+        pGraphics->AttachControl(smallDial(b, kFiltNum, -200));
+        pGraphics->AttachControl(smallDial(b, kFiltInterval, -100));
+        pGraphics->AttachControl(smallDial(b, kFiltRandom, 0));
+        pGraphics->AttachControl(smallDial(b, kFiltStrength, 100));
+        pGraphics->AttachControl(smallDial(b, kFiltTilt, 200));
     };
 }
 
@@ -182,9 +186,9 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
             break;
         }
             
-        case kTime:
+        case kXFadeTime:
         {
-            double time = GetParam(kTime)->Value();
+            double time = GetParam(kXFadeTime)->Value();
             mProxy->sendFromHost(3, &time, 1);
             break;
         }
@@ -226,6 +230,10 @@ void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrame
     allInputs[1] = outputs[1];
     allInputs[2] = triggers;
 
+    double sampling = GetParam(kSampleTime)->Value();
+    bool freeze = GetParam(kFreeze)->Bool();
+    double threshold = freeze ? 2.0 : 1.0 - (1000.0 / (GetSampleRate() * sampling));
+    
     for (int i = 0; i < nFrames; i++)
     {
         double L = inputs[0][i];
@@ -236,7 +244,7 @@ void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrame
     }
     
     for (int i = 0; i < nFrames; i++)
-        triggers[i] = (std::rand() / (RAND_MAX + 1.0)) > 0.9999;
+        triggers[i] = (std::rand() / (RAND_MAX + 1.0)) > threshold;
     
     mDSP.process(allInputs, outputs, nFrames);
     

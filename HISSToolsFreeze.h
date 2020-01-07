@@ -11,8 +11,10 @@ enum EParams
 {
     kFFTSize = 0,
     kOverlap,
+    kSampleTime,
+    kFreeze,
     kBlur,
-    kTime,
+    kXFadeTime,
     kFiltInterval,
     kFiltRandom,
     kFiltTilt,
