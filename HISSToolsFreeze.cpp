@@ -133,8 +133,12 @@ void HISSToolsFreeze::OnFilterTimeChange()
     double random = GetParam(kFiltRandom)->Value();
     double hi = lo + random;
     
-    mProxy->sendFromHost(4, "outlo", &lo, 1);
-    mProxy->sendFromHost(4, "outhi", &hi, 1);
+    FrameLib_Parameters::AutoSerial serial;
+    
+    serial.write("outlo", &lo, 1);
+    serial.write("outhi", &hi, 1);
+    
+    mProxy->sendFromHost(4, &serial);
 }
 
 void HISSToolsFreeze::OnFilterStrengthChange()
@@ -144,8 +148,12 @@ void HISSToolsFreeze::OnFilterStrengthChange()
     double lo = (1.0 - std::max(0.0,  tilt)) * strength;
     double hi = (1.0 - std::max(0.0, -tilt)) * strength;
     
-    mProxy->sendFromHost(6, "outlo", &lo, 1);
-    mProxy->sendFromHost(6, "outhi", &hi, 1);
+    FrameLib_Parameters::AutoSerial serial;
+    
+    serial.write("outlo", &lo, 1);
+    serial.write("outhi", &hi, 1);
+    
+    mProxy->sendFromHost(6, &serial);
 }
 
 void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampleOffset)
