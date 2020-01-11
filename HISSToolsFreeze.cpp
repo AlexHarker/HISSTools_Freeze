@@ -161,7 +161,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         auto button = [](const IRECT& b, int idx, int hs, int vs, const char *types) {
             IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
             
-            return new HISSTools_Button(idx, cb.L, cb.T, 100, 20, types, &designScheme);
+            return new HISSTools_Button(idx, cb.L, cb.T, 100, 30, types, &designScheme);
         };
         
         const IRECT b = pGraphics->GetBounds();
@@ -174,7 +174,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         pGraphics->AttachControl(paramPanel(b, kOverlap, -30, -90, ""));
         
         pGraphics->AttachControl(dial(b, kSampleTime, -100, -20, ""));
-        pGraphics->AttachControl(button(b, kFreeze, -100, 140, ""));
+        pGraphics->AttachControl(button(b, kFreeze, -100, 135, "tight"));
         pGraphics->AttachControl(dial(b, kBlur, 100, -20, ""));
         pGraphics->AttachControl(dial(b, kXFadeTime, 100, 100, ""));
         
@@ -299,6 +299,31 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
             break;
     }
 }
+
+void HISSToolsFreeze::OnParamChangeUI(int paramIdx, EParamSource source)
+{
+    switch (paramIdx)
+    {
+        case kFiltStrength:
+        {
+            if (GetUI())
+            {
+                bool zero = GetParam(kFiltStrength)->Value() == 0.0;
+                
+                GetUI()->DisableControl(kFiltNum, zero);
+                GetUI()->DisableControl(kFiltStrength, zero);
+                GetUI()->DisableControl(kFiltTilt, zero);
+                GetUI()->DisableControl(kFiltInterval, zero);
+                GetUI()->DisableControl(kFiltRandom, zero);
+                break;
+            }
+        }
+            
+        default:
+            break;
+    }
+}
+
 
 void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
 {
