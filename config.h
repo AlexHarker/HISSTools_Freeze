@@ -2,7 +2,7 @@
 #define PLUG_MFR "Alex Harker"
 #define PLUG_VERSION_HEX 0x00010000
 #define PLUG_VERSION_STR "1.0.0"
-#define PLUG_UNIQUE_ID '8OcP'
+#define PLUG_UNIQUE_ID 'HTFz'
 #define PLUG_MFR_ID 'AHAR'
 #define PLUG_URL_STR "www.alexanderjharker.co.uk"
 #define PLUG_EMAIL_STR "A.Harker@hud.ac.uk"
