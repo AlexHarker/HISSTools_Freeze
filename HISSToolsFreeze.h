@@ -3,6 +3,7 @@
 #include "IPlug_include_in_plug_hdr.h"
 #include "Freeze.h"
 
+#include "Smoothing.h"
 #include "FrameLib_FromHost.h"
 
 const int kNumPrograms = 1;
@@ -20,6 +21,8 @@ enum EParams
     kFiltTilt,
     kFiltStrength,
     kFiltNum,
+    kGain,
+    kWidth,
     kNumParams
 };
 
@@ -49,4 +52,10 @@ private:
     
     FromPlugProxy *mProxy;  // N.B. - owned by mDSP
     Freeze mDSP;
+    
+    GainSmooth mGainSmoother;
+    GainSmooth mWidthSmoother;
+    
+    double mLastGain;
+    double mLastWidth;
 };

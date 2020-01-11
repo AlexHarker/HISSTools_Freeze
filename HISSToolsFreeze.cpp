@@ -82,6 +82,9 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     GetParam(kFiltStrength)->InitDouble("Filter Strength", 0.0, 0.0, 24.0, 0.1, "dB");
     GetParam(kFiltNum)->InitInt("Number Filters", 12, 2, 60, "");
     
+    GetParam(kGain)->InitDouble("Gain", 0., -12.0, 12.0, 0.1, "dB");
+    GetParam(kWidth)->InitDouble("Width", 0., -12.0, 12.0, 0.1, "dB");
+
     mMakeGraphicsFunc = [&]() {
         return MakeGraphics(*this, PLUG_WIDTH, PLUG_HEIGHT, PLUG_FPS, 1.);
     };
@@ -99,10 +102,10 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
         pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-20).GetHShifted(100), kBlur));
         pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(100).GetHShifted(100), kXFadeTime));
         
-        auto smallDial = [](const IRECT& b, int idx, int hs) {
+        auto smallDial = [](const IRECT& b, int idx, int hs, int vs = 200) {
             IVStyle smallStyle;
             smallStyle.labelText = IText(12.0);
-            IRECT cb = b.GetCentredInside(80).GetVShifted(200).GetHShifted(hs);
+            IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
             return new IVKnobControl(cb, idx, "", smallStyle);
         };
         
@@ -111,12 +114,21 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
         pGraphics->AttachControl(smallDial(b, kFiltRandom, 0));
         pGraphics->AttachControl(smallDial(b, kFiltStrength, 100));
         pGraphics->AttachControl(smallDial(b, kFiltTilt, 200));
+        
+        pGraphics->AttachControl(smallDial(b, kGain, 100, -140));
+        pGraphics->AttachControl(smallDial(b, kWidth, 200, -140));
     };
 }
 
 void HISSToolsFreeze::OnReset()
 {
-    mDSP.reset(GetSampleRate(), GetBlockSize());    
+    mDSP.reset(GetSampleRate(), GetBlockSize());
+    
+    mGainSmoother.reset(GetSampleRate());
+    mWidthSmoother.reset(GetSampleRate());
+    
+    mLastGain = mGainSmoother.target();
+    mLastWidth = mWidthSmoother.target();
 }
 
 void HISSToolsFreeze::OnTimeChange()
@@ -224,36 +236,62 @@ void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrame
     sample triggers[nFrames];
     sample* allInputs[3];
     
-    double rootTwo = 1.0 / sqrt(2.0);
+    const double rootTwo = 1.0 / sqrt(2.0);
     
     allInputs[0] = outputs[0];
     allInputs[1] = outputs[1];
     allInputs[2] = triggers;
 
+    // Parameters
+    
     double sampling = GetParam(kSampleTime)->Value();
     bool freeze = GetParam(kFreeze)->Bool();
     double threshold = freeze ? 2.0 : 1.0 - (1000.0 / (GetSampleRate() * sampling));
+    double currentGain = DBToAmp(GetParam(kGain)->Value());
+    double currentWidth = DBToAmp(GetParam(kWidth)->Value());
+    
+    if (currentGain != mLastGain)
+    {
+        mGainSmoother.set(currentGain, 0.03);
+        mLastGain = currentGain;
+    }
+    
+    if (currentWidth != mLastWidth)
+    {
+        mWidthSmoother.set(currentWidth, 0.03);
+        mLastWidth = currentWidth;
+    }
+    
+    // MS Processing
     
     for (int i = 0; i < nFrames; i++)
     {
-        double L = inputs[0][i];
-        double R = inputs[1][i];
+        double L = inputs[0][i] * rootTwo;
+        double R = inputs[1][i] * rootTwo;
         
-        outputs[0][i] = (L + R) * rootTwo;
-        outputs[1][i] = (L - R) * rootTwo;;
+        outputs[0][i] = (L + R);
+        outputs[1][i] = (L - R);
     }
+    
+    // Sampling
     
     for (int i = 0; i < nFrames; i++)
         triggers[i] = (std::rand() / (RAND_MAX + 1.0)) > threshold;
     
+    // Main process
+    
     mDSP.process(allInputs, outputs, nFrames);
+    
+    // MS Processing
     
     for (int i = 0; i < nFrames; i++)
     {
-        double M = outputs[0][i];
-        double S = outputs[1][i];
+        const double gain = mGainSmoother() * rootTwo;
+        const double width = mWidthSmoother();
+        double M = outputs[0][i] * gain;
+        double S = outputs[1][i] * gain * width;
         
-        outputs[0][i] = (M + S) * rootTwo;
-        outputs[1][i] = (M - S) * rootTwo;;
+        outputs[0][i] = (M + S);
+        outputs[1][i] = (M - S);
     }
 }

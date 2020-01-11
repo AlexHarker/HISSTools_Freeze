@@ -829,6 +829,7 @@
 		4FFBB94120863E9300DDD0E7 /* IPlugVST3_Parameter.h */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugVST3_Parameter.h; path = ../../../IPlug/VST3/IPlugVST3_Parameter.h; sourceTree = "<group>"; tabWidth = 2; };
 		4FFF72B8214BB71400839091 /* main.rc */ = {isa = PBXFileReference; lastKnownFileType = text; name = main.rc; path = ../resources/main.rc; sourceTree = "<group>"; };
 		52FBBED30D0CF143001C8B8A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = config.h; path = ../config.h; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
+		B809839F23C9DABA0047727E /* Smoothing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Smoothing.h; sourceTree = "<group>"; };
 		B8B3AFEB23C3868C0034A16F /* Freeze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Freeze.cpp; sourceTree = "<group>"; };
 		B8B3AFEC23C3868C0034A16F /* Freeze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Freeze.h; sourceTree = "<group>"; };
 		B8E22A0A220268C4007CBF4C /* IPlugVST3_ProcessorBase.cpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugVST3_ProcessorBase.cpp; path = ../../../IPlug/VST3/IPlugVST3_ProcessorBase.cpp; sourceTree = "<group>"; tabWidth = 2; };
@@ -1689,6 +1690,7 @@
 			children = (
 				B8B3AFEB23C3868C0034A16F /* Freeze.cpp */,
 				B8B3AFEC23C3868C0034A16F /* Freeze.h */,
+				B809839F23C9DABA0047727E /* Smoothing.h */,
 			);
 			name = src;
 			path = ../src;
