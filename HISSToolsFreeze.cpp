@@ -2,55 +2,90 @@
 #include "HISSToolsFreeze.h"
 
 #include "IPlug_include_in_plug_src.h"
+#include "HISSTools_Controls.hpp"
 #include "IControls.h"
 
+// Visual Design
 
-class IVMenuControl : public IControl, public IVectorBase
+class Design : public HISSTools_Design_Scheme
 {
+    
 public:
     
-    IVMenuControl(const IRECT& bounds, int paramIdx) : IControl(bounds, paramIdx)
+    Design() : HISSTools_Design_Scheme(true)
     {
-        AttachIControl(this, "");
-        DisablePrompt(false);
-    }
-    
-    void OnInit() override
-    {
-        const IParam* pParam = GetParam();
+        HISSTools_Color_Spec *col1 = new HISSTools_Color_Spec(0.7, 0.0, 0.0, 0.9);
+        HISSTools_Color_Spec *col2 = new HISSTools_Color_Spec(0.2, 0.7, 0.3, 0.9);
+        HISSTools_Color_Spec *col3 = new HISSTools_Color_Spec(0.35, 0.0, 0.35, 0.9);
+        HISSTools_Color_Spec *col4 = new HISSTools_Color_Spec(0.0, 0.5, 0.5, 0.9);
+        HISSTools_Color_Spec *col5 = new HISSTools_Color_Spec(0.5, 0.5, 0.0, 0.9);
+        HISSTools_Color_Spec *col6 = new HISSTools_Color_Spec(0.1, 0.4, 0.7, 0.9);
+        HISSTools_Color_Spec *col7 = new HISSTools_Color_Spec(0.8, 0.4, 0.1, 0.9);
         
-        if(pParam)
-            mLabelStr.Set(pParam->GetNameForHost());
-    }
-    
-    void Draw(IGraphics& g) override
-    {
-        DrawBackGround(g, mRECT);
-        DrawLabel(g);
-        DrawValue(g, false);
-    }
-    
-    void OnResize() override
-    {
-        SetTargetRECT(MakeRects(mRECT, true));
-        IControl::SetDirty(false);
-    }
-    
-    void OnMouseDown(float x, float y, const IMouseMod& mod) override
-    {
-        PromptUserInput(IRECT(mRECT.L, mRECT.B, mRECT.L, mRECT.B), GetValIdxForPos(x, y));
-    }
-    
-    void SetDirty(bool push, int valIdx) override
-    {
-        IControl::SetDirty(push);
+        HISSTools_Color_Spec *blackCS = new HISSTools_Color_Spec(0., 0., 0., 1.0);
+        HISSTools_Color_Spec *greyCS = new HISSTools_Color_Spec(0.9, 0.9, 0.9, 0.5);
         
-        const IParam* pParam = GetParam();
+        HISSTools_LICE_VGradient* activeFillCS = new HISSTools_LICE_VGradient;
+        HISSTools_LICE_VGradient* activeOffFillCS = new HISSTools_LICE_VGradient;
         
-        if(pParam)
-            pParam->GetDisplayForHostWithLabel(mValueStr);
+        activeOffFillCS->addStop(HISSTools_Color(0.415, 0.415, 0.415, 1.0), 0.0);
+        activeOffFillCS->addStop(HISSTools_Color(0.169, 0.169, 0.169, 1.0), 1.0);
+        
+        activeFillCS->addStop(HISSTools_Color(0.6, 0.6, 0.6, 1.0), 0);
+        activeFillCS->addStop(HISSTools_Color(0.3, 0.3, 0.3, 1.0), 1.);
+        
+        HISSTools_LICE_VGradient* panelFillCS = new HISSTools_LICE_VGradient;
+        panelFillCS->addStop(HISSTools_Color(0.4, 0.4, 0.4, 0.4), 0.0);
+        panelFillCS->addStop(HISSTools_Color(0.2, 0.2, 0.2, 0.5), 0.94);
+        panelFillCS->addStop(HISSTools_Color(0.075, 0.075, 0.075, 0.6), 1.0);
+        
+        HISSTools_Color_Spec *shadowCS = new HISSTools_Color_Spec(HISSTools_Color(0.00, 0.00, 0.00, 0.90));
+        HISSTools_Shadow *shadowSpec = new HISSTools_Shadow(shadowCS, 4, 4, 6);
+        
+        addColorSpec("PanelFill", "upper", panelFillCS);
+        addColorSpec("PanelFill", "main", panelFillCS);
+        addColorSpec("PanelFill", "thick", blackCS);
+        
+        addColorSpec("ButtonHandleLabelOff", "alt", greyCS);
+        addColorSpec("ButtonHandleOff", "alt", activeOffFillCS);
+        addColorSpec("ButtonHandleOn", "alt", activeFillCS);
+        
+        addShadow("TextBlock", "name", shadowSpec);
+        
+        HISSTools_Color_Spec *textColor = new HISSTools_Color_Spec(0.9, 0.9, 0.9, 0.80);
+        HISSTools_Text *nameTxt = new HISSTools_Text(42, "Arial Bold");
+        
+        addColorSpec("TextBlock", "name", textColor);
+        addTextStyle("TextBlock", "name", nameTxt);
+        
+        addColorSpec("DialIndicator", "1", col1);
+        addColorSpec("DialIndicator", "2", col2);
+        addColorSpec("DialIndicator", "3", col3);
+        addColorSpec("DialIndicator", "4", col4);
+        addColorSpec("DialIndicator", "5", col5);
+        addColorSpec("DialIndicator", "6", col6);
+        addColorSpec("DialIndicator", "7", col7);
+        
+        addDimension("PanelRoundnessTL","tighter", 5);
+        addDimension("PanelRoundnessTR","tighter", 5);
+        addDimension("PanelRoundnessBL","tighter", 5);
+        addDimension("PanelRoundnessBR","tighter", 5);
+        
+        addDimension("DialRefValue", "gain", 2.0/7.0);
+        addDimension("DialRefValue", "vol", 6.0/7.0);
+        
+        addDimension("ValueTextArea", "spacious", 25);
+        
+        addFlag("ValueDrawTriangle", "small", false);
+        addFlag("ValueDrawLabel", "nolabel", false);
+        
+        addFlag("ValueLabelBelow", true);
+        addFlag("ValueLabelBelow", "above", false);
+        addFlag("DialDrawValOnlyOnMO", true);
     }
 };
+
+Design designScheme;
 
 HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
 : Plugin(info, MakeConfig(kNumParams, kNumPrograms)), mProxy(new FromPlugProxy()), mDSP(mProxy)
@@ -84,40 +119,74 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     
     GetParam(kGain)->InitDouble("Gain", 0., -12.0, 12.0, 0.1, "dB");
     GetParam(kWidth)->InitDouble("Width", 0., -12.0, 12.0, 0.1, "dB");
+}
 
-    mMakeGraphicsFunc = [&]() {
-        return MakeGraphics(*this, PLUG_WIDTH, PLUG_HEIGHT, PLUG_FPS, 1.);
-    };
-    
-    mLayoutFunc = [&](IGraphics* pGraphics) {
-        pGraphics->AttachCornerResizer(EUIResizerMode::Scale, false);
+IGraphics* HISSToolsFreeze::CreateGraphics()
+{
+    return MakeGraphics(*this, PLUG_WIDTH, PLUG_HEIGHT, PLUG_FPS, 1.);
+}
+
+void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
+{
+    if (!pGraphics->NControls())
+    {
+        pGraphics->HandleMouseOver(true);
         pGraphics->AttachPanelBackground(COLOR_GRAY);
-        pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
-        const IRECT b = pGraphics->GetBounds();
-        pGraphics->AttachControl(new ITextControl(b.GetMidVPadded(50).GetVShifted(-240), "HISSTools Freeze", IText(50)));
-        pGraphics->AttachControl(new IVMenuControl(b.GetCentredInside(100, 40).GetVShifted(-160), kFFTSize));
-        pGraphics->AttachControl(new IVMenuControl(b.GetCentredInside(100, 40).GetVShifted(-110), kOverlap));
-        pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-20).GetHShifted(-100), kSampleTime));
-        pGraphics->AttachControl(new IVSwitchControl(b.GetCentredInside(100).GetVShifted(100).GetHShifted(-100), kFreeze));
-        pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(-20).GetHShifted(100), kBlur));
-        pGraphics->AttachControl(new IVKnobControl(b.GetCentredInside(100).GetVShifted(100).GetHShifted(100), kXFadeTime));
         
-        auto smallDial = [](const IRECT& b, int idx, int hs, int vs = 200) {
-            IVStyle smallStyle;
-            smallStyle.labelText = IText(12.0);
+        pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
+        pGraphics->LoadFont("Arial Bold", "Arial", ETextStyle::Bold);
+        
+        auto smallDial = [](const IRECT& b, int idx, int hs, int vs, const char *types) {
             IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
-            return new IVKnobControl(cb, idx, "", smallStyle);
+            
+            WDL_String var("small");
+            var.Append(" ");
+            var.Append(types);
+            
+            return new HISSTools_Dial(idx, cb.L, cb.T, var.Get(), &designScheme);
         };
         
-        pGraphics->AttachControl(smallDial(b, kFiltNum, -200));
-        pGraphics->AttachControl(smallDial(b, kFiltInterval, -100));
-        pGraphics->AttachControl(smallDial(b, kFiltRandom, 0));
-        pGraphics->AttachControl(smallDial(b, kFiltStrength, 100));
-        pGraphics->AttachControl(smallDial(b, kFiltTilt, 200));
+        auto dial = [](const IRECT& b, int idx, int hs, int vs, const char *types) {
+            IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
+            
+            return new HISSTools_Dial(idx, cb.L, cb.T, types, &designScheme);
+        };
         
-        pGraphics->AttachControl(smallDial(b, kGain, 100, -140));
-        pGraphics->AttachControl(smallDial(b, kWidth, 200, -140));
-    };
+        auto paramPanel = [](const IRECT& b, int idx, int hs, int vs, const char *types) {
+            IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
+            
+            return new HISSTools_Value(idx, cb.L, cb.T, 100, 20, types, &designScheme);
+        };
+        
+        auto button = [](const IRECT& b, int idx, int hs, int vs, const char *types) {
+            IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
+            
+            return new HISSTools_Button(idx, cb.L, cb.T, 100, 20, types, &designScheme);
+        };
+        
+        const IRECT b = pGraphics->GetBounds();
+        
+        // Name
+        
+        pGraphics->AttachControl(new HISSTools_TextBlock(0, 20, PLUG_WIDTH, 50, "HISSTools Freeze", kHAlignCenter, kVAlignCenter, "name", &designScheme));
+        
+        pGraphics->AttachControl(paramPanel(b, kFFTSize, -30, -140, ""));
+        pGraphics->AttachControl(paramPanel(b, kOverlap, -30, -90, ""));
+        
+        pGraphics->AttachControl(dial(b, kSampleTime, -100, -20, ""));
+        pGraphics->AttachControl(button(b, kFreeze, -100, 140, ""));
+        pGraphics->AttachControl(dial(b, kBlur, 100, -20, ""));
+        pGraphics->AttachControl(dial(b, kXFadeTime, 100, 100, ""));
+        
+        pGraphics->AttachControl(smallDial(b, kFiltNum, -200, 220, "2"));
+        pGraphics->AttachControl(smallDial(b, kFiltInterval, -100, 220, "3"));
+        pGraphics->AttachControl(smallDial(b, kFiltRandom, 0, 220, "3"));
+        pGraphics->AttachControl(smallDial(b, kFiltStrength, 100, 220, "5"));
+        pGraphics->AttachControl(smallDial(b, kFiltTilt, 200, 220, "5"));
+        
+        pGraphics->AttachControl(smallDial(b, kGain, 100, -140, "4"));
+        pGraphics->AttachControl(smallDial(b, kWidth, 200, -140, "4"));
+    }
 }
 
 void HISSToolsFreeze::OnReset()

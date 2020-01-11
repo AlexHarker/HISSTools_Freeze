@@ -39,7 +39,7 @@ class HISSToolsFreeze : public Plugin
 public:
     
     HISSToolsFreeze(const InstanceInfo& info);
-    
+
     void ProcessBlock(sample** inputs, sample** outputs, int nFrames) override;
     void OnReset() override;
     void OnParamChange(int paramIdx, EParamSource source, int sampleOffset) override;
@@ -49,6 +49,9 @@ public:
     void OnFilterTimeChange();
 
 private:
+    
+    IGraphics* CreateGraphics() override;
+    void LayoutUI(IGraphics* pGraphics) override;
     
     FromPlugProxy *mProxy;  // N.B. - owned by mDSP
     Freeze mDSP;

@@ -830,6 +830,36 @@
 		4FFF72B8214BB71400839091 /* main.rc */ = {isa = PBXFileReference; lastKnownFileType = text; name = main.rc; path = ../resources/main.rc; sourceTree = "<group>"; };
 		52FBBED30D0CF143001C8B8A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = config.h; path = ../config.h; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		B809839F23C9DABA0047727E /* Smoothing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Smoothing.h; sourceTree = "<group>"; };
+		B80983AC23CA49C10047727E /* AH_Rand_Seed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_Rand_Seed.h; sourceTree = "<group>"; };
+		B80983AD23CA49C10047727E /* AH_Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_Types.h; sourceTree = "<group>"; };
+		B80983AE23CA49C10047727E /* AH_Win_Complex_Math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_Win_Complex_Math.h; sourceTree = "<group>"; };
+		B80983AF23CA49C10047727E /* AH_Win_Math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AH_Win_Math.h; sourceTree = "<group>"; };
+		B80983B023CA49C10047727E /* HIRT_Frame_Stats.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = HIRT_Frame_Stats.c; sourceTree = "<group>"; };
+		B80983B123CA49C10047727E /* HIRT_Frame_Stats.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HIRT_Frame_Stats.h; sourceTree = "<group>"; };
+		B80983B223CA49C10047727E /* HIRT_Matrix_Math.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = HIRT_Matrix_Math.c; sourceTree = "<group>"; };
+		B80983B323CA49C10047727E /* HIRT_Matrix_Math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HIRT_Matrix_Math.h; sourceTree = "<group>"; };
+		B80983B423CA49C10047727E /* HIRT_Trim_Normalise.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = HIRT_Trim_Normalise.c; sourceTree = "<group>"; };
+		B80983B523CA49C10047727E /* HIRT_Trim_Normalise.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HIRT_Trim_Normalise.h; sourceTree = "<group>"; };
+		B80983B623CA49C10047727E /* HISSTools_DWT.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_DWT.hpp; sourceTree = "<group>"; };
+		B80983B723CA49C10047727E /* HISSTools_Frame.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_Frame.hpp; sourceTree = "<group>"; };
+		B80983B823CA49C10047727E /* HISSTools_Frame_Delay.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_Frame_Delay.hpp; sourceTree = "<group>"; };
+		B80983B923CA49C10047727E /* HISSTools_IOStream.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_IOStream.hpp; sourceTree = "<group>"; };
+		B80983BA23CA49C10047727E /* HISSTools_MultiTaper_Shrink.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_MultiTaper_Shrink.hpp; sourceTree = "<group>"; };
+		B80983BB23CA49C10047727E /* HISSTools_MultiTaper_Spectrum.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_MultiTaper_Spectrum.hpp; sourceTree = "<group>"; };
+		B80983BC23CA49C10047727E /* HISSTools_OLA.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_OLA.hpp; sourceTree = "<group>"; };
+		B80983BD23CA49C10047727E /* HISSTools_Spectral_Peaks.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_Spectral_Peaks.hpp; sourceTree = "<group>"; };
+		B80983BE23CA49C10047727E /* HISSTools_VU_Ballistics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_VU_Ballistics.hpp; sourceTree = "<group>"; };
+		B80983BF23CA49C10047727E /* HISSTools_Windows.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_Windows.hpp; sourceTree = "<group>"; };
+		B80983C223CA49C10047727E /* HISSTools_VecLib.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_VecLib.hpp; sourceTree = "<group>"; };
+		B80983C323CA49C10047727E /* HISSTools_VecLib_Structs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_VecLib_Structs.hpp; sourceTree = "<group>"; };
+		B80983C523CA49C10047727E /* HISSTools_Control_Helpers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HISSTools_Control_Helpers.cpp; sourceTree = "<group>"; };
+		B80983C623CA49C10047727E /* HISSTools_Control_Helpers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_Control_Helpers.hpp; sourceTree = "<group>"; };
+		B80983C723CA49C10047727E /* HISSTools_Controls.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_Controls.hpp; sourceTree = "<group>"; };
+		B80983C823CA49C10047727E /* HISSTools_Design_Scheme.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_Design_Scheme.hpp; sourceTree = "<group>"; };
+		B80983CA23CA49C10047727E /* HISSTools_Atomic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_Atomic.hpp; sourceTree = "<group>"; };
+		B80983CB23CA49C10047727E /* HISSTools_Pointers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_Pointers.hpp; sourceTree = "<group>"; };
+		B80983CC23CA49C10047727E /* HISSTools_ThreadSafety.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_ThreadSafety.hpp; sourceTree = "<group>"; };
+		B80983CD23CA49C10047727E /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		B8B3AFEB23C3868C0034A16F /* Freeze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Freeze.cpp; sourceTree = "<group>"; };
 		B8B3AFEC23C3868C0034A16F /* Freeze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Freeze.h; sourceTree = "<group>"; };
 		B8E22A0A220268C4007CBF4C /* IPlugVST3_ProcessorBase.cpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugVST3_ProcessorBase.cpp; path = ../../../IPlug/VST3/IPlugVST3_ProcessorBase.cpp; sourceTree = "<group>"; tabWidth = 2; };
@@ -911,6 +941,7 @@
 		089C166AFE841209C02AAC07 /* IPlugExample */ = {
 			isa = PBXGroup;
 			children = (
+				B80983A823CA49C10047727E /* HISSTools_PluginLib */,
 				B8B3AFEA23C3864E0034A16F /* src */,
 				52FBBED30D0CF143001C8B8A /* config.h */,
 				4F3862EE2014BBEC0009F402 /* HISSToolsFreeze.h */,
@@ -1683,6 +1714,92 @@
 				4F3D2B4520212D4E00842FF4 /* wdl_base64.h */,
 			);
 			name = WDL;
+			sourceTree = "<group>";
+		};
+		B80983A823CA49C10047727E /* HISSTools_PluginLib */ = {
+			isa = PBXGroup;
+			children = (
+				B80983A923CA49C10047727E /* HISSTools_DSP */,
+				B80983C023CA49C10047727E /* HISSTools_Graphics */,
+				B80983C423CA49C10047727E /* HISSTools_UI */,
+				B80983C923CA49C10047727E /* HISSTools_Utility */,
+				B80983CD23CA49C10047727E /* LICENSE.txt */,
+			);
+			name = HISSTools_PluginLib;
+			path = ../../HISSTools_PluginLib;
+			sourceTree = "<group>";
+		};
+		B80983A923CA49C10047727E /* HISSTools_DSP */ = {
+			isa = PBXGroup;
+			children = (
+				B80983AA23CA49C10047727E /* HIRT_Generic */,
+				B80983B623CA49C10047727E /* HISSTools_DWT.hpp */,
+				B80983B723CA49C10047727E /* HISSTools_Frame.hpp */,
+				B80983B823CA49C10047727E /* HISSTools_Frame_Delay.hpp */,
+				B80983B923CA49C10047727E /* HISSTools_IOStream.hpp */,
+				B80983BA23CA49C10047727E /* HISSTools_MultiTaper_Shrink.hpp */,
+				B80983BB23CA49C10047727E /* HISSTools_MultiTaper_Spectrum.hpp */,
+				B80983BC23CA49C10047727E /* HISSTools_OLA.hpp */,
+				B80983BD23CA49C10047727E /* HISSTools_Spectral_Peaks.hpp */,
+				B80983BE23CA49C10047727E /* HISSTools_VU_Ballistics.hpp */,
+				B80983BF23CA49C10047727E /* HISSTools_Windows.hpp */,
+			);
+			path = HISSTools_DSP;
+			sourceTree = "<group>";
+		};
+		B80983AA23CA49C10047727E /* HIRT_Generic */ = {
+			isa = PBXGroup;
+			children = (
+				B80983AB23CA49C10047727E /* AH_Headers */,
+				B80983B023CA49C10047727E /* HIRT_Frame_Stats.c */,
+				B80983B123CA49C10047727E /* HIRT_Frame_Stats.h */,
+				B80983B223CA49C10047727E /* HIRT_Matrix_Math.c */,
+				B80983B323CA49C10047727E /* HIRT_Matrix_Math.h */,
+				B80983B423CA49C10047727E /* HIRT_Trim_Normalise.c */,
+				B80983B523CA49C10047727E /* HIRT_Trim_Normalise.h */,
+			);
+			path = HIRT_Generic;
+			sourceTree = "<group>";
+		};
+		B80983AB23CA49C10047727E /* AH_Headers */ = {
+			isa = PBXGroup;
+			children = (
+				B80983AC23CA49C10047727E /* AH_Rand_Seed.h */,
+				B80983AD23CA49C10047727E /* AH_Types.h */,
+				B80983AE23CA49C10047727E /* AH_Win_Complex_Math.h */,
+				B80983AF23CA49C10047727E /* AH_Win_Math.h */,
+			);
+			path = AH_Headers;
+			sourceTree = "<group>";
+		};
+		B80983C023CA49C10047727E /* HISSTools_Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				B80983C223CA49C10047727E /* HISSTools_VecLib.hpp */,
+				B80983C323CA49C10047727E /* HISSTools_VecLib_Structs.hpp */,
+			);
+			path = HISSTools_Graphics;
+			sourceTree = "<group>";
+		};
+		B80983C423CA49C10047727E /* HISSTools_UI */ = {
+			isa = PBXGroup;
+			children = (
+				B80983C523CA49C10047727E /* HISSTools_Control_Helpers.cpp */,
+				B80983C623CA49C10047727E /* HISSTools_Control_Helpers.hpp */,
+				B80983C723CA49C10047727E /* HISSTools_Controls.hpp */,
+				B80983C823CA49C10047727E /* HISSTools_Design_Scheme.hpp */,
+			);
+			path = HISSTools_UI;
+			sourceTree = "<group>";
+		};
+		B80983C923CA49C10047727E /* HISSTools_Utility */ = {
+			isa = PBXGroup;
+			children = (
+				B80983CA23CA49C10047727E /* HISSTools_Atomic.hpp */,
+				B80983CB23CA49C10047727E /* HISSTools_Pointers.hpp */,
+				B80983CC23CA49C10047727E /* HISSTools_ThreadSafety.hpp */,
+			);
+			path = HISSTools_Utility;
 			sourceTree = "<group>";
 		};
 		B8B3AFEA23C3864E0034A16F /* src */ = {
