@@ -45,7 +45,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 420.0, 278.0067138671875, 30.0, 30.0 ]
+					"patching_rect" : [ 420.0, 282.0067138671875, 30.0, 30.0 ]
 				}
 
 			}
@@ -105,7 +105,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 220.0, 246.0067138671875, 94.0, 22.0 ],
+					"patching_rect" : [ 220.0, 238.0067138671875, 94.0, 22.0 ],
 					"text" : "fl.store~ phases"
 				}
 
@@ -117,7 +117,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 132.0, 235.0067138671875, 54.0, 22.0 ],
+					"patching_rect" : [ 132.0, 238.0067138671875, 54.0, 22.0 ],
 					"text" : "fl.times~"
 				}
 
@@ -129,7 +129,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 44.0, 235.0067138671875, 54.0, 22.0 ],
+					"patching_rect" : [ 44.0, 238.0067138671875, 54.0, 22.0 ],
 					"text" : "fl.times~"
 				}
 
@@ -192,7 +192,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 44.0, 278.0067138671875, 30.0, 30.0 ]
+					"patching_rect" : [ 44.0, 282.0067138671875, 30.0, 30.0 ]
 				}
 
 			}
@@ -204,7 +204,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 132.0, 278.0067138671875, 30.0, 30.0 ]
+					"patching_rect" : [ 132.0, 282.0067138671875, 30.0, 30.0 ]
 				}
 
 			}
