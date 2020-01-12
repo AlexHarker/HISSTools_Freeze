@@ -10,7 +10,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     FrameLib_Context context(mGlobal, this);
     FrameLib_Parameters::AutoSerial parameters;
 
-    mObjects.resize(132);
+    mObjects.resize(138);
 
     double fl_0_vector_0[] = { 8 };
     parameters.clear();
@@ -123,661 +123,691 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[20] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&cos> > >(context, &parameters, mProxy, 1);
     mObjects[20]->addConnection(Connection(mObjects[19], 0), 0);
 
+    double fl_21_vector_0[] = { 1 };
     parameters.clear();
-    parameters.write("mode", "params");
-    mObjects[21] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
+    parameters.write("outputs", fl_21_vector_0, 1);
+    mObjects[21] = new FrameLib_Unpack(context, &parameters, mProxy, 1);
     mObjects[21]->addConnection(Connection(mObjects[11], 1), 0);
 
-    double fl_22_vector_0[] = { 100 };
-    double fl_22_vector_1[] = { 20 };
     parameters.clear();
-    parameters.write("max_frames", fl_22_vector_0, 1);
-    parameters.write("num_frames", fl_22_vector_1, 1);
-    mObjects[22] = new FrameLib_Expand<FrameLib_TimeMean>(context, &parameters, mProxy, 1);
-    mObjects[22]->addConnection(Connection(mObjects[20], 0), 0);
-    mObjects[22]->addConnection(Connection(mObjects[21], 0), 1);
+    mObjects[22] = new FrameLib_Expand<FrameLib_Now>(context, &parameters, mProxy, 1);
+    mObjects[22]->addConnection(Connection(mObjects[21], 0), 0);
 
     parameters.clear();
-    mObjects[23] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[23] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::equal_to<double> > >(context, &parameters, mProxy, 1);
+    double fl_23_inputs_1[] = { 0 };
+    mObjects[23]->setFixedInput(1, fl_23_inputs_1 , 1);
     mObjects[23]->addConnection(Connection(mObjects[22], 0), 0);
-    mObjects[23]->addConnection(Connection(mObjects[22], 0), 1);
 
     parameters.clear();
-    mObjects[24] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&sin> > >(context, &parameters, mProxy, 1);
-    mObjects[24]->addConnection(Connection(mObjects[19], 0), 0);
+    mObjects[24] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
+    mObjects[24]->addConnection(Connection(mObjects[21], 0), 0);
+    mObjects[24]->addConnection(Connection(mObjects[2], 0), 1);
 
-    double fl_25_vector_0[] = { 100 };
-    double fl_25_vector_1[] = { 20 };
     parameters.clear();
-    parameters.write("max_frames", fl_25_vector_0, 1);
-    parameters.write("num_frames", fl_25_vector_1, 1);
-    mObjects[25] = new FrameLib_Expand<FrameLib_TimeMean>(context, &parameters, mProxy, 1);
+    mObjects[25] = new FrameLib_Expand<FrameLib_FrameDelta>(context, &parameters, mProxy, 1);
     mObjects[25]->addConnection(Connection(mObjects[24], 0), 0);
-    mObjects[25]->addConnection(Connection(mObjects[21], 0), 1);
 
     parameters.clear();
-    mObjects[26] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
-    mObjects[26]->addConnection(Connection(mObjects[25], 0), 0);
-    mObjects[26]->addConnection(Connection(mObjects[25], 0), 1);
+    mObjects[26] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
+    mObjects[26]->addConnection(Connection(mObjects[21], 0), 0);
+    mObjects[26]->addConnection(Connection(mObjects[1], 0), 1);
 
     parameters.clear();
-    mObjects[27] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::plus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[27] = new FrameLib_Expand<FrameLib_FrameDelta>(context, &parameters, mProxy, 1);
     mObjects[27]->addConnection(Connection(mObjects[26], 0), 0);
-    mObjects[27]->addConnection(Connection(mObjects[23], 0), 1);
 
     parameters.clear();
-    parameters.write("expr", "max(in1, exp(-4*pi*pi))");
-    mObjects[28] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
-    mObjects[28]->addConnection(Connection(mObjects[27], 0), 0);
+    mObjects[28] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::logical_or<double> > >(context, &parameters, mProxy, 1);
+    mObjects[28]->addConnection(Connection(mObjects[25], 0), 0);
+    mObjects[28]->addConnection(Connection(mObjects[27], 0), 1);
 
     parameters.clear();
-    mObjects[29] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&log> > >(context, &parameters, mProxy, 1);
+    mObjects[29] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::logical_or<double> > >(context, &parameters, mProxy, 1);
     mObjects[29]->addConnection(Connection(mObjects[28], 0), 0);
-
-    parameters.clear();
-    mObjects[30] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
-    double fl_30_inputs_1[] = { -1 };
-    mObjects[30]->setFixedInput(1, fl_30_inputs_1 , 1);
-    mObjects[30]->addConnection(Connection(mObjects[29], 0), 0);
-
-    parameters.clear();
-    mObjects[31] = new FrameLib_Expand<FrameLib_BinaryOp<Binary_Functor<&fmax> > >(context, &parameters, mProxy, 1);
-    double fl_31_inputs_1[] = { 0 };
-    mObjects[31]->setFixedInput(1, fl_31_inputs_1 , 1);
-    mObjects[31]->addConnection(Connection(mObjects[30], 0), 0);
-
-    parameters.clear();
-    mObjects[32] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&sqrt> > >(context, &parameters, mProxy, 1);
-    mObjects[32]->addConnection(Connection(mObjects[31], 0), 0);
-
-    double fl_33_vector_0[] = { 100 };
-    double fl_33_vector_1[] = { 20 };
-    parameters.clear();
-    parameters.write("max_frames", fl_33_vector_0, 1);
-    parameters.write("num_frames", fl_33_vector_1, 1);
-    mObjects[33] = new FrameLib_Expand<FrameLib_TimeMean>(context, &parameters, mProxy, 1);
-    mObjects[33]->addConnection(Connection(mObjects[14], 0), 0);
-    mObjects[33]->addConnection(Connection(mObjects[21], 0), 1);
-
-    double fl_34_vector_0[] = { 100 };
-    double fl_34_vector_1[] = { 20 };
-    parameters.clear();
-    parameters.write("max_frames", fl_34_vector_0, 1);
-    parameters.write("num_frames", fl_34_vector_1, 1);
-    mObjects[34] = new FrameLib_Expand<FrameLib_TimeStdDev>(context, &parameters, mProxy, 1);
-    mObjects[34]->addConnection(Connection(mObjects[14], 0), 0);
-    mObjects[34]->addConnection(Connection(mObjects[21], 0), 1);
-
-    parameters.clear();
-    mObjects[35] = new FrameLib_Expand<FrameLib_BinaryOp<Binary_Functor<&atan2> > >(context, &parameters, mProxy, 1);
-    mObjects[35]->addConnection(Connection(mObjects[25], 0), 0);
-    mObjects[35]->addConnection(Connection(mObjects[22], 0), 1);
-
-    double fl_36_vector_0[] = { 4 };
-    parameters.clear();
-    parameters.write("inputs", fl_36_vector_0, 1);
-    mObjects[36] = new FrameLib_Pack(context, &parameters, mProxy, 1);
-    mObjects[36]->addConnection(Connection(mObjects[33], 0), 0);
-    mObjects[36]->addConnection(Connection(mObjects[34], 0), 1);
-    mObjects[36]->addConnection(Connection(mObjects[35], 0), 2);
-    mObjects[36]->addConnection(Connection(mObjects[32], 0), 3);
-
-    parameters.clear();
-    mObjects[37] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
-    mObjects[37]->addConnection(Connection(mObjects[36], 0), 0);
-
-    parameters.clear();
-    mObjects[38] = new FrameLib_Expand<FrameLib_BinaryOp<Binary_Functor<&fmax> > >(context, &parameters, mProxy, 1);
-    double fl_38_inputs_1[] = { 0.010000 };
-    mObjects[38]->setFixedInput(1, fl_38_inputs_1 , 1);
-    mObjects[38]->addConnection(Connection(mObjects[37], 0), 0);
-
-    parameters.clear();
-    mObjects[39] = new FrameLib_Expand<FrameLib_AudioTrigger>(context, &parameters, mProxy, 1);
-
-    double fl_40_vector_0[] = { 1 };
-    parameters.clear();
-    parameters.write("outputs", fl_40_vector_0, 1);
-    mObjects[40] = new FrameLib_Unpack(context, &parameters, mProxy, 1);
-    mObjects[40]->addConnection(Connection(mObjects[11], 1), 0);
-
-    parameters.clear();
-    mObjects[41] = new FrameLib_Expand<FrameLib_Now>(context, &parameters, mProxy, 1);
-    mObjects[41]->addConnection(Connection(mObjects[40], 0), 0);
-
-    parameters.clear();
-    mObjects[42] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::equal_to<double> > >(context, &parameters, mProxy, 1);
-    double fl_42_inputs_1[] = { 0 };
-    mObjects[42]->setFixedInput(1, fl_42_inputs_1 , 1);
-    mObjects[42]->addConnection(Connection(mObjects[41], 0), 0);
-
-    parameters.clear();
-    mObjects[43] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
-    mObjects[43]->addConnection(Connection(mObjects[40], 0), 0);
-    mObjects[43]->addConnection(Connection(mObjects[2], 0), 1);
-
-    parameters.clear();
-    mObjects[44] = new FrameLib_Expand<FrameLib_FrameDelta>(context, &parameters, mProxy, 1);
-    mObjects[44]->addConnection(Connection(mObjects[43], 0), 0);
-
-    parameters.clear();
-    mObjects[45] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
-    mObjects[45]->addConnection(Connection(mObjects[40], 0), 0);
-    mObjects[45]->addConnection(Connection(mObjects[1], 0), 1);
-
-    parameters.clear();
-    mObjects[46] = new FrameLib_Expand<FrameLib_FrameDelta>(context, &parameters, mProxy, 1);
-    mObjects[46]->addConnection(Connection(mObjects[45], 0), 0);
-
-    parameters.clear();
-    mObjects[47] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::logical_or<double> > >(context, &parameters, mProxy, 1);
-    mObjects[47]->addConnection(Connection(mObjects[44], 0), 0);
-    mObjects[47]->addConnection(Connection(mObjects[46], 0), 1);
-
-    parameters.clear();
-    mObjects[48] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::logical_or<double> > >(context, &parameters, mProxy, 1);
-    mObjects[48]->addConnection(Connection(mObjects[47], 0), 0);
-    mObjects[48]->addConnection(Connection(mObjects[42], 0), 1);
+    mObjects[29]->addConnection(Connection(mObjects[23], 0), 1);
 
     parameters.clear();
     parameters.write("tag_01", "input");
-    mObjects[49] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
-    mObjects[49]->addConnection(Connection(mObjects[48], 0), 0);
+    mObjects[30] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
+    mObjects[30]->addConnection(Connection(mObjects[29], 0), 0);
 
     parameters.clear();
-    mObjects[50] = new FrameLib_Expand<FrameLib_Select>(context, &parameters, mProxy, 1);
-    mObjects[50]->addConnection(Connection(mObjects[40], 0), 0);
-    mObjects[50]->addConnection(Connection(mObjects[49], 0), 2);
+    mObjects[31] = new FrameLib_Expand<FrameLib_Select>(context, &parameters, mProxy, 1);
+    mObjects[31]->addConnection(Connection(mObjects[21], 0), 0);
+    mObjects[31]->addConnection(Connection(mObjects[30], 0), 2);
 
     parameters.clear();
     parameters.write("mode", "input");
-    mObjects[51] = new FrameLib_Expand<FrameLib_Uniform>(context, &parameters, mProxy, 1);
-    mObjects[51]->addConnection(Connection(mObjects[50], 0), 0);
+    mObjects[32] = new FrameLib_Expand<FrameLib_Uniform>(context, &parameters, mProxy, 1);
+    mObjects[32]->addConnection(Connection(mObjects[31], 0), 0);
 
     parameters.clear();
     parameters.write("mode", "input");
     parameters.write("scale", "normalised");
-    mObjects[52] = new FrameLib_Expand<FrameLib_Ramp>(context, &parameters, mProxy, 1);
-    mObjects[52]->addConnection(Connection(mObjects[51], 0), 0);
+    mObjects[33] = new FrameLib_Expand<FrameLib_Ramp>(context, &parameters, mProxy, 1);
+    mObjects[33]->addConnection(Connection(mObjects[32], 0), 0);
 
     parameters.clear();
-    mObjects[53] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
-    double fl_53_inputs_1[] = { 40 };
-    mObjects[53]->setFixedInput(1, fl_53_inputs_1 , 1);
-    mObjects[53]->addConnection(Connection(mObjects[52], 0), 0);
-
-    parameters.clear();
-    parameters.write("mode", "freq->halfnorm");
-    mObjects[54] = new FrameLib_Expand<FrameLib_SampleRate>(context, &parameters, mProxy, 1);
-    mObjects[54]->addConnection(Connection(mObjects[53], 0), 0);
-
-    parameters.clear();
-    mObjects[55] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
-    double fl_55_inputs_1[] = { 40 };
-    mObjects[55]->setFixedInput(1, fl_55_inputs_1 , 1);
-    mObjects[55]->addConnection(Connection(mObjects[52], 0), 0);
+    mObjects[34] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
+    double fl_34_inputs_1[] = { 40 };
+    mObjects[34]->setFixedInput(1, fl_34_inputs_1 , 1);
+    mObjects[34]->addConnection(Connection(mObjects[33], 0), 0);
 
     parameters.clear();
     parameters.write("mode", "freq->halfnorm");
-    mObjects[56] = new FrameLib_Expand<FrameLib_SampleRate>(context, &parameters, mProxy, 1);
-    mObjects[56]->addConnection(Connection(mObjects[55], 0), 0);
+    mObjects[35] = new FrameLib_Expand<FrameLib_SampleRate>(context, &parameters, mProxy, 1);
+    mObjects[35]->addConnection(Connection(mObjects[34], 0), 0);
+
+    parameters.clear();
+    mObjects[36] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
+    double fl_36_inputs_1[] = { 40 };
+    mObjects[36]->setFixedInput(1, fl_36_inputs_1 , 1);
+    mObjects[36]->addConnection(Connection(mObjects[33], 0), 0);
+
+    parameters.clear();
+    parameters.write("mode", "freq->halfnorm");
+    mObjects[37] = new FrameLib_Expand<FrameLib_SampleRate>(context, &parameters, mProxy, 1);
+    mObjects[37]->addConnection(Connection(mObjects[36], 0), 0);
 
     parameters.clear();
     parameters.write("tag_01", "inlo");
     parameters.write("tag_02", "outlo");
-    mObjects[57] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
-    mObjects[57]->addConnection(Connection(mObjects[56], 0), 0);
-    mObjects[57]->addConnection(Connection(mObjects[54], 0), 1);
+    mObjects[38] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
+    mObjects[38]->addConnection(Connection(mObjects[37], 0), 0);
+    mObjects[38]->addConnection(Connection(mObjects[35], 0), 1);
 
-    double fl_58_vector_1[] = { 0.002000 };
-    double fl_58_vector_2[] = { 0.600000 };
-    double fl_58_vector_3[] = { 0 };
-    double fl_58_vector_4[] = { 1 };
-    double fl_58_vector_5[] = { 1 };
+    double fl_39_vector_1[] = { 0.002000 };
+    double fl_39_vector_2[] = { 0.600000 };
+    double fl_39_vector_3[] = { 0 };
+    double fl_39_vector_4[] = { 1 };
+    double fl_39_vector_5[] = { 1 };
     parameters.clear();
     parameters.write("mode", "log");
-    parameters.write("inlo", fl_58_vector_1, 1);
-    parameters.write("inhi", fl_58_vector_2, 1);
-    parameters.write("outlo", fl_58_vector_3, 1);
-    parameters.write("outhi", fl_58_vector_4, 1);
-    parameters.write("clip", fl_58_vector_5, 1);
-    mObjects[58] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
-    mObjects[58]->addConnection(Connection(mObjects[52], 0), 0);
-    mObjects[58]->addConnection(Connection(mObjects[57], 0), 1);
+    parameters.write("inlo", fl_39_vector_1, 1);
+    parameters.write("inhi", fl_39_vector_2, 1);
+    parameters.write("outlo", fl_39_vector_3, 1);
+    parameters.write("outhi", fl_39_vector_4, 1);
+    parameters.write("clip", fl_39_vector_5, 1);
+    mObjects[39] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
+    mObjects[39]->addConnection(Connection(mObjects[33], 0), 0);
+    mObjects[39]->addConnection(Connection(mObjects[38], 0), 1);
 
-    double fl_59_vector_0[] = { 64 };
+    double fl_40_vector_0[] = { 64 };
     parameters.clear();
-    parameters.write("interval", fl_59_vector_0, 1);
-    mObjects[59] = new FrameLib_Expand<FrameLib_Interval>(context, &parameters, mProxy, 1);
+    parameters.write("interval", fl_40_vector_0, 1);
+    mObjects[40] = new FrameLib_Expand<FrameLib_Interval>(context, &parameters, mProxy, 1);
 
     parameters.clear();
     parameters.write("mode", "params");
-    mObjects[60] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
-    mObjects[60]->addConnection(Connection(mObjects[59], 0), 0);
+    mObjects[41] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
+    mObjects[41]->addConnection(Connection(mObjects[40], 0), 0);
 
     parameters.clear();
-    mObjects[61] = new FrameLib_Expand<FrameLib_Random>(context, &parameters, mProxy, 1);
-    mObjects[61]->addConnection(Connection(mObjects[59], 0), 0);
+    mObjects[42] = new FrameLib_Expand<FrameLib_Random>(context, &parameters, mProxy, 1);
+    mObjects[42]->addConnection(Connection(mObjects[40], 0), 0);
 
-    double fl_62_vector_1[] = { 0 };
-    double fl_62_vector_2[] = { 1 };
-    double fl_62_vector_3[] = { 200 };
-    double fl_62_vector_4[] = { 600 };
+    double fl_43_vector_1[] = { 0 };
+    double fl_43_vector_2[] = { 1 };
+    double fl_43_vector_3[] = { 200 };
+    double fl_43_vector_4[] = { 600 };
     parameters.clear();
     parameters.write("mode", "exp");
-    parameters.write("inlo", fl_62_vector_1, 1);
-    parameters.write("inhi", fl_62_vector_2, 1);
-    parameters.write("outlo", fl_62_vector_3, 1);
-    parameters.write("outhi", fl_62_vector_4, 1);
-    mObjects[62] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
-    mObjects[62]->addConnection(Connection(mObjects[61], 0), 0);
-    mObjects[62]->addConnection(Connection(mObjects[60], 0), 1);
+    parameters.write("inlo", fl_43_vector_1, 1);
+    parameters.write("inhi", fl_43_vector_2, 1);
+    parameters.write("outlo", fl_43_vector_3, 1);
+    parameters.write("outhi", fl_43_vector_4, 1);
+    mObjects[43] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
+    mObjects[43]->addConnection(Connection(mObjects[42], 0), 0);
+    mObjects[43]->addConnection(Connection(mObjects[41], 0), 1);
 
     parameters.clear();
     parameters.write("tag_01", "interval");
-    mObjects[63] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
-    mObjects[63]->addConnection(Connection(mObjects[62], 0), 0);
+    mObjects[44] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
+    mObjects[44]->addConnection(Connection(mObjects[43], 0), 0);
 
     parameters.clear();
     parameters.write("units", "ms");
-    mObjects[64] = new FrameLib_Expand<FrameLib_Interval>(context, &parameters, mProxy, 1);
-    mObjects[64]->addConnection(Connection(mObjects[63], 0), 0);
+    mObjects[45] = new FrameLib_Expand<FrameLib_Interval>(context, &parameters, mProxy, 1);
+    mObjects[45]->addConnection(Connection(mObjects[44], 0), 0);
 
     parameters.clear();
-    mObjects[65] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
-    mObjects[65]->addConnection(Connection(mObjects[64], 0), 0);
-    mObjects[65]->addConnection(Connection(mObjects[62], 0), 1);
+    mObjects[46] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
+    mObjects[46]->addConnection(Connection(mObjects[45], 0), 0);
+    mObjects[46]->addConnection(Connection(mObjects[43], 0), 1);
 
     parameters.clear();
-    parameters.write("name", "last");
-    mObjects[66] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 8);
-    mObjects[66]->addConnection(Connection(mObjects[39], 0), 0);
-
-    double fl_67_vector_0[] = { 6 };
-    parameters.clear();
-    parameters.write("inputs", fl_67_vector_0, 1);
-    mObjects[67] = new FrameLib_Pack(context, &parameters, mProxy, 1);
-    mObjects[67]->addConnection(Connection(mObjects[51], 0), 0);
-    mObjects[67]->addConnection(Connection(mObjects[51], 0), 1);
-    mObjects[67]->addConnection(Connection(mObjects[51], 0), 2);
-    mObjects[67]->addConnection(Connection(mObjects[51], 0), 3);
-    mObjects[67]->addConnection(Connection(mObjects[51], 0), 4);
-    mObjects[67]->addConnection(Connection(mObjects[51], 0), 5);
-
-    double fl_68_vector_0[] = { 2 };
-    parameters.clear();
-    parameters.write("inputs", fl_68_vector_0, 1);
-    mObjects[68] = new FrameLib_Pack(context, &parameters, mProxy, 1);
-    mObjects[68]->addConnection(Connection(mObjects[51], 0), 0);
-    mObjects[68]->addConnection(Connection(mObjects[51], 0), 1);
+    mObjects[47] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
+    mObjects[47]->addConnection(Connection(mObjects[32], 0), 0);
+    mObjects[47]->addConnection(Connection(mObjects[3], 0), 1);
 
     parameters.clear();
-    parameters.write("mode", "input");
-    mObjects[69] = new FrameLib_Expand<FrameLib_Random>(context, &parameters, mProxy, 1);
-    mObjects[69]->addConnection(Connection(mObjects[68], 0), 0);
+    parameters.write("mode", "samples->seconds");
+    mObjects[48] = new FrameLib_Expand<FrameLib_SampleRate>(context, &parameters, mProxy, 1);
+    mObjects[48]->addConnection(Connection(mObjects[47], 0), 0);
 
     parameters.clear();
-    parameters.write("expr", "in1 * 2 * pi");
-    mObjects[70] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
-    mObjects[70]->addConnection(Connection(mObjects[69], 0), 0);
+    parameters.write("expr", "round(2 / in1) + 1");
+    mObjects[49] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
+    mObjects[49]->addConnection(Connection(mObjects[48], 0), 0);
 
     parameters.clear();
-    mObjects[71] = new FrameLib_Pack(context, &parameters, mProxy, 1);
-    mObjects[71]->addConnection(Connection(mObjects[67], 0), 0);
-    mObjects[71]->addConnection(Connection(mObjects[70], 0), 1);
-
-    parameters.clear();
-    mObjects[72] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
-    mObjects[72]->addConnection(Connection(mObjects[39], 0), 0);
-    mObjects[72]->addConnection(Connection(mObjects[36], 0), 1);
-
-    double fl_73_vector_0[] = { 2 };
-    parameters.clear();
-    parameters.write("num_ins", fl_73_vector_0, 1);
-    parameters.write("mode", "high");
-    mObjects[73] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
-    mObjects[73]->addConnection(Connection(mObjects[72], 0), 0);
-    mObjects[73]->addConnection(Connection(mObjects[71], 0), 1);
-
-    parameters.clear();
-    parameters.write("name", "freeze");
-    mObjects[74] = new FrameLib_Expand<FrameLib_Store>(context, &parameters, mProxy, 8);
-    mObjects[74]->addConnection(Connection(mObjects[73], 0), 0);
-
-    parameters.clear();
-    parameters.write("name", "freeze");
-    mObjects[75] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 8);
-    mObjects[75]->addConnection(Connection(mObjects[36], 0), 0);
-    mObjects[75]->addOrderingConnection(Connection(mObjects[74], 0));
-
-    double fl_76_vector_0[] = { 2 };
-    parameters.clear();
-    parameters.write("num_ins", fl_76_vector_0, 1);
-    parameters.write("mode", "high");
-    mObjects[76] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
-    mObjects[76]->addConnection(Connection(mObjects[66], 0), 0);
-    mObjects[76]->addConnection(Connection(mObjects[71], 0), 1);
-
-    parameters.clear();
-    parameters.write("name", "freezeOld");
-    mObjects[77] = new FrameLib_Expand<FrameLib_Store>(context, &parameters, mProxy, 8);
-    mObjects[77]->addConnection(Connection(mObjects[76], 0), 0);
-
-    parameters.clear();
-    parameters.write("name", "freezeOld");
-    mObjects[78] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 8);
-    mObjects[78]->addConnection(Connection(mObjects[36], 0), 0);
-    mObjects[78]->addOrderingConnection(Connection(mObjects[77], 0));
-
-    double fl_79_vector_0[] = { 2 };
-    parameters.clear();
-    parameters.write("num_ins", fl_79_vector_0, 1);
-    parameters.write("mode", "high");
-    mObjects[79] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
-    mObjects[79]->addConnection(Connection(mObjects[39], 0), 0);
-    mObjects[79]->addConnection(Connection(mObjects[51], 0), 1);
-
-    parameters.clear();
-    parameters.write("units", "ms");
-    mObjects[80] = new FrameLib_Expand<FrameLib_Timer>(context, &parameters, mProxy, 8);
-    mObjects[80]->addConnection(Connection(mObjects[79], 0), 0);
-    mObjects[80]->addConnection(Connection(mObjects[36], 0), 1);
-
-    parameters.clear();
-    mObjects[81] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::divides<double> > >(context, &parameters, mProxy, 1);
-    mObjects[81]->addConnection(Connection(mObjects[80], 0), 0);
-    mObjects[81]->addConnection(Connection(mObjects[38], 0), 1);
-
-    parameters.clear();
-    mObjects[82] = new FrameLib_Expand<FrameLib_TernaryOp<Ternary_Functor<&FrameLib_Ternary_Ops::clip<double>> > >(context, &parameters, mProxy, 1);
-    double fl_82_inputs_1[] = { 0 };
-    double fl_82_inputs_2[] = { 1 };
-    mObjects[82]->setFixedInput(1, fl_82_inputs_1 , 1);
-    mObjects[82]->setFixedInput(2, fl_82_inputs_2 , 1);
-    mObjects[82]->addConnection(Connection(mObjects[81], 0), 0);
-
-    double fl_83_vector_1[] = { 1 };
-    parameters.clear();
-    parameters.write("expr", "in1+in3*(in2-in1) ");
-    parameters.write("trigger_ins", fl_83_vector_1, 1);
-    mObjects[83] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
-    mObjects[83]->addConnection(Connection(mObjects[78], 0), 0);
-    mObjects[83]->addConnection(Connection(mObjects[75], 0), 1);
-    mObjects[83]->addConnection(Connection(mObjects[82], 0), 2);
-
-    parameters.clear();
-    parameters.write("name", "last");
-    mObjects[84] = new FrameLib_Expand<FrameLib_Store>(context, &parameters, mProxy, 1);
-    mObjects[84]->addConnection(Connection(mObjects[83], 0), 0);
-
-    double fl_85_vector_0[] = { 8 };
-    parameters.clear();
-    parameters.write("outputs", fl_85_vector_0, 1);
-    mObjects[85] = new FrameLib_Unpack(context, &parameters, mProxy, 1);
-    mObjects[85]->addConnection(Connection(mObjects[83], 0), 0);
-
-    parameters.clear();
-    mObjects[86] = new FrameLib_Pack(context, &parameters, mProxy, 1);
-    mObjects[86]->addConnection(Connection(mObjects[85], 0), 0);
-    mObjects[86]->addConnection(Connection(mObjects[85], 1), 1);
-
-    parameters.clear();
-    mObjects[87] = new FrameLib_Pack(context, &parameters, mProxy, 1);
-    mObjects[87]->addConnection(Connection(mObjects[85], 2), 0);
-    mObjects[87]->addConnection(Connection(mObjects[85], 3), 1);
-
-    parameters.clear();
-    parameters.write("mode", "input");
-    mObjects[88] = new FrameLib_Expand<FrameLib_Gaussian>(context, &parameters, mProxy, 1);
-    mObjects[88]->addConnection(Connection(mObjects[86], 0), 0);
-    mObjects[88]->addConnection(Connection(mObjects[87], 0), 1);
-
-    parameters.clear();
-    mObjects[89] = new FrameLib_Pack(context, &parameters, mProxy, 1);
-    mObjects[89]->addConnection(Connection(mObjects[85], 4), 0);
-    mObjects[89]->addConnection(Connection(mObjects[85], 5), 1);
-
-    parameters.clear();
-    mObjects[90] = new FrameLib_Pack(context, &parameters, mProxy, 1);
-    mObjects[90]->addConnection(Connection(mObjects[85], 6), 0);
-    mObjects[90]->addConnection(Connection(mObjects[85], 7), 1);
-
-    parameters.clear();
-    parameters.write("mode", "input");
-    mObjects[91] = new FrameLib_Expand<FrameLib_Gaussian>(context, &parameters, mProxy, 1);
-    mObjects[91]->addConnection(Connection(mObjects[89], 0), 0);
-    mObjects[91]->addConnection(Connection(mObjects[90], 0), 1);
-
-    parameters.clear();
-    parameters.write("name", "phases");
-    mObjects[92] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 1);
-    mObjects[92]->addConnection(Connection(mObjects[91], 0), 0);
-
-    parameters.clear();
-    mObjects[93] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
-    mObjects[93]->addConnection(Connection(mObjects[51], 0), 0);
-    mObjects[93]->addConnection(Connection(mObjects[92], 0), 1);
-
-    parameters.clear();
-    mObjects[94] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::plus<double> > >(context, &parameters, mProxy, 1);
-    mObjects[94]->addConnection(Connection(mObjects[91], 0), 0);
-    mObjects[94]->addConnection(Connection(mObjects[93], 0), 1);
-
-    parameters.clear();
-    parameters.write("expr", "wrap(in1, -pi, pi)");
-    mObjects[95] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
-    mObjects[95]->addConnection(Connection(mObjects[94], 0), 0);
-
-    parameters.clear();
-    parameters.write("name", "phases");
-    mObjects[96] = new FrameLib_Expand<FrameLib_Store>(context, &parameters, mProxy, 1);
-    mObjects[96]->addConnection(Connection(mObjects[95], 0), 0);
-
-    parameters.clear();
-    mObjects[97] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&sin> > >(context, &parameters, mProxy, 1);
-    mObjects[97]->addConnection(Connection(mObjects[94], 0), 0);
-
-    parameters.clear();
-    mObjects[98] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
-    mObjects[98]->addConnection(Connection(mObjects[88], 0), 0);
-    mObjects[98]->addConnection(Connection(mObjects[97], 0), 1);
-
-    double fl_99_vector_0[] = { 1 };
-    parameters.clear();
-    parameters.write("outputs", fl_99_vector_0, 1);
-    mObjects[99] = new FrameLib_Unpack(context, &parameters, mProxy, 1);
-    mObjects[99]->addConnection(Connection(mObjects[98], 0), 0);
-
-    parameters.clear();
-    parameters.write("units", "ms");
-    mObjects[100] = new FrameLib_Expand<FrameLib_Timer>(context, &parameters, mProxy, 1);
-    mObjects[100]->addConnection(Connection(mObjects[65], 0), 0);
-    mObjects[100]->addConnection(Connection(mObjects[99], 0), 1);
-
-    parameters.clear();
-    parameters.write("trigger_ins", "left");
-    mObjects[101] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::divides<double> > >(context, &parameters, mProxy, 1);
-    mObjects[101]->addConnection(Connection(mObjects[100], 0), 0);
-    mObjects[101]->addConnection(Connection(mObjects[65], 0), 1);
-
-    parameters.clear();
-    mObjects[102] = new FrameLib_Expand<FrameLib_BinaryOp<Binary_Functor<&pow> > >(context, &parameters, mProxy, 1);
-    double fl_102_inputs_1[] = { 0.600000 };
-    mObjects[102]->setFixedInput(1, fl_102_inputs_1 , 1);
-    mObjects[102]->addConnection(Connection(mObjects[101], 0), 0);
+    parameters.write("tag_01", "max_frames");
+    mObjects[50] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
+    mObjects[50]->addConnection(Connection(mObjects[49], 0), 0);
 
     parameters.clear();
     parameters.write("mode", "params");
-    mObjects[103] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
-    mObjects[103]->addConnection(Connection(mObjects[64], 0), 0);
+    mObjects[51] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
+    mObjects[51]->addConnection(Connection(mObjects[11], 1), 0);
 
-    double fl_104_vector_1[] = { 1 };
-    double fl_104_vector_2[] = { 45 };
+    parameters.clear();
+    mObjects[52] = new FrameLib_Expand<FrameLib_CombineTags>(context, &parameters, mProxy, 1);
+    mObjects[52]->addConnection(Connection(mObjects[50], 0), 0);
+    mObjects[52]->addConnection(Connection(mObjects[51], 0), 1);
+
+    double fl_53_vector_0[] = { 100 };
+    double fl_53_vector_1[] = { 20 };
+    parameters.clear();
+    parameters.write("max_frames", fl_53_vector_0, 1);
+    parameters.write("num_frames", fl_53_vector_1, 1);
+    mObjects[53] = new FrameLib_Expand<FrameLib_TimeMean>(context, &parameters, mProxy, 1);
+    mObjects[53]->addConnection(Connection(mObjects[20], 0), 0);
+    mObjects[53]->addConnection(Connection(mObjects[52], 0), 1);
+
+    parameters.clear();
+    mObjects[54] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[54]->addConnection(Connection(mObjects[53], 0), 0);
+    mObjects[54]->addConnection(Connection(mObjects[53], 0), 1);
+
+    parameters.clear();
+    mObjects[55] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&sin> > >(context, &parameters, mProxy, 1);
+    mObjects[55]->addConnection(Connection(mObjects[19], 0), 0);
+
+    double fl_56_vector_0[] = { 100 };
+    double fl_56_vector_1[] = { 20 };
+    parameters.clear();
+    parameters.write("max_frames", fl_56_vector_0, 1);
+    parameters.write("num_frames", fl_56_vector_1, 1);
+    mObjects[56] = new FrameLib_Expand<FrameLib_TimeMean>(context, &parameters, mProxy, 1);
+    mObjects[56]->addConnection(Connection(mObjects[55], 0), 0);
+    mObjects[56]->addConnection(Connection(mObjects[52], 0), 1);
+
+    parameters.clear();
+    mObjects[57] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[57]->addConnection(Connection(mObjects[56], 0), 0);
+    mObjects[57]->addConnection(Connection(mObjects[56], 0), 1);
+
+    parameters.clear();
+    mObjects[58] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::plus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[58]->addConnection(Connection(mObjects[57], 0), 0);
+    mObjects[58]->addConnection(Connection(mObjects[54], 0), 1);
+
+    parameters.clear();
+    parameters.write("expr", "max(in1, exp(-4*pi*pi))");
+    mObjects[59] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
+    mObjects[59]->addConnection(Connection(mObjects[58], 0), 0);
+
+    parameters.clear();
+    mObjects[60] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&log> > >(context, &parameters, mProxy, 1);
+    mObjects[60]->addConnection(Connection(mObjects[59], 0), 0);
+
+    parameters.clear();
+    mObjects[61] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    double fl_61_inputs_1[] = { -1 };
+    mObjects[61]->setFixedInput(1, fl_61_inputs_1 , 1);
+    mObjects[61]->addConnection(Connection(mObjects[60], 0), 0);
+
+    parameters.clear();
+    mObjects[62] = new FrameLib_Expand<FrameLib_BinaryOp<Binary_Functor<&fmax> > >(context, &parameters, mProxy, 1);
+    double fl_62_inputs_1[] = { 0 };
+    mObjects[62]->setFixedInput(1, fl_62_inputs_1 , 1);
+    mObjects[62]->addConnection(Connection(mObjects[61], 0), 0);
+
+    parameters.clear();
+    mObjects[63] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&sqrt> > >(context, &parameters, mProxy, 1);
+    mObjects[63]->addConnection(Connection(mObjects[62], 0), 0);
+
+    double fl_64_vector_0[] = { 100 };
+    double fl_64_vector_1[] = { 20 };
+    parameters.clear();
+    parameters.write("max_frames", fl_64_vector_0, 1);
+    parameters.write("num_frames", fl_64_vector_1, 1);
+    mObjects[64] = new FrameLib_Expand<FrameLib_TimeMean>(context, &parameters, mProxy, 1);
+    mObjects[64]->addConnection(Connection(mObjects[14], 0), 0);
+    mObjects[64]->addConnection(Connection(mObjects[52], 0), 1);
+
+    double fl_65_vector_0[] = { 100 };
+    double fl_65_vector_1[] = { 20 };
+    parameters.clear();
+    parameters.write("max_frames", fl_65_vector_0, 1);
+    parameters.write("num_frames", fl_65_vector_1, 1);
+    mObjects[65] = new FrameLib_Expand<FrameLib_TimeStdDev>(context, &parameters, mProxy, 1);
+    mObjects[65]->addConnection(Connection(mObjects[14], 0), 0);
+    mObjects[65]->addConnection(Connection(mObjects[52], 0), 1);
+
+    parameters.clear();
+    mObjects[66] = new FrameLib_Expand<FrameLib_BinaryOp<Binary_Functor<&atan2> > >(context, &parameters, mProxy, 1);
+    mObjects[66]->addConnection(Connection(mObjects[56], 0), 0);
+    mObjects[66]->addConnection(Connection(mObjects[53], 0), 1);
+
+    double fl_67_vector_0[] = { 4 };
+    parameters.clear();
+    parameters.write("inputs", fl_67_vector_0, 1);
+    mObjects[67] = new FrameLib_Pack(context, &parameters, mProxy, 1);
+    mObjects[67]->addConnection(Connection(mObjects[64], 0), 0);
+    mObjects[67]->addConnection(Connection(mObjects[65], 0), 1);
+    mObjects[67]->addConnection(Connection(mObjects[66], 0), 2);
+    mObjects[67]->addConnection(Connection(mObjects[63], 0), 3);
+
+    parameters.clear();
+    mObjects[68] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
+    mObjects[68]->addConnection(Connection(mObjects[67], 0), 0);
+
+    parameters.clear();
+    mObjects[69] = new FrameLib_Expand<FrameLib_BinaryOp<Binary_Functor<&fmax> > >(context, &parameters, mProxy, 1);
+    double fl_69_inputs_1[] = { 0.010000 };
+    mObjects[69]->setFixedInput(1, fl_69_inputs_1 , 1);
+    mObjects[69]->addConnection(Connection(mObjects[68], 0), 0);
+
+    parameters.clear();
+    mObjects[70] = new FrameLib_Expand<FrameLib_AudioTrigger>(context, &parameters, mProxy, 1);
+
+    double fl_71_vector_0[] = { 2 };
+    parameters.clear();
+    parameters.write("num_ins", fl_71_vector_0, 1);
+    parameters.write("mode", "high");
+    mObjects[71] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
+    mObjects[71]->addConnection(Connection(mObjects[70], 0), 0);
+    mObjects[71]->addConnection(Connection(mObjects[32], 0), 1);
+
+    parameters.clear();
+    parameters.write("units", "ms");
+    mObjects[72] = new FrameLib_Expand<FrameLib_Timer>(context, &parameters, mProxy, 8);
+    mObjects[72]->addConnection(Connection(mObjects[71], 0), 0);
+    mObjects[72]->addConnection(Connection(mObjects[67], 0), 1);
+
+    parameters.clear();
+    mObjects[73] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::divides<double> > >(context, &parameters, mProxy, 1);
+    mObjects[73]->addConnection(Connection(mObjects[72], 0), 0);
+    mObjects[73]->addConnection(Connection(mObjects[69], 0), 1);
+
+    parameters.clear();
+    mObjects[74] = new FrameLib_Expand<FrameLib_TernaryOp<Ternary_Functor<&FrameLib_Ternary_Ops::clip<double>> > >(context, &parameters, mProxy, 1);
+    double fl_74_inputs_1[] = { 0 };
+    double fl_74_inputs_2[] = { 1 };
+    mObjects[74]->setFixedInput(1, fl_74_inputs_1 , 1);
+    mObjects[74]->setFixedInput(2, fl_74_inputs_2 , 1);
+    mObjects[74]->addConnection(Connection(mObjects[73], 0), 0);
+
+    parameters.clear();
+    parameters.write("name", "last");
+    mObjects[75] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 8);
+    mObjects[75]->addConnection(Connection(mObjects[70], 0), 0);
+
+    double fl_76_vector_0[] = { 6 };
+    parameters.clear();
+    parameters.write("inputs", fl_76_vector_0, 1);
+    mObjects[76] = new FrameLib_Pack(context, &parameters, mProxy, 1);
+    mObjects[76]->addConnection(Connection(mObjects[32], 0), 0);
+    mObjects[76]->addConnection(Connection(mObjects[32], 0), 1);
+    mObjects[76]->addConnection(Connection(mObjects[32], 0), 2);
+    mObjects[76]->addConnection(Connection(mObjects[32], 0), 3);
+    mObjects[76]->addConnection(Connection(mObjects[32], 0), 4);
+    mObjects[76]->addConnection(Connection(mObjects[32], 0), 5);
+
+    double fl_77_vector_0[] = { 2 };
+    parameters.clear();
+    parameters.write("inputs", fl_77_vector_0, 1);
+    mObjects[77] = new FrameLib_Pack(context, &parameters, mProxy, 1);
+    mObjects[77]->addConnection(Connection(mObjects[32], 0), 0);
+    mObjects[77]->addConnection(Connection(mObjects[32], 0), 1);
+
+    parameters.clear();
+    parameters.write("mode", "input");
+    mObjects[78] = new FrameLib_Expand<FrameLib_Random>(context, &parameters, mProxy, 1);
+    mObjects[78]->addConnection(Connection(mObjects[77], 0), 0);
+
+    parameters.clear();
+    parameters.write("expr", "in1 * 2 * pi");
+    mObjects[79] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
+    mObjects[79]->addConnection(Connection(mObjects[78], 0), 0);
+
+    parameters.clear();
+    mObjects[80] = new FrameLib_Pack(context, &parameters, mProxy, 1);
+    mObjects[80]->addConnection(Connection(mObjects[76], 0), 0);
+    mObjects[80]->addConnection(Connection(mObjects[79], 0), 1);
+
+    parameters.clear();
+    mObjects[81] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
+    mObjects[81]->addConnection(Connection(mObjects[70], 0), 0);
+    mObjects[81]->addConnection(Connection(mObjects[67], 0), 1);
+
+    double fl_82_vector_0[] = { 2 };
+    parameters.clear();
+    parameters.write("num_ins", fl_82_vector_0, 1);
+    parameters.write("mode", "high");
+    mObjects[82] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
+    mObjects[82]->addConnection(Connection(mObjects[81], 0), 0);
+    mObjects[82]->addConnection(Connection(mObjects[80], 0), 1);
+
+    parameters.clear();
+    parameters.write("name", "freeze");
+    mObjects[83] = new FrameLib_Expand<FrameLib_Store>(context, &parameters, mProxy, 8);
+    mObjects[83]->addConnection(Connection(mObjects[82], 0), 0);
+
+    parameters.clear();
+    parameters.write("name", "freeze");
+    mObjects[84] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 8);
+    mObjects[84]->addConnection(Connection(mObjects[67], 0), 0);
+    mObjects[84]->addOrderingConnection(Connection(mObjects[83], 0));
+
+    double fl_85_vector_0[] = { 2 };
+    parameters.clear();
+    parameters.write("num_ins", fl_85_vector_0, 1);
+    parameters.write("mode", "high");
+    mObjects[85] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
+    mObjects[85]->addConnection(Connection(mObjects[75], 0), 0);
+    mObjects[85]->addConnection(Connection(mObjects[80], 0), 1);
+
+    parameters.clear();
+    parameters.write("name", "freezeOld");
+    mObjects[86] = new FrameLib_Expand<FrameLib_Store>(context, &parameters, mProxy, 8);
+    mObjects[86]->addConnection(Connection(mObjects[85], 0), 0);
+
+    parameters.clear();
+    parameters.write("name", "freezeOld");
+    mObjects[87] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 8);
+    mObjects[87]->addConnection(Connection(mObjects[67], 0), 0);
+    mObjects[87]->addOrderingConnection(Connection(mObjects[86], 0));
+
+    double fl_88_vector_1[] = { 1 };
+    parameters.clear();
+    parameters.write("expr", "in1+in3*(in2-in1) ");
+    parameters.write("trigger_ins", fl_88_vector_1, 1);
+    mObjects[88] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
+    mObjects[88]->addConnection(Connection(mObjects[87], 0), 0);
+    mObjects[88]->addConnection(Connection(mObjects[84], 0), 1);
+    mObjects[88]->addConnection(Connection(mObjects[74], 0), 2);
+
+    parameters.clear();
+    parameters.write("name", "last");
+    mObjects[89] = new FrameLib_Expand<FrameLib_Store>(context, &parameters, mProxy, 1);
+    mObjects[89]->addConnection(Connection(mObjects[88], 0), 0);
+
+    double fl_90_vector_0[] = { 8 };
+    parameters.clear();
+    parameters.write("outputs", fl_90_vector_0, 1);
+    mObjects[90] = new FrameLib_Unpack(context, &parameters, mProxy, 1);
+    mObjects[90]->addConnection(Connection(mObjects[88], 0), 0);
+
+    parameters.clear();
+    mObjects[91] = new FrameLib_Pack(context, &parameters, mProxy, 1);
+    mObjects[91]->addConnection(Connection(mObjects[90], 0), 0);
+    mObjects[91]->addConnection(Connection(mObjects[90], 1), 1);
+
+    parameters.clear();
+    mObjects[92] = new FrameLib_Pack(context, &parameters, mProxy, 1);
+    mObjects[92]->addConnection(Connection(mObjects[90], 2), 0);
+    mObjects[92]->addConnection(Connection(mObjects[90], 3), 1);
+
+    parameters.clear();
+    parameters.write("mode", "input");
+    mObjects[93] = new FrameLib_Expand<FrameLib_Gaussian>(context, &parameters, mProxy, 1);
+    mObjects[93]->addConnection(Connection(mObjects[91], 0), 0);
+    mObjects[93]->addConnection(Connection(mObjects[92], 0), 1);
+
+    parameters.clear();
+    mObjects[94] = new FrameLib_Pack(context, &parameters, mProxy, 1);
+    mObjects[94]->addConnection(Connection(mObjects[90], 4), 0);
+    mObjects[94]->addConnection(Connection(mObjects[90], 5), 1);
+
+    parameters.clear();
+    mObjects[95] = new FrameLib_Pack(context, &parameters, mProxy, 1);
+    mObjects[95]->addConnection(Connection(mObjects[90], 6), 0);
+    mObjects[95]->addConnection(Connection(mObjects[90], 7), 1);
+
+    parameters.clear();
+    parameters.write("mode", "input");
+    mObjects[96] = new FrameLib_Expand<FrameLib_Gaussian>(context, &parameters, mProxy, 1);
+    mObjects[96]->addConnection(Connection(mObjects[94], 0), 0);
+    mObjects[96]->addConnection(Connection(mObjects[95], 0), 1);
+
+    parameters.clear();
+    parameters.write("name", "phases");
+    mObjects[97] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 1);
+    mObjects[97]->addConnection(Connection(mObjects[96], 0), 0);
+
+    parameters.clear();
+    mObjects[98] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
+    mObjects[98]->addConnection(Connection(mObjects[32], 0), 0);
+    mObjects[98]->addConnection(Connection(mObjects[97], 0), 1);
+
+    parameters.clear();
+    mObjects[99] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::plus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[99]->addConnection(Connection(mObjects[96], 0), 0);
+    mObjects[99]->addConnection(Connection(mObjects[98], 0), 1);
+
+    parameters.clear();
+    parameters.write("expr", "wrap(in1, -pi, pi)");
+    mObjects[100] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
+    mObjects[100]->addConnection(Connection(mObjects[99], 0), 0);
+
+    parameters.clear();
+    parameters.write("name", "phases");
+    mObjects[101] = new FrameLib_Expand<FrameLib_Store>(context, &parameters, mProxy, 1);
+    mObjects[101]->addConnection(Connection(mObjects[100], 0), 0);
+
+    parameters.clear();
+    mObjects[102] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&sin> > >(context, &parameters, mProxy, 1);
+    mObjects[102]->addConnection(Connection(mObjects[99], 0), 0);
+
+    parameters.clear();
+    mObjects[103] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[103]->addConnection(Connection(mObjects[93], 0), 0);
+    mObjects[103]->addConnection(Connection(mObjects[102], 0), 1);
+
+    double fl_104_vector_0[] = { 1 };
+    parameters.clear();
+    parameters.write("outputs", fl_104_vector_0, 1);
+    mObjects[104] = new FrameLib_Unpack(context, &parameters, mProxy, 1);
+    mObjects[104]->addConnection(Connection(mObjects[103], 0), 0);
+
+    parameters.clear();
+    parameters.write("units", "ms");
+    mObjects[105] = new FrameLib_Expand<FrameLib_Timer>(context, &parameters, mProxy, 1);
+    mObjects[105]->addConnection(Connection(mObjects[46], 0), 0);
+    mObjects[105]->addConnection(Connection(mObjects[104], 0), 1);
+
+    parameters.clear();
+    parameters.write("trigger_ins", "left");
+    mObjects[106] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::divides<double> > >(context, &parameters, mProxy, 1);
+    mObjects[106]->addConnection(Connection(mObjects[105], 0), 0);
+    mObjects[106]->addConnection(Connection(mObjects[46], 0), 1);
+
+    parameters.clear();
+    mObjects[107] = new FrameLib_Expand<FrameLib_BinaryOp<Binary_Functor<&pow> > >(context, &parameters, mProxy, 1);
+    double fl_107_inputs_1[] = { 0.600000 };
+    mObjects[107]->setFixedInput(1, fl_107_inputs_1 , 1);
+    mObjects[107]->addConnection(Connection(mObjects[106], 0), 0);
+
+    parameters.clear();
+    parameters.write("mode", "params");
+    mObjects[108] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
+    mObjects[108]->addConnection(Connection(mObjects[45], 0), 0);
+
+    double fl_109_vector_1[] = { 1 };
+    double fl_109_vector_2[] = { 45 };
     parameters.clear();
     parameters.write("mode", "requested");
-    parameters.write("stddev", fl_104_vector_1, 1);
-    parameters.write("length", fl_104_vector_2, 1);
-    mObjects[104] = new FrameLib_Expand<FrameLib_Gaussian>(context, &parameters, mProxy, 1);
-    mObjects[104]->addConnection(Connection(mObjects[64], 0), 0);
-    mObjects[104]->addConnection(Connection(mObjects[103], 0), 2);
+    parameters.write("stddev", fl_109_vector_1, 1);
+    parameters.write("length", fl_109_vector_2, 1);
+    mObjects[109] = new FrameLib_Expand<FrameLib_Gaussian>(context, &parameters, mProxy, 1);
+    mObjects[109]->addConnection(Connection(mObjects[45], 0), 0);
+    mObjects[109]->addConnection(Connection(mObjects[108], 0), 2);
 
     parameters.clear();
     parameters.write("mode", "input");
     parameters.write("scale", "normalised");
-    mObjects[105] = new FrameLib_Expand<FrameLib_Ramp>(context, &parameters, mProxy, 1);
-    mObjects[105]->addConnection(Connection(mObjects[104], 0), 0);
+    mObjects[110] = new FrameLib_Expand<FrameLib_Ramp>(context, &parameters, mProxy, 1);
+    mObjects[110]->addConnection(Connection(mObjects[109], 0), 0);
 
     parameters.clear();
     parameters.write("mode", "params");
-    mObjects[106] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
-    mObjects[106]->addConnection(Connection(mObjects[64], 0), 0);
+    mObjects[111] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
+    mObjects[111]->addConnection(Connection(mObjects[45], 0), 0);
 
-    double fl_107_vector_1[] = { 0 };
-    double fl_107_vector_2[] = { 1 };
-    double fl_107_vector_3[] = { 10 };
-    double fl_107_vector_4[] = { 2 };
+    double fl_112_vector_1[] = { 0 };
+    double fl_112_vector_2[] = { 1 };
+    double fl_112_vector_3[] = { 10 };
+    double fl_112_vector_4[] = { 2 };
     parameters.clear();
     parameters.write("mode", "linear");
-    parameters.write("inlo", fl_107_vector_1, 1);
-    parameters.write("inhi", fl_107_vector_2, 1);
-    parameters.write("outlo", fl_107_vector_3, 1);
-    parameters.write("outhi", fl_107_vector_4, 1);
-    mObjects[107] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
-    mObjects[107]->addConnection(Connection(mObjects[105], 0), 0);
-    mObjects[107]->addConnection(Connection(mObjects[106], 0), 1);
-
-    parameters.clear();
-    mObjects[108] = new FrameLib_Expand<FrameLib_TernaryOp<Ternary_Functor<&FrameLib_Ternary_Ops::clip<double>> > >(context, &parameters, mProxy, 1);
-    double fl_108_inputs_1[] = { -1 };
-    double fl_108_inputs_2[] = { 1 };
-    mObjects[108]->setFixedInput(1, fl_108_inputs_1 , 1);
-    mObjects[108]->setFixedInput(2, fl_108_inputs_2 , 1);
-    mObjects[108]->addConnection(Connection(mObjects[104], 0), 0);
-
-    parameters.clear();
-    mObjects[109] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
-    mObjects[109]->addConnection(Connection(mObjects[108], 0), 0);
-    mObjects[109]->addConnection(Connection(mObjects[107], 0), 1);
-
-    parameters.clear();
-    mObjects[110] = new FrameLib_Expand<FrameLib_Vector<&statLength<double const*>, (FrameLib_Vector_EmptyMode)4> >(context, &parameters, mProxy, 1);
-    mObjects[110]->addConnection(Connection(mObjects[108], 0), 0);
-
-    parameters.clear();
-    mObjects[111] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::minus<double> > >(context, &parameters, mProxy, 1);
-    double fl_111_inputs_1[] = { 1 };
-    mObjects[111]->setFixedInput(1, fl_111_inputs_1 , 1);
-    mObjects[111]->addConnection(Connection(mObjects[110], 0), 0);
-
-    parameters.clear();
-    mObjects[112] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
-    mObjects[112]->addConnection(Connection(mObjects[58], 0), 0);
+    parameters.write("inlo", fl_112_vector_1, 1);
+    parameters.write("inhi", fl_112_vector_2, 1);
+    parameters.write("outlo", fl_112_vector_3, 1);
+    parameters.write("outhi", fl_112_vector_4, 1);
+    mObjects[112] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
+    mObjects[112]->addConnection(Connection(mObjects[110], 0), 0);
     mObjects[112]->addConnection(Connection(mObjects[111], 0), 1);
 
     parameters.clear();
-    parameters.write("mode", "clip");
-    mObjects[113] = new FrameLib_Expand<FrameLib_Lookup>(context, &parameters, mProxy, 1);
-    mObjects[113]->addConnection(Connection(mObjects[112], 0), 0);
-    mObjects[113]->addConnection(Connection(mObjects[109], 0), 1);
+    mObjects[113] = new FrameLib_Expand<FrameLib_TernaryOp<Ternary_Functor<&FrameLib_Ternary_Ops::clip<double>> > >(context, &parameters, mProxy, 1);
+    double fl_113_inputs_1[] = { -1 };
+    double fl_113_inputs_2[] = { 1 };
+    mObjects[113]->setFixedInput(1, fl_113_inputs_1 , 1);
+    mObjects[113]->setFixedInput(2, fl_113_inputs_2 , 1);
+    mObjects[113]->addConnection(Connection(mObjects[109], 0), 0);
 
     parameters.clear();
-    mObjects[114] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
-    mObjects[114]->addConnection(Connection(mObjects[99], 0), 0);
-    mObjects[114]->addConnection(Connection(mObjects[113], 0), 1);
+    mObjects[114] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[114]->addConnection(Connection(mObjects[113], 0), 0);
+    mObjects[114]->addConnection(Connection(mObjects[112], 0), 1);
 
     parameters.clear();
-    parameters.write("name", "eq");
-    mObjects[115] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 1);
+    mObjects[115] = new FrameLib_Expand<FrameLib_Vector<&statLength<double const*>, (FrameLib_Vector_EmptyMode)4> >(context, &parameters, mProxy, 1);
     mObjects[115]->addConnection(Connection(mObjects[113], 0), 0);
 
     parameters.clear();
-    mObjects[116] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
-    mObjects[116]->addConnection(Connection(mObjects[51], 0), 0);
-    mObjects[116]->addConnection(Connection(mObjects[115], 0), 1);
+    mObjects[116] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::minus<double> > >(context, &parameters, mProxy, 1);
+    double fl_116_inputs_1[] = { 1 };
+    mObjects[116]->setFixedInput(1, fl_116_inputs_1 , 1);
+    mObjects[116]->addConnection(Connection(mObjects[115], 0), 0);
 
     parameters.clear();
-    mObjects[117] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
-    mObjects[117]->addConnection(Connection(mObjects[99], 0), 0);
+    mObjects[117] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[117]->addConnection(Connection(mObjects[39], 0), 0);
     mObjects[117]->addConnection(Connection(mObjects[116], 0), 1);
 
-    double fl_118_vector_1[] = { 1, 0, 0 };
     parameters.clear();
-    parameters.write("expr", "in1 + in3 * (in2 - in1) ");
-    parameters.write("trigger_ins", fl_118_vector_1, 3);
-    mObjects[118] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
+    parameters.write("mode", "clip");
+    mObjects[118] = new FrameLib_Expand<FrameLib_Lookup>(context, &parameters, mProxy, 1);
     mObjects[118]->addConnection(Connection(mObjects[117], 0), 0);
     mObjects[118]->addConnection(Connection(mObjects[114], 0), 1);
-    mObjects[118]->addConnection(Connection(mObjects[102], 0), 2);
+
+    parameters.clear();
+    mObjects[119] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
+    mObjects[119]->addConnection(Connection(mObjects[104], 0), 0);
+    mObjects[119]->addConnection(Connection(mObjects[118], 0), 1);
 
     parameters.clear();
     parameters.write("name", "eq");
-    mObjects[119] = new FrameLib_Expand<FrameLib_Store>(context, &parameters, mProxy, 1);
-    mObjects[119]->addConnection(Connection(mObjects[118], 0), 0);
-
-    parameters.clear();
-    parameters.write("mode", "db->amp");
-    mObjects[120] = new FrameLib_Expand<FrameLib_Convert>(context, &parameters, mProxy, 1);
+    mObjects[120] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 1);
     mObjects[120]->addConnection(Connection(mObjects[118], 0), 0);
 
     parameters.clear();
-    mObjects[121] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
-    mObjects[121]->addConnection(Connection(mObjects[98], 0), 0);
+    mObjects[121] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
+    mObjects[121]->addConnection(Connection(mObjects[32], 0), 0);
     mObjects[121]->addConnection(Connection(mObjects[120], 0), 1);
 
     parameters.clear();
-    mObjects[122] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&cos> > >(context, &parameters, mProxy, 1);
-    mObjects[122]->addConnection(Connection(mObjects[94], 0), 0);
+    mObjects[122] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
+    mObjects[122]->addConnection(Connection(mObjects[104], 0), 0);
+    mObjects[122]->addConnection(Connection(mObjects[121], 0), 1);
+
+    double fl_123_vector_1[] = { 1, 0, 0 };
+    parameters.clear();
+    parameters.write("expr", "in1 + in3 * (in2 - in1) ");
+    parameters.write("trigger_ins", fl_123_vector_1, 3);
+    mObjects[123] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
+    mObjects[123]->addConnection(Connection(mObjects[122], 0), 0);
+    mObjects[123]->addConnection(Connection(mObjects[119], 0), 1);
+    mObjects[123]->addConnection(Connection(mObjects[107], 0), 2);
 
     parameters.clear();
-    mObjects[123] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
-    mObjects[123]->addConnection(Connection(mObjects[88], 0), 0);
-    mObjects[123]->addConnection(Connection(mObjects[122], 0), 1);
-
-    parameters.clear();
-    mObjects[124] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    parameters.write("name", "eq");
+    mObjects[124] = new FrameLib_Expand<FrameLib_Store>(context, &parameters, mProxy, 1);
     mObjects[124]->addConnection(Connection(mObjects[123], 0), 0);
-    mObjects[124]->addConnection(Connection(mObjects[120], 0), 1);
-
-    double fl_125_vector_0[] = { 65536 };
-    parameters.clear();
-    parameters.write("maxlength", fl_125_vector_0, 1);
-    mObjects[125] = new FrameLib_Expand<FrameLib_iFFT>(context, &parameters, mProxy, 1);
-    mObjects[125]->addConnection(Connection(mObjects[124], 0), 0);
-    mObjects[125]->addConnection(Connection(mObjects[121], 0), 1);
 
     parameters.clear();
-    mObjects[126] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::equal_to<double> > >(context, &parameters, mProxy, 1);
-    double fl_126_inputs_1[] = { 2 };
-    mObjects[126]->setFixedInput(1, fl_126_inputs_1 , 1);
-    mObjects[126]->addConnection(Connection(mObjects[1], 0), 0);
+    parameters.write("mode", "db->amp");
+    mObjects[125] = new FrameLib_Expand<FrameLib_Convert>(context, &parameters, mProxy, 1);
+    mObjects[125]->addConnection(Connection(mObjects[123], 0), 0);
+
+    parameters.clear();
+    mObjects[126] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[126]->addConnection(Connection(mObjects[103], 0), 0);
+    mObjects[126]->addConnection(Connection(mObjects[125], 0), 1);
+
+    parameters.clear();
+    mObjects[127] = new FrameLib_Expand<FrameLib_UnaryOp<Unary_Functor<&cos> > >(context, &parameters, mProxy, 1);
+    mObjects[127]->addConnection(Connection(mObjects[99], 0), 0);
+
+    parameters.clear();
+    mObjects[128] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[128]->addConnection(Connection(mObjects[93], 0), 0);
+    mObjects[128]->addConnection(Connection(mObjects[127], 0), 1);
+
+    parameters.clear();
+    mObjects[129] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[129]->addConnection(Connection(mObjects[128], 0), 0);
+    mObjects[129]->addConnection(Connection(mObjects[125], 0), 1);
+
+    double fl_130_vector_0[] = { 65536 };
+    parameters.clear();
+    parameters.write("maxlength", fl_130_vector_0, 1);
+    mObjects[130] = new FrameLib_Expand<FrameLib_iFFT>(context, &parameters, mProxy, 1);
+    mObjects[130]->addConnection(Connection(mObjects[129], 0), 0);
+    mObjects[130]->addConnection(Connection(mObjects[126], 0), 1);
+
+    parameters.clear();
+    mObjects[131] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
+    mObjects[131]->addConnection(Connection(mObjects[32], 0), 0);
+    mObjects[131]->addConnection(Connection(mObjects[1], 0), 1);
+
+    parameters.clear();
+    mObjects[132] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::equal_to<double> > >(context, &parameters, mProxy, 1);
+    double fl_132_inputs_1[] = { 2 };
+    mObjects[132]->setFixedInput(1, fl_132_inputs_1 , 1);
+    mObjects[132]->addConnection(Connection(mObjects[131], 0), 0);
 
     parameters.clear();
     parameters.write("tag_01", "sqrt");
-    mObjects[127] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
-    mObjects[127]->addConnection(Connection(mObjects[126], 0), 0);
+    mObjects[133] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
+    mObjects[133]->addConnection(Connection(mObjects[132], 0), 0);
 
     parameters.clear();
     parameters.write("window", "hann");
     parameters.write("compensate", "powoverlin");
-    mObjects[128] = new FrameLib_Expand<FrameLib_Window>(context, &parameters, mProxy, 1);
-    mObjects[128]->addConnection(Connection(mObjects[125], 0), 0);
-    mObjects[128]->addConnection(Connection(mObjects[127], 0), 1);
+    mObjects[134] = new FrameLib_Expand<FrameLib_Window>(context, &parameters, mProxy, 1);
+    mObjects[134]->addConnection(Connection(mObjects[130], 0), 0);
+    mObjects[134]->addConnection(Connection(mObjects[133], 0), 1);
 
     parameters.clear();
-    mObjects[129] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::divides<double> > >(context, &parameters, mProxy, 1);
-    double fl_129_inputs_0[] = { 1 };
-    mObjects[129]->setFixedInput(0, fl_129_inputs_0 , 1);
-    mObjects[129]->addConnection(Connection(mObjects[1], 0), 1);
+    mObjects[135] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::divides<double> > >(context, &parameters, mProxy, 1);
+    double fl_135_inputs_0[] = { 1 };
+    mObjects[135]->setFixedInput(0, fl_135_inputs_0 , 1);
+    mObjects[135]->addConnection(Connection(mObjects[131], 0), 1);
 
     parameters.clear();
     parameters.write("trigger_ins", "right");
-    mObjects[130] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
-    mObjects[130]->addConnection(Connection(mObjects[129], 0), 0);
-    mObjects[130]->addConnection(Connection(mObjects[128], 0), 1);
+    mObjects[136] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[136]->addConnection(Connection(mObjects[135], 0), 0);
+    mObjects[136]->addConnection(Connection(mObjects[134], 0), 1);
 
     parameters.clear();
-    mObjects[131] = new FrameLib_Expand<FrameLib_Sink>(context, &parameters, mProxy, 2);
-    mObjects[131]->addConnection(Connection(mObjects[130], 0), 0);
+    mObjects[137] = new FrameLib_Expand<FrameLib_Sink>(context, &parameters, mProxy, 2);
+    mObjects[137]->addConnection(Connection(mObjects[136], 0), 0);
 
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)
     {

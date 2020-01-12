@@ -209,7 +209,7 @@ void HISSToolsFreeze::OnTimeChange()
     double hopTime = 1000 * FFT / (overlap * GetSampleRate());
     double frames = std::round(blurTime / hopTime) + 1;
     
-    mProxy->sendFromHost(2, "num_frames", &frames, 1);
+    mProxy->sendFromHost(3, "num_frames", &frames, 1);
 }
 
 void HISSToolsFreeze::OnFilterTimeChange()
@@ -223,7 +223,7 @@ void HISSToolsFreeze::OnFilterTimeChange()
     serial.write("outlo", &lo, 1);
     serial.write("outhi", &hi, 1);
     
-    mProxy->sendFromHost(4, &serial);
+    mProxy->sendFromHost(2, &serial);
 }
 
 void HISSToolsFreeze::OnFilterStrengthChange()
@@ -270,7 +270,7 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
         case kXFadeTime:
         {
             double time = GetParam(kXFadeTime)->Value();
-            mProxy->sendFromHost(3, &time, 1);
+            mProxy->sendFromHost(4, &time, 1);
             break;
         }
         
