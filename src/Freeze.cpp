@@ -287,24 +287,26 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[48]->addConnection(Connection(mObjects[47], 0), 0);
 
     parameters.clear();
+    mObjects[49] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
+    mObjects[49]->addConnection(Connection(mObjects[11], 1), 0);
+
+    parameters.clear();
+    parameters.write("expr", "round(in2 / (in1 * 1000)) + 1");
+    mObjects[50] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
+    mObjects[50]->addConnection(Connection(mObjects[48], 0), 0);
+    mObjects[50]->addConnection(Connection(mObjects[49], 0), 1);
+
+    parameters.clear();
     parameters.write("expr", "round(2 / in1) + 1");
-    mObjects[49] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
-    mObjects[49]->addConnection(Connection(mObjects[48], 0), 0);
+    mObjects[51] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
+    mObjects[51]->addConnection(Connection(mObjects[48], 0), 0);
 
     parameters.clear();
     parameters.write("tag_01", "max_frames");
-    mObjects[50] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
-    mObjects[50]->addConnection(Connection(mObjects[49], 0), 0);
-
-    parameters.clear();
-    parameters.write("mode", "params");
-    mObjects[51] = new FrameLib_Expand<FrameLib_FromHost>(context, &parameters, mProxy, 1);
-    mObjects[51]->addConnection(Connection(mObjects[11], 1), 0);
-
-    parameters.clear();
-    mObjects[52] = new FrameLib_Expand<FrameLib_CombineTags>(context, &parameters, mProxy, 1);
-    mObjects[52]->addConnection(Connection(mObjects[50], 0), 0);
-    mObjects[52]->addConnection(Connection(mObjects[51], 0), 1);
+    parameters.write("tag_02", "num_frames");
+    mObjects[52] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
+    mObjects[52]->addConnection(Connection(mObjects[51], 0), 0);
+    mObjects[52]->addConnection(Connection(mObjects[50], 0), 1);
 
     double fl_53_vector_0[] = { 100 };
     double fl_53_vector_1[] = { 20 };

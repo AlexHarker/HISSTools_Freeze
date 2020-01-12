@@ -45,7 +45,6 @@ public:
     void OnParamChange(int paramIdx, EParamSource source, int sampleOffset) override;
     void OnParamChangeUI(int paramIdx, EParamSource source) override;
 
-    void OnTimeChange();
     void OnFilterStrengthChange();
     void OnFilterTimeChange();
 

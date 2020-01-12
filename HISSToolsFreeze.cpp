@@ -202,18 +202,6 @@ void HISSToolsFreeze::OnReset()
     mTriggers.Resize(GetBlockSize());
 }
 
-void HISSToolsFreeze::OnTimeChange()
-{
-    int FFT = 1 << (GetParam(kFFTSize)->Int() + 9);
-    int overlap = 1 << (GetParam(kOverlap)->Int() + 1);
-
-    double blurTime = GetParam(kBlur)->Value();
-    double hopTime = 1000 * FFT / (overlap * GetSampleRate());
-    double frames = std::round(blurTime / hopTime) + 1;
-    
-    mProxy->sendFromHost(3, "num_frames", &frames, 1);
-}
-
 void HISSToolsFreeze::OnFilterTimeChange()
 {
     double lo = GetParam(kFiltInterval)->Value();
@@ -251,7 +239,6 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
         {
             double FFT = 1 << (GetParam(kFFTSize)->Int() + 9);
             mProxy->sendFromHost(1, &FFT, 1);
-            OnTimeChange();
             break;
         }
         
@@ -259,13 +246,13 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
         {
             double overlap = 1 << (GetParam(kOverlap)->Int() + 1);
             mProxy->sendFromHost(0, &overlap, 1);
-            OnTimeChange();
             break;
         }
             
         case kBlur:
         {
-            OnTimeChange();
+            double blurTime = GetParam(kBlur)->Value();
+            mProxy->sendFromHost(3, &blurTime, 1);
             break;
         }
             
@@ -329,7 +316,7 @@ void HISSToolsFreeze::OnParamChangeUI(int paramIdx, EParamSource source)
 
 void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
 {
-    sample *triggers = mTriggers.Get();
+    sample* triggers = mTriggers.Get();
     sample* allInputs[3];
     
     const double rootTwo = 1.0 / sqrt(2.0);

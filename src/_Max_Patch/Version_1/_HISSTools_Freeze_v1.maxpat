@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 68.0, 157.0, 1087.0, 666.0 ],
+		"rect" : [ 107.0, 174.0, 1087.0, 666.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -234,17 +234,6 @@
 						"subpatcher_template" : "",
 						"boxes" : [ 							{
 								"box" : 								{
-									"id" : "obj-9",
-									"maxclass" : "newobj",
-									"numinlets" : 1,
-									"numoutlets" : 0,
-									"patching_rect" : [ 223.0, 225.0, 32.0, 22.0 ],
-									"text" : "print"
-								}
-
-							}
-, 							{
-								"box" : 								{
 									"id" : "obj-8",
 									"maxclass" : "newobj",
 									"numinlets" : 2,
@@ -467,15 +456,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-38", 0 ],
-									"order" : 1,
-									"source" : [ "obj-7", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-9", 0 ],
-									"order" : 0,
 									"source" : [ "obj-7", 0 ]
 								}
 
@@ -2884,21 +2864,23 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 353.5, 62.0, 79.0, 22.0 ],
-					"text" : "loadmess 14"
+					"patching_rect" : [ 353.5, 62.0, 83.0, 22.0 ],
+					"text" : "loadmess 150"
 				}
 
 			}
 , 			{
 				"box" : 				{
+					"format" : 6,
 					"id" : "obj-71",
-					"maxclass" : "number",
-					"minimum" : 1,
+					"maxclass" : "flonum",
+					"maximum" : 2000.0,
+					"minimum" : 0.0,
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 353.5, 97.199538735133899, 50.0, 22.0 ]
+					"patching_rect" : [ 353.5, 97.199538735133899, 65.0, 22.0 ]
 				}
 
 			}
@@ -2942,7 +2924,7 @@
 						"followglobaltempo" : 0,
 						"formantcorrection" : 0,
 						"mode" : "basic",
-						"originallength" : [ 711756.799999999930151, "ticks" ],
+						"originallength" : [ 353139.200000000011642, "ticks" ],
 						"originaltempo" : 120.0,
 						"pitchcorrection" : 0,
 						"quality" : "basic",
@@ -3671,10 +3653,6 @@
 			}
 , 			{
 				"name" : "fl.random~.mxo",
-				"type" : "iLaX"
-			}
-, 			{
-				"name" : "fl.combinetags~.mxo",
 				"type" : "iLaX"
 			}
 , 			{
