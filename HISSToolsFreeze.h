@@ -57,6 +57,8 @@ private:
     FromPlugProxy *mProxy;  // N.B. - owned by mDSP
     Freeze mDSP;
     
+    WDL_TypedBuf<double> mTriggers;
+    
     GainSmooth mGainSmoother;
     GainSmooth mWidthSmoother;
     

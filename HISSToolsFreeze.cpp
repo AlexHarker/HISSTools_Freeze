@@ -198,6 +198,8 @@ void HISSToolsFreeze::OnReset()
     
     mLastGain = mGainSmoother.target();
     mLastWidth = mWidthSmoother.target();
+    
+    mTriggers.Resize(GetBlockSize());
 }
 
 void HISSToolsFreeze::OnTimeChange()
@@ -327,7 +329,7 @@ void HISSToolsFreeze::OnParamChangeUI(int paramIdx, EParamSource source)
 
 void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
 {
-    sample triggers[nFrames];
+    sample *triggers = mTriggers.Get();
     sample* allInputs[3];
     
     const double rootTwo = 1.0 / sqrt(2.0);
