@@ -14,6 +14,7 @@ enum EParams
     kOverlap,
     kSampleTime,
     kFreeze,
+    kFragment,
     kBlur,
     kXFadeTime,
     kFiltInterval,
@@ -45,6 +46,7 @@ public:
     void OnParamChange(int paramIdx, EParamSource source, int sampleOffset) override;
     void OnParamChangeUI(int paramIdx, EParamSource source) override;
 
+    void OnFragmentChange();
     void OnFilterStrengthChange();
     void OnFilterTimeChange();
 

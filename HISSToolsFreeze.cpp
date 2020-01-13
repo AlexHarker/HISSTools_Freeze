@@ -105,17 +105,18 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     GetParam(kOverlap)->SetDisplayText(1, "4");
     GetParam(kOverlap)->SetDisplayText(2, "8");
 
-    GetParam(kSampleTime)->InitDouble("Sampling", 200., 20., 5000.0, 0.1, "ms");
     GetParam(kFreeze)->InitBool("Freeze", false);
-    
-    GetParam(kBlur)->InitDouble("Blur", 200., 0., 2000.0, 0.1, "ms");
-    GetParam(kXFadeTime)->InitDouble("Time", 0., 0., 10000.0, 0.1, "ms");
 
+    GetParam(kSampleTime)->InitDouble("Sample", 200., 20., 5000.0, 0.1, "ms");
+    GetParam(kBlur)->InitDouble("Blur", 200., 0., 2000.0, 0.1, "ms");
+    GetParam(kXFadeTime)->InitDouble("Morph", 0., 0., 10000.0, 0.1, "ms");
+    GetParam(kFragment)->InitDouble("Fragment", 0., 0., 100.0, 0.1, "%");
+
+    GetParam(kFiltNum)->InitInt("Number Filters", 12, 2, 60, "");
     GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 20., 4000.0, 0.1, "ms");
     GetParam(kFiltRandom)->InitDouble("Filter Random", 100., 0., 4000.0, 0.1, "ms");
     GetParam(kFiltTilt)->InitDouble("Filter Tilt", 0.0, -100.0, 100.0, 0.1, "%");
     GetParam(kFiltStrength)->InitDouble("Filter Strength", 0.0, 0.0, 24.0, 0.1, "dB");
-    GetParam(kFiltNum)->InitInt("Number Filters", 12, 2, 60, "");
     
     GetParam(kGain)->InitDouble("Gain", 0., -12.0, 12.0, 0.1, "dB");
     GetParam(kWidth)->InitDouble("Width", 0., -12.0, 12.0, 0.1, "dB");
@@ -173,8 +174,10 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         pGraphics->AttachControl(paramPanel(b, kFFTSize, -30, -140, ""));
         pGraphics->AttachControl(paramPanel(b, kOverlap, -30, -90, ""));
         
+        pGraphics->AttachControl(button(b, kFreeze, -180, -140, "tight"));
+        
         pGraphics->AttachControl(dial(b, kSampleTime, -100, -20, ""));
-        pGraphics->AttachControl(button(b, kFreeze, -100, 135, "tight"));
+        pGraphics->AttachControl(dial(b, kFragment, -100, 100, ""));
         pGraphics->AttachControl(dial(b, kBlur, 100, -20, ""));
         pGraphics->AttachControl(dial(b, kXFadeTime, 100, 100, ""));
         
@@ -182,10 +185,10 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         pGraphics->AttachControl(smallDial(b, kFiltInterval, -100, 220, "3"));
         pGraphics->AttachControl(smallDial(b, kFiltRandom, 0, 220, "3"));
         pGraphics->AttachControl(smallDial(b, kFiltStrength, 100, 220, "5"));
-        pGraphics->AttachControl(smallDial(b, kFiltTilt, 200, 220, "5"));
+        pGraphics->AttachControl(smallDial(b, kFiltTilt, 200, 220, "5 bipolar"));
         
-        pGraphics->AttachControl(smallDial(b, kGain, 100, -140, "4"));
-        pGraphics->AttachControl(smallDial(b, kWidth, 200, -140, "4"));
+        pGraphics->AttachControl(smallDial(b, kGain, 100, -140, "4 bipolar"));
+        pGraphics->AttachControl(smallDial(b, kWidth, 200, -140, "4 bipolar"));
     }
 }
 
@@ -200,6 +203,23 @@ void HISSToolsFreeze::OnReset()
     mLastWidth = mWidthSmoother.target();
     
     mTriggers.Resize(GetBlockSize());
+}
+
+void HISSToolsFreeze::OnFragmentChange()
+{
+    auto scaled = [](double interp, double lo, double hi) {
+        return hi * interp + lo * (1.0 - interp);
+    };
+    
+    double fragment = GetParam(kFragment)->GetNormalized();
+    double bounds[4];
+    
+    bounds[0] = scaled(fragment, 0.50, 0.00);
+    bounds[1] = scaled(fragment, 0.50, 1.00);
+    bounds[2] = scaled(fragment, 0.50, 0.03);
+    bounds[3] = scaled(fragment, 0.50, 0.05);
+    
+    mProxy->sendFromHost(5, bounds, 4);
 }
 
 void HISSToolsFreeze::OnFilterTimeChange()
@@ -228,7 +248,7 @@ void HISSToolsFreeze::OnFilterStrengthChange()
     serial.write("outlo", &lo, 1);
     serial.write("outhi", &hi, 1);
     
-    mProxy->sendFromHost(6, &serial);
+    mProxy->sendFromHost(7, &serial);
 }
 
 void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampleOffset)
@@ -263,6 +283,12 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
             break;
         }
         
+        case kFragment:
+        {
+            OnFragmentChange();
+            break;
+        }
+            
         case kFiltInterval:
         case kFiltRandom:
         {
@@ -280,7 +306,7 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
         case kFiltNum:
         {
             double num = GetParam(kFiltNum)->Value();
-            mProxy->sendFromHost(5, "length", &num, 1);
+            mProxy->sendFromHost(6, "length", &num, 1);
             break;
         }
             
