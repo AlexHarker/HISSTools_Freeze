@@ -662,8 +662,8 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[104]->addConnection(Connection(mObjects[99], 0), 1);
 
     parameters.clear();
-    parameters.write("name", "last");
-    mObjects[105] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 8);
+    parameters.write("name", "freeze");
+    mObjects[105] = new FrameLib_Expand<FrameLib_Recall>(context, &parameters, mProxy, 1);
     mObjects[105]->addConnection(Connection(mObjects[81], 0), 0);
 
     double fl_106_vector_1[] = { 1 };
