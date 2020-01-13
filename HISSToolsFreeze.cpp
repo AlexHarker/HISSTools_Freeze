@@ -314,16 +314,20 @@ void HISSToolsFreeze::OnParamChangeUI(int paramIdx, EParamSource source)
 }
 
 
-void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrames)
+void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrames)
 {
-    sample* triggers = mTriggers.Get();
-    sample* allInputs[3];
-    
+    double* triggers = mTriggers.Get();
+    double* dspInputs[3];
+    double* plugInputs[2];
+
     const double rootTwo = 1.0 / sqrt(2.0);
     
-    allInputs[0] = outputs[0];
-    allInputs[1] = outputs[1];
-    allInputs[2] = triggers;
+    plugInputs[0] = inputs[0];
+    plugInputs[1] = NChannelsConnected(kInput) > 1 ?  inputs[1] : inputs[0];
+    
+    dspInputs[0] = outputs[0];
+    dspInputs[1] = outputs[1];
+    dspInputs[2] = triggers;
 
     // Parameters
     
@@ -349,8 +353,8 @@ void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrame
     
     for (int i = 0; i < nFrames; i++)
     {
-        double L = inputs[0][i] * rootTwo;
-        double R = inputs[1][i] * rootTwo;
+        double L = plugInputs[0][i] * rootTwo;
+        double R = plugInputs[1][i] * rootTwo;
         
         outputs[0][i] = (L + R);
         outputs[1][i] = (L - R);
@@ -363,7 +367,7 @@ void HISSToolsFreeze::ProcessBlock(sample** inputs, sample** outputs, int nFrame
     
     // Main process
     
-    mDSP.process(allInputs, outputs, nFrames);
+    mDSP.process(dspInputs, outputs, nFrames);
     
     // MS Processing
     

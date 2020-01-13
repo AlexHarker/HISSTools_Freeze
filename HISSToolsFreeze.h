@@ -40,7 +40,7 @@ public:
     
     HISSToolsFreeze(const InstanceInfo& info);
 
-    void ProcessBlock(sample** inputs, sample** outputs, int nFrames) override;
+    void ProcessBlock(double** inputs, double** outputs, int nFrames) override;
     void OnReset() override;
     void OnParamChange(int paramIdx, EParamSource source, int sampleOffset) override;
     void OnParamChangeUI(int paramIdx, EParamSource source) override;
