@@ -2,8 +2,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="UserMacros">
     <IPLUG2_ROOT>$(ProjectDir)..\..\..</IPLUG2_ROOT>
+    <FRAMELIB_PATH>$(IPLUG2_ROOT))\..\..\FrameLib</FRAMELIB_PATH>
+    <FRAMELIB_OBJECT_PATH>$(FRAMELIB_PATH)\FrameLib_Objects </FRAMELIB_OBJECT_PATH>
+    <FRAMELIB_OBJECT_PATHS>$(FRAMELIB_OBJECT_PATH)\Binary $(FRAMELIB_OBJECT_PATH)\Buffer $(FRAMELIB_OBJECT_PATH)\Common_Utilities $(FRAMELIB_OBJECT_PATH)\Complex_Binary $(FRAMELIB_OBJECT_PATH)\Complex_Unary $(FRAMELIB_OBJECT_PATH)\Expressions $(FRAMELIB_OBJECT_PATH)\Filters $(FRAMELIB_OBJECT_PATH)\Generators $(FRAMELIB_OBJECT_PATH)\Host_Communication $(FRAMELIB_OBJECT_PATH)\IO $(FRAMELIB_OBJECT_PATH)\Mapping $(FRAMELIB_OBJECT_PATH)\Parameters $(FRAMELIB_OBJECT_PATH)\Routing $(FRAMELIB_OBJECT_PATH)\Schedulers $(FRAMELIB_OBJECT_PATH)\Spatial $(FRAMELIB_OBJECT_PATH)\Spectral $(FRAMELIB_OBJECT_PATH)\Storage $(FRAMELIB_OBJECT_PATH)\Streaming $(FRAMELIB_OBJECT_PATH)\Ternary $(FRAMELIB_OBJECT_PATH)\Time_Smoothing $(FRAMELIB_OBJECT_PATH)\Timing $(FRAMELIB_OBJECT_PATH)\Unary $(FRAMELIB_OBJECT_PATH)\Vector </FRAMELIB_OBJECT_PATHS>
+    <FRAMELIB_INC_PATHS>$(FRAMELIB_PATH)\FrameLib_Framework $(FRAMELIB_PATH)\FrameLib_Exports $(FRAMELIB_OBJECT_PATHS)</FRAMELIB_INC_PATHS>
     <BINARY_NAME>HISSToolsFreeze</BINARY_NAME>
-    <EXTRA_ALL_DEFS>IGRAPHICS_NANOVG;IGRAPHICS_GL2;IGRAPHICS_VSYNC</EXTRA_ALL_DEFS>
+    <EXTRA_ALL_DEFS>IGRAPHICS_NANOVG;IGRAPHICS_GL2;</EXTRA_ALL_DEFS>
     <EXTRA_DEBUG_DEFS />
     <EXTRA_RELEASE_DEFS />
     <EXTRA_TRACER_DEFS />
@@ -19,7 +23,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(EXTRA_INC_PATHS);$(IPLUG_INC_PATHS);$(IGRAPHICS_INC_PATHS);$(GLAD_GL2_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EXTRA_INC_PATHS);$(IPLUG_INC_PATHS);$(IGRAPHICS_INC_PATHS);$(GLAD_GL2_PATHS);$(FRAMELIB_INC_PATHS);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>$(EXTRA_ALL_DEFS);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -60,4 +64,4 @@
       <Value>$(CREATE_BUNDLE_SCRIPT)</Value>
     </BuildMacro>
   </ItemGroup>
-</Project>
+</Project>
