@@ -10,6 +10,7 @@ ipch/
 *.suo
 *.ncb
 *.vcproj.*
+*.vcxproj.*
 *.vcxproj.user
 *.pkg
 *.dmg
@@ -29,3 +30,8 @@ gui/*
 
 Icon?
 .DS_Stor*
+
+## VS
+.vs/
+*.tlog/
+*.user
