@@ -94,6 +94,172 @@ public:
 
 Design designScheme;
 
+class Freeze_Button: public IControl, public HISSTools_Control_Layers
+{
+    
+public:
+    
+    // Constructor
+    
+    Freeze_Button(int paramIdx, int modeParam, double x, double y, double w = 0, double h = 0, const char *type = 0, HISSTools_Design_Scheme *designScheme = &DefaultDesignScheme, const char *label = "")
+    : IControl(IRECT(), {paramIdx, modeParam}), HISSTools_Control_Layers()
+    {
+        // Dimensions
+        
+        mX = x;
+        mY = y;
+        mW = w <= 0 ? designScheme->getDimension("ButtonWidth", type) : w;
+        mH = h <= 0 ? designScheme->getDimension("ButtonHeight", type) : h;
+        
+        double roundness = designScheme->getDimension("ButtonRoundness", type);
+        mRoundness = roundness < 0 ? mH / 2 : roundness;
+        
+        mTextPad = designScheme->getDimension("ButtonTextPad", type);
+        
+        // Label Mode
+        
+        mLabelMode = designScheme->getFlag("ButtonLabelMode", type);
+        
+        // Get Appearance
+        
+        mOutlineTK = designScheme->getDimension("ButtonOutline", type);
+        
+        mShadow = designScheme->getShadow("Button", type);
+        
+        mTextStyle = designScheme->getTextStyle("Button", type);
+        
+        mOnCS = designScheme->getColorSpec("ButtonHandleOn", type);
+        mOffCS = designScheme->getColorSpec("ButtonHandleOff", type);
+        mHandleLabelCS = designScheme->getColorSpec("ButtonHandleLabel", type);
+        mHandleLabelOffCS = designScheme->getColorSpec("ButtonHandleLabelOff", type);
+        mHandleLabelOffCS = mHandleLabelOffCS ? mHandleLabelOffCS : mHandleLabelCS;
+        mOutlineCS = designScheme->getColorSpec("ButtonOutline", type);
+        mBackgroundLabelCS = designScheme->getColorSpec("ButtonBackgroundLabel", type);
+        mInactiveOverlayCS = designScheme->getColorSpec("ButtonInactiveOverlay", type);
+        
+        // Calculate Areas (including shadows and thicknesses)
+        
+        HISSTools_Bounds handleBounds(mX, mY, mLabelMode ? mH : mW, mH);
+        HISSTools_Bounds fullBounds(mX, mY, mW, mH);
+        
+        handleBounds.addThickness(mOutlineTK);
+        
+        fullBounds = mShadow->getBlurBounds(handleBounds);
+        fullBounds.include(fullBounds);
+        
+        mRECT = (fullBounds.iBounds());
+        SetTargetRECT(handleBounds.iBounds());
+        
+        mName = label;
+        
+        mDblAsSingleClick = true;
+    }
+    
+public:
+    
+    void OnInit() override
+    {
+        if (GetParam() != nullptr)
+            mName = GetParam()->GetNameForHost();
+    }
+    
+    // Mousing Functions
+    
+    void OnMouseDown(float x, float y, const IMouseMod& pMod) override
+    {
+        Modes mode = (Modes) GetParam(1)->Int();
+        
+        SetValue(GetValue() && mode != kManual ? 0 : 1.0);
+        SetDirty();
+    }
+    
+    void OnMouseUp(float x, float y, const IMouseMod& pMod) override
+    {
+        Modes mode = (Modes) GetParam(1)->Int();
+
+        if (mode == kManual)
+            SetAnimation(DefaultAnimationFunc, 100.0);
+    }
+    
+    void OnEndAnimation() override
+    {
+        IControl::OnEndAnimation();
+        
+        SetValue(0);
+        SetDirty();
+    }
+    
+    // Draw
+    
+    void Draw(IGraphics& g) override
+    {
+        HISSTools_VecLib vecDraw(g);
+        
+        // Button Rectangle
+        
+        vecDraw.startShadow(mShadow, mRECT);
+        vecDraw.setColor(GetValue() > 0.5 ? mOnCS : mOffCS);
+        vecDraw.fillRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness);
+        vecDraw.setColor(mOutlineCS);
+        vecDraw.frameRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness, mOutlineTK);
+        vecDraw.renderShadow();
+        
+        vecDraw.setColor(mLabelMode ? mBackgroundLabelCS : GetValue() > 0.5 ? mHandleLabelCS : mHandleLabelOffCS);
+        vecDraw.text(mTextStyle, mName, mLabelMode ? mX + mH + mTextPad : mX, mY, mLabelMode ? mW - (mH + mTextPad) : mW, mH, mLabelMode ?  kHAlignLeft : kHAlignCenter);
+        
+        // Inactive
+        
+        if (IsDisabled())
+        {
+            // Inactive Overlay
+            
+            vecDraw.setColor(mInactiveOverlayCS);
+            vecDraw.fillRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness);
+        }
+    }
+    
+private:
+    
+    // Positioning / Dimensions
+    
+    double mX;
+    double mY;
+    double mW;
+    double mH;
+    double mTextPad;
+    double mRoundness;
+    
+    // Line Thicknesses
+    
+    double mOutlineTK;
+    
+    // Shadow Spec
+    
+    HISSTools_Shadow *mShadow;
+    
+    // Text Spec
+    
+    HISSTools_Text *mTextStyle;
+    
+    // Color Specs
+    
+    HISSTools_Color_Spec *mOnCS;
+    HISSTools_Color_Spec *mOffCS;
+    HISSTools_Color_Spec *mOutlineCS;
+    HISSTools_Color_Spec *mHandleLabelCS;
+    HISSTools_Color_Spec *mHandleLabelOffCS;
+    HISSTools_Color_Spec *mBackgroundLabelCS;
+    HISSTools_Color_Spec *mInactiveOverlayCS;
+    
+    // Label Mode
+    
+    bool mLabelMode;
+    
+    // Text
+    
+    const char *mName;
+};
+
 HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
 : Plugin(info, MakeConfig(kNumParams, kNumPrograms)), mProxy(new FromPlugProxy()), mDSP(mProxy), mManualTrigger(false), mLastFreeze(false)
 {
@@ -171,10 +337,10 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
             return new HISSTools_Value(idx, cb.L, cb.T, 100, 20, types, &designScheme);
         };
         
-        auto button = [](const IRECT& b, int idx, int hs, int vs, const char *types) {
+        auto button = [](const IRECT& b, int idx, int midx, int hs, int vs, const char *types) {
             IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
             
-            return new HISSTools_Button(idx, cb.L, cb.T, 100, 30, types, &designScheme);
+            return new Freeze_Button(idx, midx, cb.L, cb.T, 100, 30, types, &designScheme);
         };
         
         const IRECT b = pGraphics->GetBounds();
@@ -187,7 +353,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         pGraphics->AttachControl(paramPanel(b, kOverlap, -30, -90, ""));
         pGraphics->AttachControl(paramPanel(b, kMode, -30, -40, ""));
 
-        pGraphics->AttachControl(button(b, kFreeze, -180, -140, "tight"));
+        pGraphics->AttachControl(button(b, kFreeze, kMode, -180, -140, "tight"));
         
         pGraphics->AttachControl(dial(b, kSampleTime, -100, -20, ""));
         pGraphics->AttachControl(dial(b, kFragment, -100, 100, ""));
