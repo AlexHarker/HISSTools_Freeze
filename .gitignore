@@ -10,7 +10,6 @@ ipch/
 *.suo
 *.ncb
 *.vcproj.*
-*.vcxproj.*
 *.vcxproj.user
 *.pkg
 *.dmg
