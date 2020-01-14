@@ -26,7 +26,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[2]->addConnection(Connection(mObjects[0], 0), 0);
 
     parameters.clear();
-    mObjects[3] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::divides<double> > >(context, &parameters, mProxy, 1);
+    mObjects[3] = new FrameLib_Expand<FrameLib_BinaryOp<std::divides<double> > >(context, &parameters, mProxy, 1);
     mObjects[3]->addConnection(Connection(mObjects[2], 0), 0);
     mObjects[3]->addConnection(Connection(mObjects[1], 0), 1);
 
@@ -56,7 +56,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[7]->addConnection(Connection(mObjects[6], 0), 1);
 
     parameters.clear();
-    mObjects[8] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::equal_to<double> > >(context, &parameters, mProxy, 1);
+    mObjects[8] = new FrameLib_Expand<FrameLib_BinaryOp<std::equal_to<double> > >(context, &parameters, mProxy, 1);
     double fl_8_inputs_1[] = { 2 };
     mObjects[8]->setFixedInput(1, fl_8_inputs_1 , 1);
     mObjects[8]->addConnection(Connection(mObjects[1], 0), 0);
@@ -99,13 +99,13 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[15]->addConnection(Connection(mObjects[14], 0), 0);
 
     parameters.clear();
-    mObjects[16] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::equal_to<double> > >(context, &parameters, mProxy, 1);
+    mObjects[16] = new FrameLib_Expand<FrameLib_BinaryOp<std::equal_to<double> > >(context, &parameters, mProxy, 1);
     double fl_16_inputs_1[] = { 0 };
     mObjects[16]->setFixedInput(1, fl_16_inputs_1 , 1);
     mObjects[16]->addConnection(Connection(mObjects[14], 0), 0);
 
     parameters.clear();
-    mObjects[17] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[17] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     mObjects[17]->addConnection(Connection(mObjects[16], 0), 0);
     mObjects[17]->addConnection(Connection(mObjects[15], 0), 1);
 
@@ -115,7 +115,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[18]->addConnection(Connection(mObjects[17], 0), 0);
 
     parameters.clear();
-    mObjects[19] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::plus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[19] = new FrameLib_Expand<FrameLib_BinaryOp<std::plus<double> > >(context, &parameters, mProxy, 1);
     mObjects[19]->addConnection(Connection(mObjects[18], 0), 0);
     mObjects[19]->addConnection(Connection(mObjects[13], 0), 1);
 
@@ -134,7 +134,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[22]->addConnection(Connection(mObjects[21], 0), 0);
 
     parameters.clear();
-    mObjects[23] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::equal_to<double> > >(context, &parameters, mProxy, 1);
+    mObjects[23] = new FrameLib_Expand<FrameLib_BinaryOp<std::equal_to<double> > >(context, &parameters, mProxy, 1);
     double fl_23_inputs_1[] = { 0 };
     mObjects[23]->setFixedInput(1, fl_23_inputs_1 , 1);
     mObjects[23]->addConnection(Connection(mObjects[22], 0), 0);
@@ -158,12 +158,12 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[27]->addConnection(Connection(mObjects[26], 0), 0);
 
     parameters.clear();
-    mObjects[28] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::logical_or<double> > >(context, &parameters, mProxy, 1);
+    mObjects[28] = new FrameLib_Expand<FrameLib_BinaryOp<std::logical_or<double> > >(context, &parameters, mProxy, 1);
     mObjects[28]->addConnection(Connection(mObjects[25], 0), 0);
     mObjects[28]->addConnection(Connection(mObjects[27], 0), 1);
 
     parameters.clear();
-    mObjects[29] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::logical_or<double> > >(context, &parameters, mProxy, 1);
+    mObjects[29] = new FrameLib_Expand<FrameLib_BinaryOp<std::logical_or<double> > >(context, &parameters, mProxy, 1);
     mObjects[29]->addConnection(Connection(mObjects[28], 0), 0);
     mObjects[29]->addConnection(Connection(mObjects[23], 0), 1);
 
@@ -318,7 +318,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[53]->addConnection(Connection(mObjects[52], 0), 1);
 
     parameters.clear();
-    mObjects[54] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[54] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     mObjects[54]->addConnection(Connection(mObjects[53], 0), 0);
     mObjects[54]->addConnection(Connection(mObjects[53], 0), 1);
 
@@ -336,12 +336,12 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[56]->addConnection(Connection(mObjects[52], 0), 1);
 
     parameters.clear();
-    mObjects[57] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[57] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     mObjects[57]->addConnection(Connection(mObjects[56], 0), 0);
     mObjects[57]->addConnection(Connection(mObjects[56], 0), 1);
 
     parameters.clear();
-    mObjects[58] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::plus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[58] = new FrameLib_Expand<FrameLib_BinaryOp<std::plus<double> > >(context, &parameters, mProxy, 1);
     mObjects[58]->addConnection(Connection(mObjects[57], 0), 0);
     mObjects[58]->addConnection(Connection(mObjects[54], 0), 1);
 
@@ -355,7 +355,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[60]->addConnection(Connection(mObjects[59], 0), 0);
 
     parameters.clear();
-    mObjects[61] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[61] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     double fl_61_inputs_1[] = { -1 };
     mObjects[61]->setFixedInput(1, fl_61_inputs_1 , 1);
     mObjects[61]->addConnection(Connection(mObjects[60], 0), 0);
@@ -430,7 +430,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[72]->addConnection(Connection(mObjects[67], 0), 1);
 
     parameters.clear();
-    mObjects[73] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::divides<double> > >(context, &parameters, mProxy, 1);
+    mObjects[73] = new FrameLib_Expand<FrameLib_BinaryOp<std::divides<double> > >(context, &parameters, mProxy, 1);
     mObjects[73]->addConnection(Connection(mObjects[72], 0), 0);
     mObjects[73]->addConnection(Connection(mObjects[69], 0), 1);
 
@@ -560,12 +560,12 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[91]->addConnection(Connection(mObjects[90], 0), 0);
 
     parameters.clear();
-    mObjects[92] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::plus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[92] = new FrameLib_Expand<FrameLib_BinaryOp<std::plus<double> > >(context, &parameters, mProxy, 1);
     mObjects[92]->addConnection(Connection(mObjects[88], 0), 0);
     mObjects[92]->addConnection(Connection(mObjects[90], 0), 1);
 
     parameters.clear();
-    mObjects[93] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::plus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[93] = new FrameLib_Expand<FrameLib_BinaryOp<std::plus<double> > >(context, &parameters, mProxy, 1);
     mObjects[93]->addConnection(Connection(mObjects[92], 0), 0);
     mObjects[93]->addConnection(Connection(mObjects[91], 0), 1);
 
@@ -624,12 +624,12 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[99]->addConnection(Connection(mObjects[94], 0), 1);
 
     parameters.clear();
-    mObjects[100] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::minus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[100] = new FrameLib_Expand<FrameLib_BinaryOp<std::minus<double> > >(context, &parameters, mProxy, 1);
     mObjects[100]->addConnection(Connection(mObjects[88], 0), 0);
     mObjects[100]->addConnection(Connection(mObjects[90], 0), 1);
 
     parameters.clear();
-    mObjects[101] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::minus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[101] = new FrameLib_Expand<FrameLib_BinaryOp<std::minus<double> > >(context, &parameters, mProxy, 1);
     mObjects[101]->addConnection(Connection(mObjects[100], 0), 0);
     mObjects[101]->addConnection(Connection(mObjects[91], 0), 1);
 
@@ -776,7 +776,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[123]->addConnection(Connection(mObjects[122], 0), 1);
 
     parameters.clear();
-    mObjects[124] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::plus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[124] = new FrameLib_Expand<FrameLib_BinaryOp<std::plus<double> > >(context, &parameters, mProxy, 1);
     mObjects[124]->addConnection(Connection(mObjects[121], 0), 0);
     mObjects[124]->addConnection(Connection(mObjects[123], 0), 1);
 
@@ -795,7 +795,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[127]->addConnection(Connection(mObjects[124], 0), 0);
 
     parameters.clear();
-    mObjects[128] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[128] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     mObjects[128]->addConnection(Connection(mObjects[118], 0), 0);
     mObjects[128]->addConnection(Connection(mObjects[127], 0), 1);
 
@@ -813,7 +813,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     parameters.clear();
     parameters.write("trigger_ins", "left");
-    mObjects[131] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::divides<double> > >(context, &parameters, mProxy, 1);
+    mObjects[131] = new FrameLib_Expand<FrameLib_BinaryOp<std::divides<double> > >(context, &parameters, mProxy, 1);
     mObjects[131]->addConnection(Connection(mObjects[130], 0), 0);
     mObjects[131]->addConnection(Connection(mObjects[46], 0), 1);
 
@@ -872,7 +872,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[138]->addConnection(Connection(mObjects[134], 0), 0);
 
     parameters.clear();
-    mObjects[139] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[139] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     mObjects[139]->addConnection(Connection(mObjects[138], 0), 0);
     mObjects[139]->addConnection(Connection(mObjects[137], 0), 1);
 
@@ -881,13 +881,13 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[140]->addConnection(Connection(mObjects[138], 0), 0);
 
     parameters.clear();
-    mObjects[141] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::minus<double> > >(context, &parameters, mProxy, 1);
+    mObjects[141] = new FrameLib_Expand<FrameLib_BinaryOp<std::minus<double> > >(context, &parameters, mProxy, 1);
     double fl_141_inputs_1[] = { 1 };
     mObjects[141]->setFixedInput(1, fl_141_inputs_1 , 1);
     mObjects[141]->addConnection(Connection(mObjects[140], 0), 0);
 
     parameters.clear();
-    mObjects[142] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[142] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     mObjects[142]->addConnection(Connection(mObjects[39], 0), 0);
     mObjects[142]->addConnection(Connection(mObjects[141], 0), 1);
 
@@ -937,7 +937,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[150]->addConnection(Connection(mObjects[148], 0), 0);
 
     parameters.clear();
-    mObjects[151] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[151] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     mObjects[151]->addConnection(Connection(mObjects[128], 0), 0);
     mObjects[151]->addConnection(Connection(mObjects[150], 0), 1);
 
@@ -946,12 +946,12 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[152]->addConnection(Connection(mObjects[124], 0), 0);
 
     parameters.clear();
-    mObjects[153] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[153] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     mObjects[153]->addConnection(Connection(mObjects[118], 0), 0);
     mObjects[153]->addConnection(Connection(mObjects[152], 0), 1);
 
     parameters.clear();
-    mObjects[154] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[154] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     mObjects[154]->addConnection(Connection(mObjects[153], 0), 0);
     mObjects[154]->addConnection(Connection(mObjects[150], 0), 1);
 
@@ -968,7 +968,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[156]->addConnection(Connection(mObjects[1], 0), 1);
 
     parameters.clear();
-    mObjects[157] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::equal_to<double> > >(context, &parameters, mProxy, 1);
+    mObjects[157] = new FrameLib_Expand<FrameLib_BinaryOp<std::equal_to<double> > >(context, &parameters, mProxy, 1);
     double fl_157_inputs_1[] = { 2 };
     mObjects[157]->setFixedInput(1, fl_157_inputs_1 , 1);
     mObjects[157]->addConnection(Connection(mObjects[156], 0), 0);
@@ -986,14 +986,14 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[159]->addConnection(Connection(mObjects[158], 0), 1);
 
     parameters.clear();
-    mObjects[160] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::divides<double> > >(context, &parameters, mProxy, 1);
+    mObjects[160] = new FrameLib_Expand<FrameLib_BinaryOp<std::divides<double> > >(context, &parameters, mProxy, 1);
     double fl_160_inputs_0[] = { 1 };
     mObjects[160]->setFixedInput(0, fl_160_inputs_0 , 1);
     mObjects[160]->addConnection(Connection(mObjects[156], 0), 1);
 
     parameters.clear();
     parameters.write("trigger_ins", "right");
-    mObjects[161] = new FrameLib_Expand<FrameLib_BinaryOp<std::__1::multiplies<double> > >(context, &parameters, mProxy, 1);
+    mObjects[161] = new FrameLib_Expand<FrameLib_BinaryOp<std::multiplies<double> > >(context, &parameters, mProxy, 1);
     mObjects[161]->addConnection(Connection(mObjects[160], 0), 0);
     mObjects[161]->addConnection(Connection(mObjects[159], 0), 1);
 
