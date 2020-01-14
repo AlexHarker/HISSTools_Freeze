@@ -3,8 +3,8 @@
 #include "IPlug_include_in_plug_hdr.h"
 #include "src/Freeze.h"
 
-#include "Smoothing.h"
-#include "FrameLib_FromHost.h"
+#include "src/Smoothing.h"
+#include <FrameLib_FromHost.h>
 
 const int kNumPrograms = 1;
 
