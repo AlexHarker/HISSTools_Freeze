@@ -5,6 +5,13 @@
 #include "HISSTools_Controls.hpp"
 #include "IControls.h"
 
+enum Modes
+{
+    kRegular,
+    kRandomised,
+    kManual
+};
+
 // Visual Design
 
 class Design : public HISSTools_Design_Scheme
@@ -88,7 +95,7 @@ public:
 Design designScheme;
 
 HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
-: Plugin(info, MakeConfig(kNumParams, kNumPrograms)), mProxy(new FromPlugProxy()), mDSP(mProxy)
+: Plugin(info, MakeConfig(kNumParams, kNumPrograms)), mProxy(new FromPlugProxy()), mDSP(mProxy), mManualTrigger(false), mLastFreeze(false)
 {
     GetParam(kFFTSize)->InitEnum("FFT Size", 3, 8);
     GetParam(kFFTSize)->SetDisplayText(0, "512");
@@ -104,18 +111,23 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     GetParam(kOverlap)->SetDisplayText(0, "2");
     GetParam(kOverlap)->SetDisplayText(1, "4");
     GetParam(kOverlap)->SetDisplayText(2, "8");
+    
+    GetParam(kMode)->InitEnum("Mode", 1, 3);
+    GetParam(kMode)->SetDisplayText(0, "Regular");
+    GetParam(kMode)->SetDisplayText(1, "Random");
+    GetParam(kMode)->SetDisplayText(2, "Manual");
 
     GetParam(kFreeze)->InitBool("Freeze", false);
 
-    GetParam(kSampleTime)->InitDouble("Sample", 200., 20., 5000.0, 0.1, "ms");
-    GetParam(kBlur)->InitDouble("Blur", 200., 0., 2000.0, 0.1, "ms");
-    GetParam(kXFadeTime)->InitDouble("Morph", 0., 0., 10000.0, 0.1, "ms");
-    GetParam(kFragment)->InitDouble("Fragment", 0., 0., 100.0, 0.1, "%");
+    GetParam(kSampleTime)->InitDouble("Sample", 200., 5., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+    GetParam(kBlur)->InitDouble("Blur", 200., 0., 2000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+    GetParam(kXFadeTime)->InitDouble("Morph", 0., 0., 10000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+    GetParam(kFragment)->InitDouble("Fragment", 0., 0., 100.0, 1, "%");
 
     GetParam(kFiltNum)->InitInt("Number Filters", 12, 2, 60, "");
-    GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 20., 4000.0, 0.1, "ms");
-    GetParam(kFiltRandom)->InitDouble("Filter Random", 100., 0., 4000.0, 0.1, "ms");
-    GetParam(kFiltTilt)->InitDouble("Filter Tilt", 0.0, -100.0, 100.0, 0.1, "%");
+    GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 20., 4000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+    GetParam(kFiltRandom)->InitDouble("Filter Random", 100., 0., 4000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+    GetParam(kFiltTilt)->InitDouble("Filter Tilt", 0.0, -100.0, 100.0, 1, "%");
     GetParam(kFiltStrength)->InitDouble("Filter Strength", 0.0, 0.0, 24.0, 0.1, "dB");
     
     GetParam(kGain)->InitDouble("Gain", 0., -12.0, 12.0, 0.1, "dB");
@@ -173,7 +185,8 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         
         pGraphics->AttachControl(paramPanel(b, kFFTSize, -30, -140, ""));
         pGraphics->AttachControl(paramPanel(b, kOverlap, -30, -90, ""));
-        
+        pGraphics->AttachControl(paramPanel(b, kMode, -30, -40, ""));
+
         pGraphics->AttachControl(button(b, kFreeze, -180, -140, "tight"));
         
         pGraphics->AttachControl(dial(b, kSampleTime, -100, -20, ""));
@@ -201,6 +214,11 @@ void HISSToolsFreeze::OnReset()
     
     mLastGain = mGainSmoother.target();
     mLastWidth = mWidthSmoother.target();
+    
+    mPhase = 1.0;
+    
+    mManualTrigger = false;
+    mLastFreeze = GetParam(kFreeze)->Bool();
     
     mTriggers.Resize(GetBlockSize());
 }
@@ -310,6 +328,17 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
             break;
         }
             
+        case kFreeze:
+        {
+            Modes mode = (Modes) GetParam(kMode)->Int();
+
+            if (mode == kManual)
+            {
+                bool freeze = GetParam(kFreeze)->Bool();
+                mManualTrigger |= freeze && !mLastFreeze;
+                mLastFreeze = GetParam(kFreeze)->Bool();
+            }
+        }
         default:
             break;
     }
@@ -342,6 +371,8 @@ void HISSToolsFreeze::OnParamChangeUI(int paramIdx, EParamSource source)
 
 void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrames)
 {
+    Modes mode = (Modes) GetParam(kMode)->Int();
+    
     double* triggers = mTriggers.Get();
     double* dspInputs[3];
     double* plugInputs[2];
@@ -359,7 +390,9 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
     
     double sampling = GetParam(kSampleTime)->Value();
     bool freeze = GetParam(kFreeze)->Bool();
-    double threshold = freeze ? 2.0 : 1.0 - (1000.0 / (GetSampleRate() * sampling));
+    double samplingRecip = 1000.0 / (GetSampleRate() * sampling);
+    double threshold = freeze ? 2.0 : 1.0 - samplingRecip;
+    double phase = freeze ? 0.0 : samplingRecip;
     double currentGain = DBToAmp(GetParam(kGain)->Value());
     double currentWidth = DBToAmp(GetParam(kWidth)->Value());
     
@@ -388,8 +421,35 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
     
     // Sampling
     
-    for (int i = 0; i < nFrames; i++)
-        triggers[i] = (std::rand() / (RAND_MAX + 1.0)) > threshold;
+    switch (mode)
+    {
+        case kRegular:
+            for (int i = 0; i < nFrames; i++)
+            {
+                mPhase += phase;
+                if (mPhase > 1.0)
+                {
+                    triggers[i] = 1.0;
+                    mPhase -= 1.0;
+                }
+                else
+                    triggers[i] = 0.0;
+            }
+            break;
+            
+        case kRandomised:
+            for (int i = 0; i < nFrames; i++)
+                triggers[i] = (std::rand() / (RAND_MAX + 1.0)) > threshold;
+            break;
+            
+        case kManual:
+            triggers[0] = mManualTrigger ? 1.0 : 0.0;
+            for (int i = 1; i < nFrames; i++)
+                triggers[i] = 0.0;
+            mManualTrigger = false;
+            break;
+    }
+    
     
     // Main process
     

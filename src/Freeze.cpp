@@ -1016,7 +1016,10 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 Freeze::~Freeze()
 {
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)
+    {
+        (*it)->clearConnections();
         delete *it;
+    }
 
     mObjects.clear();
     mAudioObjects.clear();

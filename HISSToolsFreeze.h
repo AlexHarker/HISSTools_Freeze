@@ -12,6 +12,7 @@ enum EParams
 {
     kFFTSize = 0,
     kOverlap,
+    kMode,
     kSampleTime,
     kFreeze,
     kFragment,
@@ -65,4 +66,8 @@ private:
     
     double mLastGain;
     double mLastWidth;
+    double mPhase;
+    
+    bool mManualTrigger;
+    bool mLastFreeze;
 };
