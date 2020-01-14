@@ -102,7 +102,7 @@ public:
     // Constructor
     
     Freeze_Button(int paramIdx, int modeParam, double x, double y, double w = 0, double h = 0, const char *type = 0, HISSTools_Design_Scheme *designScheme = &DefaultDesignScheme, const char *label = "")
-    : IControl(IRECT(), {paramIdx, modeParam}), HISSTools_Control_Layers()
+    : IControl(IRECT(), {paramIdx, modeParam}), HISSTools_Control_Layers(), mMouseIsDown(false)
     {
         // Dimensions
         
@@ -169,8 +169,9 @@ public:
     {
         Modes mode = (Modes) GetParam(1)->Int();
         
+        mMouseIsDown = true;
         SetValue(GetValue() && mode != kManual ? 0 : 1.0);
-        SetDirty();
+        SetDirty(true, 0);
     }
     
     void OnMouseUp(float x, float y, const IMouseMod& pMod) override
@@ -179,14 +180,19 @@ public:
 
         if (mode == kManual)
             SetAnimation(DefaultAnimationFunc, 100.0);
+        
+        mMouseIsDown = false;
     }
+    
+    void OnMouseOver(float x, float y, const IMouseMod& pMod) override {}
+    void OnMouseOut() override {}
     
     void OnEndAnimation() override
     {
-        IControl::OnEndAnimation();
+        SetAnimation(nullptr);
         
-        SetValue(0);
-        SetDirty();
+        SetValue(0.0);
+        SetDirty(true, 0);
     }
     
     // Draw
@@ -195,16 +201,20 @@ public:
     {
         HISSTools_VecLib vecDraw(g);
         
+        bool manualMode = ((Modes) GetParam(1)->Int()) == kManual;
+        bool manualHighlight = mMouseIsDown || GetAnimationFunction();
+        bool on = manualMode ? manualHighlight : GetValue() > 0.5;
+        
         // Button Rectangle
         
         vecDraw.startShadow(mShadow, mRECT);
-        vecDraw.setColor(GetValue() > 0.5 ? mOnCS : mOffCS);
+        vecDraw.setColor(on ? mOnCS : mOffCS);
         vecDraw.fillRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness);
         vecDraw.setColor(mOutlineCS);
         vecDraw.frameRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness, mOutlineTK);
         vecDraw.renderShadow();
         
-        vecDraw.setColor(mLabelMode ? mBackgroundLabelCS : GetValue() > 0.5 ? mHandleLabelCS : mHandleLabelOffCS);
+        vecDraw.setColor(mLabelMode ? mBackgroundLabelCS : on ? mHandleLabelCS : mHandleLabelOffCS);
         vecDraw.text(mTextStyle, mName, mLabelMode ? mX + mH + mTextPad : mX, mY, mLabelMode ? mW - (mH + mTextPad) : mW, mH, mLabelMode ?  kHAlignLeft : kHAlignCenter);
         
         // Inactive
@@ -250,6 +260,10 @@ private:
     HISSTools_Color_Spec *mHandleLabelOffCS;
     HISSTools_Color_Spec *mBackgroundLabelCS;
     HISSTools_Color_Spec *mInactiveOverlayCS;
+    
+    // Mouse
+    
+    bool mMouseIsDown;
     
     // Label Mode
     
@@ -501,7 +515,7 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
             if (mode == kManual)
             {
                 bool freeze = GetParam(kFreeze)->Bool();
-                mManualTrigger |= freeze && !mLastFreeze;
+                mManualTrigger |= (freeze && !mLastFreeze);
                 mLastFreeze = GetParam(kFreeze)->Bool();
             }
         }
