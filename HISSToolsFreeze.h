@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IPlug_include_in_plug_hdr.h"
-#include "Freeze.h"
+#include "src/Freeze.h"
 
 #include "Smoothing.h"
 #include "FrameLib_FromHost.h"
