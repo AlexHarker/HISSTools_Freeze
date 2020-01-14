@@ -2,7 +2,7 @@
 #include "HISSToolsFreeze.h"
 
 #include "IPlug_include_in_plug_src.h"
-#include "HISSTools_Controls.hpp"
+#include <HISSTools_Controls.hpp>
 #include "IControls.h"
 
 enum Modes
