@@ -149,7 +149,6 @@ END
 3 TEXTINCLUDE
 BEGIN
     "#include ""..\\config.h""\r\n"
-    "ROBOTO_FN TTF ROBOTO_FN\0"
 END
 
 #endif    // APSTUDIO_INVOKED
@@ -232,4 +231,3 @@ END
 ROBOTO_FN TTF ROBOTO_FN
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-

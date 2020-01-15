@@ -326,7 +326,6 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         pGraphics->HandleMouseOver(true);
         pGraphics->AttachPanelBackground(COLOR_GRAY);
         
-        pGraphics->LoadFont("Roboto-Regular", ROBOTO_FN);
         pGraphics->LoadFont("Arial Bold", "Arial", ETextStyle::Bold);
         
         auto smallDial = [](const IRECT& b, int idx, int hs, int vs, const char *types) {
