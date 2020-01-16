@@ -307,14 +307,14 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
 
     GetParam(kFreeze)->InitBool("Freeze", false);
 
-    GetParam(kSampleTime)->InitDouble("Sample", 200., 5., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+    GetParam(kSample)->InitDouble("Sample", 200., 5., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
     GetParam(kBlur)->InitDouble("Blur", 200., 0., 2000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
     GetParam(kXFadeTime)->InitDouble("Morph", 0., 0., 10000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
     GetParam(kFragment)->InitDouble("Fragment", 0., 0., 100.0, 1, "%");
 
     GetParam(kFiltNum)->InitInt("Number Filters", 12, 2, 60, "");
-    GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 20., 4000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
-    GetParam(kFiltRandom)->InitDouble("Filter Random", 100., 0., 4000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+    GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 20., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+    GetParam(kFiltRandom)->InitDouble("Filter Random", 100., 0., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
     GetParam(kFiltTilt)->InitDouble("Filter Tilt", 0.0, -100.0, 100.0, 1, "%");
     GetParam(kFiltStrength)->InitDouble("Filter Strength", 0.0, 0.0, 24.0, 0.1, "dB");
     
@@ -384,24 +384,24 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
 
         pGraphics->AttachControl(buttonControl(b, kFreeze, kMode, 0, 0, "tight"));
         
-        pGraphics->AttachControl(dialControl(b, kBlur,       -120, -80, ""));
-        pGraphics->AttachControl(dialControl(b, kSampleTime,  120, -80, ""));
-        pGraphics->AttachControl(dialControl(b, kFragment,   -120,  80, ""));
-        pGraphics->AttachControl(dialControl(b, kXFadeTime,   120,  80, ""));
+        pGraphics->AttachControl(dialControl(b, kBlur,     -120, -80, ""));
+        pGraphics->AttachControl(dialControl(b, kSample,    120, -80, ""));
+        pGraphics->AttachControl(dialControl(b, kFragment, -120,  80, ""));
+        pGraphics->AttachControl(dialControl(b, kMorph,     120,  80, ""));
         
         pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(-65, 290, 290, 240), "tighter"));
         
-        pGraphics->AttachControl(dialControl(b, kFiltInterval,  -30, 290, "3 small"));
-        pGraphics->AttachControl(dialControl(b, kFiltRandom,     30, 220, "3 small", "Random"));
         pGraphics->AttachControl(dialControl(b, kFiltStrength, -160, 290, "5 small"));
         pGraphics->AttachControl(dialControl(b, kFiltTilt,     -100, 220, "5 bipolar small", "Tilt"));
-
+        pGraphics->AttachControl(dialControl(b, kFiltInterval,  -30, 290, "3 small"));
+        pGraphics->AttachControl(dialControl(b, kFiltRandom,     30, 220, "3 small", "Random"));
+        
         pGraphics->AttachControl(valueControl(b, kFiltNum,      -65, 370, ""));
 
         pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(150, 290, 120, 240), "tighter"));
         
-        pGraphics->AttachControl(dialControl(b, kGain,  150, 230, "4 bipolar medium"));
-        pGraphics->AttachControl(dialControl(b, kWidth, 150, 340, "4 bipolar medium"));
+        pGraphics->AttachControl(dialControl(b, kWidth,  150, 230, "4 bipolar medium"));
+        pGraphics->AttachControl(dialControl(b, kGain, 150, 340, "4 bipolar medium"));
     }
 }
 
@@ -588,7 +588,7 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
 
     // Parameters
     
-    double sampling = GetParam(kSampleTime)->Value();
+    double sampling = GetParam(kSample)->Value();
     bool freeze = GetParam(kFreeze)->Bool();
     double samplingRecip = 1000.0 / (GetSampleRate() * sampling);
     double threshold = freeze ? 2.0 : 1.0 - samplingRecip;
