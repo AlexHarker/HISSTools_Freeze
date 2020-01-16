@@ -1949,8 +1949,8 @@
 																					"numinlets" : 2,
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
-																					"patching_rect" : [ 61.0, 150.0, 199.0, 22.0 ],
-																					"text" : "fl.map~ log 40 12000 0.001 1 /clip 1"
+																					"patching_rect" : [ 61.0, 150.0, 179.0, 22.0 ],
+																					"text" : "fl.map~ log 40 16000 0. 1 /clip 1"
 																				}
 
 																			}

@@ -588,8 +588,8 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[96]->addConnection(Connection(mObjects[95], 0), 0);
 
     double fl_97_vector_1[] = { 40 };
-    double fl_97_vector_2[] = { 12000 };
-    double fl_97_vector_3[] = { 0.001000 };
+    double fl_97_vector_2[] = { 16000 };
+    double fl_97_vector_3[] = { 0 };
     double fl_97_vector_4[] = { 1 };
     double fl_97_vector_5[] = { 1 };
     parameters.clear();

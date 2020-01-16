@@ -429,13 +429,19 @@ void HISSToolsFreeze::OnFragmentChange()
         return hi * interp + lo * (1.0 - interp);
     };
     
-    double fragment = GetParam(kFragment)->GetNormalized();
+    double fragment = pow(GetParam(kFragment)->GetNormalized(), 0.375);
     double bounds[4];
     
-    bounds[0] = scaled(fragment, 0.50, 0.00);
-    bounds[1] = scaled(fragment, 0.50, 1.00);
-    bounds[2] = scaled(fragment, 0.50, 0.03);
-    bounds[3] = scaled(fragment, 0.50, 0.05);
+    const double octConvert = 1.0 / log2(16000.0 / 40.0);
+    const double minOctave = 0.1;
+    const double maxOctave = 0.3;
+    const double minVal = minOctave * octConvert;
+    const double maxVal = maxOctave * octConvert;
+    
+    bounds[0] = scaled(fragment, 0.50, 0.00 + (minVal * 0.5));
+    bounds[1] = scaled(fragment, 0.50, 1.00 - (minVal * 0.5));
+    bounds[2] = scaled(fragment, 0.50, minVal);
+    bounds[3] = scaled(fragment, 0.50, maxVal);
     
     mProxy->sendFromHost(5, bounds, 4);
 }
