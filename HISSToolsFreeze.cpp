@@ -89,10 +89,18 @@ public:
         addFlag("ValueLabelBelow", true);
         addFlag("ValueLabelBelow", "above", false);
         addFlag("DialDrawValOnlyOnMO", true);
+        
+        addDimension("DialDiameter", "medium", 74);
+        
+        addDimension("ValueWidth", 84);
+        addDimension("ValueWidth", "mode", 100);
+        
+        addDimension("ValueHeight", 20);
+        addDimension("ValueHeight", "mode", 26);
     }
 };
 
-Design designScheme;
+Design scheme;
 
 class Freeze_Button: public IControl, public HISSTools_Control_Layers
 {
@@ -101,41 +109,41 @@ public:
     
     // Constructor
     
-    Freeze_Button(int paramIdx, int modeParam, double x, double y, double w = 0, double h = 0, const char *type = 0, HISSTools_Design_Scheme *designScheme = &DefaultDesignScheme, const char *label = "")
+    Freeze_Button(int paramIdx, int modeParam, double x, double y, double w = 0, double h = 0, const char *type = 0, HISSTools_Design_Scheme *scheme = &DefaultDesignScheme, const char *label = "")
     : IControl(IRECT(), {paramIdx, modeParam}), HISSTools_Control_Layers(), mMouseIsDown(false)
     {
         // Dimensions
         
         mX = x;
         mY = y;
-        mW = w <= 0 ? designScheme->getDimension("ButtonWidth", type) : w;
-        mH = h <= 0 ? designScheme->getDimension("ButtonHeight", type) : h;
+        mW = w <= 0 ? scheme->getDimension("ButtonWidth", type) : w;
+        mH = h <= 0 ? scheme->getDimension("ButtonHeight", type) : h;
         
-        double roundness = designScheme->getDimension("ButtonRoundness", type);
+        double roundness = scheme->getDimension("ButtonRoundness", type);
         mRoundness = roundness < 0 ? mH / 2 : roundness;
         
-        mTextPad = designScheme->getDimension("ButtonTextPad", type);
+        mTextPad = scheme->getDimension("ButtonTextPad", type);
         
         // Label Mode
         
-        mLabelMode = designScheme->getFlag("ButtonLabelMode", type);
+        mLabelMode = scheme->getFlag("ButtonLabelMode", type);
         
         // Get Appearance
         
-        mOutlineTK = designScheme->getDimension("ButtonOutline", type);
+        mOutlineTK = scheme->getDimension("ButtonOutline", type);
         
-        mShadow = designScheme->getShadow("Button", type);
+        mShadow = scheme->getShadow("Button", type);
         
-        mTextStyle = designScheme->getTextStyle("Button", type);
+        mTextStyle = scheme->getTextStyle("Button", type);
         
-        mOnCS = designScheme->getColorSpec("ButtonHandleOn", type);
-        mOffCS = designScheme->getColorSpec("ButtonHandleOff", type);
-        mHandleLabelCS = designScheme->getColorSpec("ButtonHandleLabel", type);
-        mHandleLabelOffCS = designScheme->getColorSpec("ButtonHandleLabelOff", type);
+        mOnCS = scheme->getColorSpec("ButtonHandleOn", type);
+        mOffCS = scheme->getColorSpec("ButtonHandleOff", type);
+        mHandleLabelCS = scheme->getColorSpec("ButtonHandleLabel", type);
+        mHandleLabelOffCS = scheme->getColorSpec("ButtonHandleLabelOff", type);
         mHandleLabelOffCS = mHandleLabelOffCS ? mHandleLabelOffCS : mHandleLabelCS;
-        mOutlineCS = designScheme->getColorSpec("ButtonOutline", type);
-        mBackgroundLabelCS = designScheme->getColorSpec("ButtonBackgroundLabel", type);
-        mInactiveOverlayCS = designScheme->getColorSpec("ButtonInactiveOverlay", type);
+        mOutlineCS = scheme->getColorSpec("ButtonOutline", type);
+        mBackgroundLabelCS = scheme->getColorSpec("ButtonBackgroundLabel", type);
+        mInactiveOverlayCS = scheme->getColorSpec("ButtonInactiveOverlay", type);
         
         // Calculate Areas (including shadows and thicknesses)
         
@@ -328,59 +336,72 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         
         pGraphics->LoadFont("Arial Bold", "Arial", ETextStyle::Bold);
         
-        auto smallDial = [](const IRECT& b, int idx, int hs, int vs, const char *types) {
-            IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
+        const int ovs = -115;
+        
+        auto dialControl = [](const IRECT& b, int idx, int hs, int vs, const char *types, const char *name = nullptr)
+        {
+            double d = scheme.getDimension("DialDiameter", types);
+            IRECT cb = b.GetCentredInside(d).GetVShifted(vs + ovs).GetHShifted(hs);
             
-            WDL_String var("small");
-            var.Append(" ");
-            var.Append(types);
-            
-            return new HISSTools_Dial(idx, cb.L, cb.T, var.Get(), &designScheme);
+            return new HISSTools_Dial(idx, cb.L, cb.T, types, &scheme, name);
         };
         
-        auto dial = [](const IRECT& b, int idx, int hs, int vs, const char *types) {
-            IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
+        auto valueControl = [](const IRECT& b, int idx, int hs, int vs, const char *types)
+        {
+            const double w = scheme.getDimension("ValueWidth", types);
+            const double h = scheme.getDimension("ValueHeight", types);
+
+            IRECT cb = b.GetCentredInside(w, h).GetVShifted(vs + ovs).GetHShifted(hs);
             
-            return new HISSTools_Dial(idx, cb.L, cb.T, types, &designScheme);
+            return new HISSTools_Value(idx, cb.L, cb.T, w, h, types, &scheme);
         };
         
-        auto paramPanel = [](const IRECT& b, int idx, int hs, int vs, const char *types) {
-            IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
+        auto buttonControl = [](const IRECT& b, int idx, int midx, int hs, int vs, const char *types)
+        {
+            const double w = 120;
+            const double h = 30;
+            IRECT cb = b.GetCentredInside(w, h).GetVShifted(vs + ovs).GetHShifted(hs);
             
-            return new HISSTools_Value(idx, cb.L, cb.T, 100, 20, types, &designScheme);
+            return new Freeze_Button(idx, midx, cb.L, cb.T, w, h, types, &scheme);
         };
         
-        auto button = [](const IRECT& b, int idx, int midx, int hs, int vs, const char *types) {
-            IRECT cb = b.GetCentredInside(80).GetVShifted(vs).GetHShifted(hs);
-            
-            return new Freeze_Button(idx, midx, cb.L, cb.T, 100, 30, types, &designScheme);
+        auto panelControl = [](const IRECT& b, const IRECT& p, const char *types)
+        {
+            IRECT cb = b.GetCentredInside(p.W(), p.H()).GetVShifted(p.T + ovs).GetHShifted(p.L);
+
+            return new HISSTools_Panel(cb.L, cb.T, cb.W(), cb.H(), types, &scheme);
         };
         
         const IRECT b = pGraphics->GetBounds();
         
         // Name
         
-        pGraphics->AttachControl(new HISSTools_TextBlock(0, 20, PLUG_WIDTH, 50, "HISSTools Freeze", kHAlignCenter, kVAlignCenter, "name", &designScheme));
+        pGraphics->AttachControl(new HISSTools_TextBlock(0, 10, PLUG_WIDTH, 50, "HISSTools Freeze", kHAlignCenter, kVAlignCenter, "name", &scheme));
         
-        pGraphics->AttachControl(paramPanel(b, kFFTSize, -30, -140, ""));
-        pGraphics->AttachControl(paramPanel(b, kOverlap, -30, -90, ""));
-        pGraphics->AttachControl(paramPanel(b, kMode, -30, -40, ""));
+        pGraphics->AttachControl(valueControl(b, kMode,    0, -80, "mode"));
+        pGraphics->AttachControl(valueControl(b, kFFTSize, 0,  55, ""));
+        pGraphics->AttachControl(valueControl(b, kOverlap, 0, 105, ""));
 
-        pGraphics->AttachControl(button(b, kFreeze, kMode, -180, -140, "tight"));
+        pGraphics->AttachControl(buttonControl(b, kFreeze, kMode, 0, 0, "tight"));
         
-        pGraphics->AttachControl(dial(b, kSampleTime, -100, -20, ""));
-        pGraphics->AttachControl(dial(b, kFragment, -100, 100, ""));
-        pGraphics->AttachControl(dial(b, kBlur, 100, -20, ""));
-        pGraphics->AttachControl(dial(b, kXFadeTime, 100, 100, ""));
+        pGraphics->AttachControl(dialControl(b, kBlur,       -120, -80, ""));
+        pGraphics->AttachControl(dialControl(b, kSampleTime,  120, -80, ""));
+        pGraphics->AttachControl(dialControl(b, kFragment,   -120,  80, ""));
+        pGraphics->AttachControl(dialControl(b, kXFadeTime,   120,  80, ""));
         
-        pGraphics->AttachControl(smallDial(b, kFiltNum, -200, 220, "2"));
-        pGraphics->AttachControl(smallDial(b, kFiltInterval, -100, 220, "3"));
-        pGraphics->AttachControl(smallDial(b, kFiltRandom, 0, 220, "3"));
-        pGraphics->AttachControl(smallDial(b, kFiltStrength, 100, 220, "5"));
-        pGraphics->AttachControl(smallDial(b, kFiltTilt, 200, 220, "5 bipolar"));
+        pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(-65, 290, 290, 240), "tighter"));
         
-        pGraphics->AttachControl(smallDial(b, kGain, 100, -140, "4 bipolar"));
-        pGraphics->AttachControl(smallDial(b, kWidth, 200, -140, "4 bipolar"));
+        pGraphics->AttachControl(dialControl(b, kFiltInterval,  -30, 290, "3 small"));
+        pGraphics->AttachControl(dialControl(b, kFiltRandom,     30, 220, "3 small", "Random"));
+        pGraphics->AttachControl(dialControl(b, kFiltStrength, -160, 290, "5 small"));
+        pGraphics->AttachControl(dialControl(b, kFiltTilt,     -100, 220, "5 bipolar small", "Tilt"));
+
+        pGraphics->AttachControl(valueControl(b, kFiltNum,      -65, 370, ""));
+
+        pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(150, 290, 120, 240), "tighter"));
+        
+        pGraphics->AttachControl(dialControl(b, kGain,  150, 230, "4 bipolar medium"));
+        pGraphics->AttachControl(dialControl(b, kWidth, 150, 340, "4 bipolar medium"));
     }
 }
 
