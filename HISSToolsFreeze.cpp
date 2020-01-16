@@ -65,6 +65,12 @@ public:
         addColorSpec("TextBlock", "name", textColor);
         addTextStyle("TextBlock", "name", nameTxt);
         
+        HISSTools_Color_Spec *labelColor = new HISSTools_Color_Spec(0.9, 0.9, 0.9, 0.80);
+        HISSTools_Text *labelTxt = new HISSTools_Text(20, "Arial Bold");
+        
+        addColorSpec("TextBlock", "label", labelColor);
+        addTextStyle("TextBlock", "label", labelTxt);
+        
         addColorSpec("DialIndicator", "1", col1);
         addColorSpec("DialIndicator", "2", col2);
         addColorSpec("DialIndicator", "3", col3);
@@ -81,6 +87,12 @@ public:
         addDimension("DialRefValue", "gain", 2.0/7.0);
         addDimension("DialRefValue", "vol", 6.0/7.0);
         
+        addDimension("DialDiameter", "smallNormalText", 60);
+        addDimension("DialDiameter", "medium", 74);
+
+        addDimension("DialTextArea", "medium", 23);
+        addDimension("DialTextArea", "smallNormalText", 20);
+
         addDimension("ValueTextArea", "spacious", 25);
         
         addFlag("ValueDrawTriangle", "small", false);
@@ -89,8 +101,6 @@ public:
         addFlag("ValueLabelBelow", true);
         addFlag("ValueLabelBelow", "above", false);
         addFlag("DialDrawValOnlyOnMO", true);
-        
-        addDimension("DialDiameter", "medium", 74);
         
         addDimension("ValueWidth", 84);
         addDimension("ValueWidth", "mode", 100);
@@ -378,25 +388,27 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         
         pGraphics->AttachControl(new HISSTools_TextBlock(0, 10, PLUG_WIDTH, 50, "HISSTools Freeze", kHAlignCenter, kVAlignCenter, "name", &scheme));
         
-        pGraphics->AttachControl(valueControl(b, kMode,    0, -80, "mode"));
-        pGraphics->AttachControl(valueControl(b, kFFTSize, 0,  55, ""));
-        pGraphics->AttachControl(valueControl(b, kOverlap, 0, 105, ""));
+        pGraphics->AttachControl(valueControl(b, kMode,    0,  80, "mode"));
+        pGraphics->AttachControl(valueControl(b, kFFTSize, 0, -95, "above"));
+        pGraphics->AttachControl(valueControl(b, kOverlap, 0, -65, ""));
 
         pGraphics->AttachControl(buttonControl(b, kFreeze, kMode, 0, 0, "tight"));
         
         pGraphics->AttachControl(dialControl(b, kBlur,     -120, -80, ""));
-        pGraphics->AttachControl(dialControl(b, kSample,    120, -80, ""));
-        pGraphics->AttachControl(dialControl(b, kFragment, -120,  80, ""));
+        pGraphics->AttachControl(dialControl(b, kFragment,  120, -80, ""));
+        pGraphics->AttachControl(dialControl(b, kSample,   -120,  80, ""));
         pGraphics->AttachControl(dialControl(b, kMorph,     120,  80, ""));
         
         pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(-65, 290, 290, 240), "tighter"));
         
-        pGraphics->AttachControl(dialControl(b, kFiltStrength, -160, 290, "5 small"));
-        pGraphics->AttachControl(dialControl(b, kFiltTilt,     -100, 220, "5 bipolar small", "Tilt"));
-        pGraphics->AttachControl(dialControl(b, kFiltInterval,  -30, 290, "3 small"));
-        pGraphics->AttachControl(dialControl(b, kFiltRandom,     30, 220, "3 small", "Random"));
+        pGraphics->AttachControl(new HISSTools_TextBlock(40, 570, 140, 20, "Morphing Filter", kHAlignCenter, kVAlignCenter, "label", &scheme));
         
-        pGraphics->AttachControl(valueControl(b, kFiltNum,      -65, 370, ""));
+        pGraphics->AttachControl(dialControl(b, kFiltStrength, -160, 290, "5 smallNormalText", "Strength"));
+        pGraphics->AttachControl(dialControl(b, kFiltTilt,     -100, 220, "5 bipolar smallNormalText", "Tilt"));
+        pGraphics->AttachControl(dialControl(b, kFiltInterval,  -30, 290, "2 smallNormalText", "Interval"));
+        pGraphics->AttachControl(dialControl(b, kFiltRandom,     30, 220, "2 smallNormalText", "Random"));
+        
+        pGraphics->AttachControl(valueControl(b, kFiltNum,      20, 370, ""));
 
         pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(150, 290, 120, 240), "tighter"));
         
@@ -545,6 +557,7 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
                 mLastFreeze = GetParam(kFreeze)->Bool();
             }
         }
+            
         default:
             break;
     }
@@ -569,6 +582,16 @@ void HISSToolsFreeze::OnParamChangeUI(int paramIdx, EParamSource source)
             }
         }
             
+        case kMode:
+        {
+            if (GetUI())
+            {
+                Modes mode = (Modes) GetParam(kMode)->Int();
+                
+                GetUI()->DisableControl(kSample, mode == kManual);
+                break;
+            }
+        }
         default:
             break;
     }
