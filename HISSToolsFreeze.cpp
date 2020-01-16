@@ -42,13 +42,18 @@ public:
         activeFillCS->addStop(HISSTools_Color(0.3, 0.3, 0.3, 1.0), 1.);
         
         HISSTools_LICE_VGradient* panelFillCS = new HISSTools_LICE_VGradient;
-        panelFillCS->addStop(HISSTools_Color(0.4, 0.4, 0.4, 0.4), 0.0);
-        panelFillCS->addStop(HISSTools_Color(0.2, 0.2, 0.2, 0.5), 0.94);
-        panelFillCS->addStop(HISSTools_Color(0.075, 0.075, 0.075, 0.6), 1.0);
+        panelFillCS->addStop(HISSTools_Color(0.40, 0.40, 0.40, 0.40), 0.0);
+        panelFillCS->addStop(HISSTools_Color(0.35, 0.35, 0.35, 0.45), 0.94);
+        panelFillCS->addStop(HISSTools_Color(0.19, 0.19, 0.19, 0.50), 1.0);
         
-        HISSTools_Color_Spec *shadowCS = new HISSTools_Color_Spec(HISSTools_Color(0.00, 0.00, 0.00, 0.90));
+        HISSTools_Color_Spec shadowCS(HISSTools_Color(0.00, 0.00, 0.00, 0.90));
         HISSTools_Shadow *shadowSpec = new HISSTools_Shadow(shadowCS, 4, 4, 6);
         
+        HISSTools_Color_Spec panelShadowCS(HISSTools_Color(0.00, 0.00, 0.00, 0.70));
+        HISSTools_Shadow *panelShadowSpec = new HISSTools_Shadow(panelShadowCS, 2, 3, 4);
+        
+        addShadow("Panel", "lightShadow", panelShadowSpec);
+
         addColorSpec("PanelFill", "upper", panelFillCS);
         addColorSpec("PanelFill", "main", panelFillCS);
         addColorSpec("PanelFill", "thick", blackCS);
@@ -60,7 +65,7 @@ public:
         addShadow("TextBlock", "name", shadowSpec);
         
         HISSTools_Color_Spec *textColor = new HISSTools_Color_Spec(0.9, 0.9, 0.9, 0.80);
-        HISSTools_Text *nameTxt = new HISSTools_Text(42, "Arial Bold");
+        HISSTools_Text *nameTxt = new HISSTools_Text(34, "Arial Bold");
         
         addColorSpec("TextBlock", "name", textColor);
         addTextStyle("TextBlock", "name", nameTxt);
@@ -346,7 +351,9 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         
         pGraphics->LoadFont("Arial Bold", "Arial", ETextStyle::Bold);
         
-        const int ovs = -115;
+        const int svs = 50;
+        const int ovs = -(115 + svs);
+        const int tvs = 295;
         
         auto dialControl = [](const IRECT& b, int idx, int hs, int vs, const char *types, const char *name = nullptr)
         {
@@ -386,7 +393,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         
         // Name
         
-        pGraphics->AttachControl(new HISSTools_TextBlock(0, 10, PLUG_WIDTH, 50, "HISSTools Freeze", kHAlignCenter, kVAlignCenter, "name", &scheme));
+        pGraphics->AttachControl(new HISSTools_TextBlock(0, 10 + tvs, PLUG_WIDTH, 50, "HISSTools Freeze", kHAlignCenter, kVAlignCenter, "name", &scheme));
         
         pGraphics->AttachControl(valueControl(b, kMode,    0,  80, "mode"));
         pGraphics->AttachControl(valueControl(b, kFFTSize, 0, -95, "above"));
@@ -399,21 +406,21 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         pGraphics->AttachControl(dialControl(b, kSample,   -120,  80, ""));
         pGraphics->AttachControl(dialControl(b, kMorph,     120,  80, ""));
         
-        pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(-65, 290, 290, 240), "tighter"));
+        pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(-65, 290 + svs, 290, 240), "lightShadow tighter"));
         
         pGraphics->AttachControl(new HISSTools_TextBlock(40, 570, 140, 20, "Morphing Filter", kHAlignCenter, kVAlignCenter, "label", &scheme));
         
-        pGraphics->AttachControl(dialControl(b, kFiltStrength, -160, 290, "5 smallNormalText", "Strength"));
-        pGraphics->AttachControl(dialControl(b, kFiltTilt,     -100, 220, "5 bipolar smallNormalText", "Tilt"));
-        pGraphics->AttachControl(dialControl(b, kFiltInterval,  -30, 290, "2 smallNormalText", "Interval"));
-        pGraphics->AttachControl(dialControl(b, kFiltRandom,     30, 220, "2 smallNormalText", "Random"));
+        pGraphics->AttachControl(dialControl(b, kFiltStrength, -160, 290 + svs, "5 smallNormalText", "Strength"));
+        pGraphics->AttachControl(dialControl(b, kFiltTilt,     -100, 220 + svs, "5 bipolar smallNormalText", "Tilt"));
+        pGraphics->AttachControl(dialControl(b, kFiltInterval,  -30, 290 + svs, "2 smallNormalText", "Interval"));
+        pGraphics->AttachControl(dialControl(b, kFiltRandom,     30, 220 + svs, "2 smallNormalText", "Random"));
         
-        pGraphics->AttachControl(valueControl(b, kFiltNum,      20, 370, ""));
+        pGraphics->AttachControl(valueControl(b, kFiltNum, 20, 370 + svs, ""));
 
-        pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(150, 290, 120, 240), "tighter"));
+        pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(150, 290 + svs, 120, 240), "lightShadow tighter"));
         
-        pGraphics->AttachControl(dialControl(b, kWidth,  150, 230, "4 bipolar medium"));
-        pGraphics->AttachControl(dialControl(b, kGain, 150, 340, "4 bipolar medium"));
+        pGraphics->AttachControl(dialControl(b, kWidth, 150, 230 + svs, "4 bipolar medium"));
+        pGraphics->AttachControl(dialControl(b, kGain,  150, 340 + svs, "4 bipolar medium"));
     }
 }
 
