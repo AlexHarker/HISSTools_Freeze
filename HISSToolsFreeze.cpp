@@ -580,7 +580,6 @@ void HISSToolsFreeze::OnParamChangeUI(int paramIdx, EParamSource source)
             {
                 bool zero = GetParam(kFiltStrength)->Value() == 0.0;
                 
-                GetUI()->DisableControl(kFiltNum, zero);
                 GetUI()->DisableControl(kFiltStrength, zero);
                 GetUI()->DisableControl(kFiltTilt, zero);
                 GetUI()->DisableControl(kFiltInterval, zero);
