@@ -306,10 +306,11 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
 
     GetParam(kFreeze)->InitBool("Freeze", false);
 
-    GetParam(kSample)->InitDouble("Sample", 200., 5., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
     GetParam(kBlur)->InitDouble("Blur", 200., 0., 2000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
-    GetParam(kMorph)->InitDouble("Morph", 0., 0., 10000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
     GetParam(kFragment)->InitDouble("Fragment", 0., 0., 100.0, 1, "%");
+    GetParam(kSample)->InitDouble("Sample", 200., 5., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+    GetParam(kMorph)->InitDouble("Morph", 0., 0., 10000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+
 
     GetParam(kFiltNum)->InitInt("Number Filters", 12, 2, 60, "");
     GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 20., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
