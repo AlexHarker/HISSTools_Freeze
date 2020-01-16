@@ -285,7 +285,7 @@ private:
 HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
 : Plugin(info, MakeConfig(kNumParams, kNumPrograms)), mProxy(new FromPlugProxy()), mDSP(mProxy), mManualTrigger(false), mLastFreeze(false)
 {
-    GetParam(kFFTSize)->InitEnum("FFT Size", 3, 8);
+    GetParam(kFFTSize)->InitEnum("FFT Size", 3, 7);
     GetParam(kFFTSize)->SetDisplayText(0, "512");
     GetParam(kFFTSize)->SetDisplayText(1, "1024");
     GetParam(kFFTSize)->SetDisplayText(2, "2048");
@@ -293,7 +293,6 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     GetParam(kFFTSize)->SetDisplayText(4, "8192");
     GetParam(kFFTSize)->SetDisplayText(5, "16384");
     GetParam(kFFTSize)->SetDisplayText(6, "32768");
-    GetParam(kFFTSize)->SetDisplayText(7, "65536");
     
     GetParam(kOverlap)->InitEnum("Overlap", 2, 3);
     GetParam(kOverlap)->SetDisplayText(0, "2");
@@ -309,7 +308,7 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
 
     GetParam(kSample)->InitDouble("Sample", 200., 5., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
     GetParam(kBlur)->InitDouble("Blur", 200., 0., 2000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
-    GetParam(kXFadeTime)->InitDouble("Morph", 0., 0., 10000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
+    GetParam(kMorph)->InitDouble("Morph", 0., 0., 10000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
     GetParam(kFragment)->InitDouble("Fragment", 0., 0., 100.0, 1, "%");
 
     GetParam(kFiltNum)->InitInt("Number Filters", 12, 2, 60, "");
@@ -494,9 +493,9 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
             break;
         }
             
-        case kXFadeTime:
+        case kMorph:
         {
-            double time = GetParam(kXFadeTime)->Value();
+            double time = GetParam(kMorph)->Value();
             mProxy->sendFromHost(4, &time, 1);
             break;
         }
