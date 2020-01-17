@@ -171,8 +171,8 @@ public:
         fullBounds = mShadow->getBlurBounds(handleBounds);
         fullBounds.include(fullBounds);
         
-        mRECT = (fullBounds.iBounds());
-        SetTargetRECT(handleBounds.iBounds());
+        mRECT = fullBounds;
+        SetTargetRECT(handleBounds);
         
         mName = label;
         
