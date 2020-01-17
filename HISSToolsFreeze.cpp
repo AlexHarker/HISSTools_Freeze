@@ -356,7 +356,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         const int ovs = -(115 + svs);
         const int tvs = 295;
         
-        auto dialControl = [](const IRECT& b, int idx, int hs, int vs, const char *types, const char *name = nullptr)
+        auto dialControl = [&](const IRECT& b, int idx, int hs, int vs, const char *types, const char *name = nullptr)
         {
             double d = scheme.getDimension("DialDiameter", types);
             IRECT cb = b.GetCentredInside(d).GetVShifted(vs + ovs).GetHShifted(hs);
@@ -364,7 +364,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
             return new HISSTools_Dial(idx, cb.L, cb.T, types, &scheme, name);
         };
         
-        auto valueControl = [](const IRECT& b, int idx, int hs, int vs, const char *types, const char *name = nullptr)
+        auto valueControl = [&](const IRECT& b, int idx, int hs, int vs, const char *types, const char *name = nullptr)
         {
             const double w = scheme.getDimension("ValueWidth", types);
             const double h = scheme.getDimension("ValueHeight", types);
@@ -374,7 +374,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
             return new HISSTools_Value(idx, cb.L, cb.T, w, h, types, &scheme, name);
         };
         
-        auto buttonControl = [](const IRECT& b, int idx, int midx, int hs, int vs, const char *types)
+        auto buttonControl = [&](const IRECT& b, int idx, int midx, int hs, int vs, const char *types)
         {
             const double w = 120;
             const double h = 30;
@@ -383,7 +383,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
             return new Freeze_Button(idx, midx, cb.L, cb.T, w, h, types, &scheme);
         };
         
-        auto panelControl = [](const IRECT& b, const IRECT& p, const char *types)
+        auto panelControl = [&](const IRECT& b, const IRECT& p, const char *types)
         {
             IRECT cb = b.GetCentredInside(p.W(), p.H()).GetVShifted(p.T + ovs).GetHShifted(p.L);
 
