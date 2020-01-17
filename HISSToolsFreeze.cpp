@@ -327,7 +327,7 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     GetParam(kMorph)->InitDouble("Morph", 0., 0., 10000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
 
 
-    GetParam(kFiltNum)->InitInt("Number Filters", 12, 2, 60, "");
+    GetParam(kFiltNum)->InitInt("Filter Num Bands", 12, 2, 60, "");
     GetParam(kFiltInterval)->InitDouble("Filter Interval", 800., 20., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
     GetParam(kFiltRandom)->InitDouble("Filter Random", 100., 0., 5000.0, 1, "ms", 0, "", IParam::ShapePowCurve(2.0));
     GetParam(kFiltTilt)->InitDouble("Filter Tilt", 0.0, -100.0, 100.0, 1, "%");
@@ -363,14 +363,14 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
             return new HISSTools_Dial(idx, cb.L, cb.T, types, &scheme, name);
         };
         
-        auto valueControl = [](const IRECT& b, int idx, int hs, int vs, const char *types)
+        auto valueControl = [](const IRECT& b, int idx, int hs, int vs, const char *types, const char *name = nullptr)
         {
             const double w = scheme.getDimension("ValueWidth", types);
             const double h = scheme.getDimension("ValueHeight", types);
 
             IRECT cb = b.GetCentredInside(w, h).GetVShifted(vs + ovs).GetHShifted(hs);
             
-            return new HISSTools_Value(idx, cb.L, cb.T, w, h, types, &scheme);
+            return new HISSTools_Value(idx, cb.L, cb.T, w, h, types, &scheme, name);
         };
         
         auto buttonControl = [](const IRECT& b, int idx, int midx, int hs, int vs, const char *types)
@@ -415,7 +415,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         pGraphics->AttachControl(dialControl(b, kFiltInterval,  -30, 290 + svs, "2 smallNormalText", "Interval"));
         pGraphics->AttachControl(dialControl(b, kFiltRandom,     30, 220 + svs, "2 smallNormalText", "Random"));
         
-        pGraphics->AttachControl(valueControl(b, kFiltNum, 20, 370 + svs, ""));
+        pGraphics->AttachControl(valueControl(b, kFiltNum, 20, 370 + svs, "", "Num Bands"));
 
         pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(150, 290 + svs, 120, 240), "lightShadow tighter"));
         
