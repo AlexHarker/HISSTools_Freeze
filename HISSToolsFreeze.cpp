@@ -624,8 +624,6 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
     double* triggers = mTriggers.Get();
     double* dspInputs[3];
     double* plugInputs[2];
-
-    const double rootTwo = 1.0 / sqrt(2.0);
     
     plugInputs[0] = inputs[0];
     plugInputs[1] = NChannelsConnected(kInput) > 1 ?  inputs[1] : inputs[0];
@@ -656,15 +654,12 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
         mLastWidth = currentWidth;
     }
     
-    // MS Processing
+    // Get Input
     
     for (int i = 0; i < nFrames; i++)
     {
-        double L = plugInputs[0][i] * rootTwo;
-        double R = plugInputs[1][i] * rootTwo;
-        
-        outputs[0][i] = (L + R);
-        outputs[1][i] = (L - R);
+        outputs[0][i] = plugInputs[0][i];
+        outputs[1][i] = plugInputs[1][i];
     }
     
     // Sampling
@@ -718,10 +713,12 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
     
     for (int i = 0; i < nFrames; i++)
     {
-        const double gain = mGainSmoother() * rootTwo;
+        const double gain = mGainSmoother() * 0.5;
         const double width = mWidthSmoother();
-        double M = outputs[0][i] * gain;
-        double S = outputs[1][i] * gain * width;
+        double L = outputs[0][i] * gain;
+        double R = outputs[1][i] * gain;
+        double M = (L + R);
+        double S = (L - R) * width;
         
         outputs[0][i] = (M + S);
         outputs[1][i] = (M - S);
