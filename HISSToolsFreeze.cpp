@@ -691,9 +691,8 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
         {
             for (int i = 0; i < nFrames; i++)
                 triggers[i] = (std::rand() / (RAND_MAX + 1.0)) > threshold;
-            break;
-            
             ClearManualTriggers(nFrames);
+            break;
         }
             
         case kManual:
