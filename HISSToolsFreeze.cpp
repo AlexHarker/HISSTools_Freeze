@@ -350,7 +350,6 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         pGraphics->HandleMouseOver(true);
         pGraphics->AttachPanelBackground(COLOR_GRAY);
         
-        pGraphics->LoadFont("Arial", "Arial", ETextStyle::Normal);
         pGraphics->LoadFont("Arial Bold", "Arial", ETextStyle::Bold);
         
         const int svs = 50;
