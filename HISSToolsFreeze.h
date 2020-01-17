@@ -55,10 +55,12 @@ private:
     
     IGraphics* CreateGraphics() override;
     void LayoutUI(IGraphics* pGraphics) override;
+    void ClearManualTriggers(int nFrames);
     
     FromPlugProxy *mProxy;  // N.B. - owned by mDSP
     Freeze mDSP;
     
+    WDL_TypedBuf<double> mManualTriggers;
     WDL_TypedBuf<double> mTriggers;
     
     GainSmooth mGainSmoother;
@@ -68,6 +70,5 @@ private:
     double mLastWidth;
     double mPhase;
     
-    bool mManualTrigger;
-    bool mLastFreeze;
+    WDL_Mutex mManualTriggerMutex;
 };

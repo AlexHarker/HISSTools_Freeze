@@ -298,7 +298,7 @@ private:
 };
 
 HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
-: Plugin(info, MakeConfig(kNumParams, kNumPrograms)), mProxy(new FromPlugProxy()), mDSP(mProxy), mManualTrigger(false), mLastFreeze(false)
+: Plugin(info, MakeConfig(kNumParams, kNumPrograms)), mProxy(new FromPlugProxy()), mDSP(mProxy)
 {
     GetParam(kFFTSize)->InitEnum("FFT Size", 3, 7);
     GetParam(kFFTSize)->SetDisplayText(0, "512");
@@ -436,10 +436,10 @@ void HISSToolsFreeze::OnReset()
     
     mPhase = 1.0;
     
-    mManualTrigger = false;
-    mLastFreeze = GetParam(kFreeze)->Bool();
-    
+    mManualTriggers.Resize(GetBlockSize());
     mTriggers.Resize(GetBlockSize());
+    
+    ClearManualTriggers(GetBlockSize());
 }
 
 void HISSToolsFreeze::OnFragmentChange()
@@ -559,9 +559,11 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
 
             if (mode == kManual)
             {
+                WDL_MutexLock lock(&mManualTriggerMutex);
+ 
+                int offset = sampleOffset < 0 ? 0 : sampleOffset;
                 bool freeze = GetParam(kFreeze)->Bool();
-                mManualTrigger |= (freeze && !mLastFreeze);
-                mLastFreeze = GetParam(kFreeze)->Bool();
+                mManualTriggers.Get()[offset] = freeze ? 1.0 : 0.0;
             }
         }
             
@@ -603,11 +605,21 @@ void HISSToolsFreeze::OnParamChangeUI(int paramIdx, EParamSource source)
     }
 }
 
+void HISSToolsFreeze::ClearManualTriggers(int nFrames)
+{
+    WDL_MutexLock lock(&mManualTriggerMutex);
+    
+    double* manualTriggers = mManualTriggers.Get();
+    
+    for (int i = 1; i < nFrames; i++)
+        manualTriggers[i] = 0.0;
+}
 
 void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrames)
 {
     Modes mode = (Modes) GetParam(kMode)->Int();
     
+    double* manualTriggers = mManualTriggers.Get();
     double* triggers = mTriggers.Get();
     double* dspInputs[3];
     double* plugInputs[2];
@@ -659,6 +671,7 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
     switch (mode)
     {
         case kRegular:
+        {
             for (int i = 0; i < nFrames; i++)
             {
                 mPhase += phase;
@@ -670,19 +683,30 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
                 else
                     triggers[i] = 0.0;
             }
+            ClearManualTriggers(nFrames);
             break;
+        }
             
         case kRandomised:
+        {
             for (int i = 0; i < nFrames; i++)
                 triggers[i] = (std::rand() / (RAND_MAX + 1.0)) > threshold;
             break;
             
+            ClearManualTriggers(nFrames);
+        }
+            
         case kManual:
-            triggers[0] = mManualTrigger ? 1.0 : 0.0;
-            for (int i = 1; i < nFrames; i++)
-                triggers[i] = 0.0;
-            mManualTrigger = false;
+        {
+            WDL_MutexLock lock(&mManualTriggerMutex);
+            
+            for (int i = 0; i < nFrames; i++)
+            {
+                triggers[i] = manualTriggers[i];
+                manualTriggers[i] = 0.0;
+            }
             break;
+        }
     }
     
     
