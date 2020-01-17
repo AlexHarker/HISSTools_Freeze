@@ -22,12 +22,9 @@ public:
     Design() : HISSTools_Design_Scheme(true)
     {
         HISSTools_Color_Spec *col1 = new HISSTools_Color_Spec(0.7, 0.0, 0.0, 0.9);
-        HISSTools_Color_Spec *col2 = new HISSTools_Color_Spec(0.2, 0.7, 0.3, 0.9);
-        HISSTools_Color_Spec *col3 = new HISSTools_Color_Spec(0.35, 0.0, 0.35, 0.9);
+        HISSTools_Color_Spec *col2 = new HISSTools_Color_Spec(0.5, 0.5, 0.0, 0.9);
+        HISSTools_Color_Spec *col3 = new HISSTools_Color_Spec(0.1, 0.5, 0.2, 0.9);
         HISSTools_Color_Spec *col4 = new HISSTools_Color_Spec(0.0, 0.5, 0.5, 0.9);
-        HISSTools_Color_Spec *col5 = new HISSTools_Color_Spec(0.5, 0.5, 0.0, 0.9);
-        HISSTools_Color_Spec *col6 = new HISSTools_Color_Spec(0.1, 0.4, 0.7, 0.9);
-        HISSTools_Color_Spec *col7 = new HISSTools_Color_Spec(0.8, 0.4, 0.1, 0.9);
         
         HISSTools_Color_Spec *blackCS = new HISSTools_Color_Spec(0., 0., 0., 1.0);
         HISSTools_Color_Spec *greyCS = new HISSTools_Color_Spec(0.9, 0.9, 0.9, 0.5);
@@ -52,7 +49,11 @@ public:
         HISSTools_Color_Spec panelShadowCS(HISSTools_Color(0.00, 0.00, 0.00, 0.70));
         HISSTools_Shadow *panelShadowSpec = new HISSTools_Shadow(panelShadowCS, 2, 3, 4);
         
+        HISSTools_Color_Spec dialTextShadowCS(HISSTools_Color(0.00, 0.00, 0.00, 1.0));
+        HISSTools_Shadow *dialTextShadowSpec = new HISSTools_Shadow(shadowCS, 0, 0, 3);
+        
         addShadow("Panel", "lightShadow", panelShadowSpec);
+        addShadow("DialValue", dialTextShadowSpec);
 
         addColorSpec("PanelFill", "upper", panelFillCS);
         addColorSpec("PanelFill", "main", panelFillCS);
@@ -80,9 +81,6 @@ public:
         addColorSpec("DialIndicator", "2", col2);
         addColorSpec("DialIndicator", "3", col3);
         addColorSpec("DialIndicator", "4", col4);
-        addColorSpec("DialIndicator", "5", col5);
-        addColorSpec("DialIndicator", "6", col6);
-        addColorSpec("DialIndicator", "7", col7);
         
         addDimension("PanelRoundnessTL","tighter", 5);
         addDimension("PanelRoundnessTR","tighter", 5);
@@ -92,11 +90,14 @@ public:
         addDimension("DialRefValue", "gain", 2.0/7.0);
         addDimension("DialRefValue", "vol", 6.0/7.0);
         
-        addDimension("DialDiameter", "smallNormalText", 60);
+        addDimension("DialDiameter", "smallNormalLabel", 60);
         addDimension("DialDiameter", "medium", 74);
 
         addDimension("DialTextArea", "medium", 23);
-        addDimension("DialTextArea", "smallNormalText", 20);
+        addDimension("DialTextArea", "smallNormalLabel", 20);
+
+        addTextStyle("DialValue", "medium", new HISSTools_Text(13, "Arial Bold"));
+        addTextStyle("DialValue", "smallNormalLabel", new HISSTools_Text(12, "Arial Bold"));
 
         addDimension("ValueTextArea", "spacious", 25);
         
@@ -349,6 +350,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         pGraphics->HandleMouseOver(true);
         pGraphics->AttachPanelBackground(COLOR_GRAY);
         
+        pGraphics->LoadFont("Arial", "Arial", ETextStyle::Normal);
         pGraphics->LoadFont("Arial Bold", "Arial", ETextStyle::Bold);
         
         const int svs = 50;
@@ -401,19 +403,19 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
 
         pGraphics->AttachControl(buttonControl(b, kFreeze, kMode, 0, 0, "tight"));
         
-        pGraphics->AttachControl(dialControl(b, kBlur,     -120, -80, ""));
-        pGraphics->AttachControl(dialControl(b, kFragment,  120, -80, ""));
-        pGraphics->AttachControl(dialControl(b, kSample,   -120,  80, ""));
-        pGraphics->AttachControl(dialControl(b, kMorph,     120,  80, ""));
+        pGraphics->AttachControl(dialControl(b, kBlur,     -120, -80, "1"));
+        pGraphics->AttachControl(dialControl(b, kFragment,  120, -80, "1"));
+        pGraphics->AttachControl(dialControl(b, kSample,   -120,  80, "1"));
+        pGraphics->AttachControl(dialControl(b, kMorph,     120,  80, "1"));
         
         pGraphics->AttachControl(panelControl(b, HISSTools_Bounds(-65, 290 + svs, 290, 240), "lightShadow tighter"));
         
         pGraphics->AttachControl(new HISSTools_TextBlock(40, 570, 140, 20, "Morphing Filter", kHAlignCenter, kVAlignCenter, "label", &scheme));
         
-        pGraphics->AttachControl(dialControl(b, kFiltStrength, -160, 290 + svs, "5 smallNormalText", "Strength"));
-        pGraphics->AttachControl(dialControl(b, kFiltTilt,     -100, 220 + svs, "5 bipolar smallNormalText", "Tilt"));
-        pGraphics->AttachControl(dialControl(b, kFiltInterval,  -30, 290 + svs, "2 smallNormalText", "Interval"));
-        pGraphics->AttachControl(dialControl(b, kFiltRandom,     30, 220 + svs, "2 smallNormalText", "Random"));
+        pGraphics->AttachControl(dialControl(b, kFiltStrength, -160, 290 + svs, "2 smallNormalLabel", "Strength"));
+        pGraphics->AttachControl(dialControl(b, kFiltTilt,     -100, 220 + svs, "2 bipolar smallNormalLabel", "Tilt"));
+        pGraphics->AttachControl(dialControl(b, kFiltInterval,  -30, 290 + svs, "3 smallNormalLabel", "Interval"));
+        pGraphics->AttachControl(dialControl(b, kFiltRandom,     30, 220 + svs, "3 smallNormalLabel", "Random"));
         
         pGraphics->AttachControl(valueControl(b, kFiltNum, 20, 370 + svs, "", "Num Bands"));
 
