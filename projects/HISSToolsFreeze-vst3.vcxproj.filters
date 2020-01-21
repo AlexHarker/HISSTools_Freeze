@@ -143,6 +143,7 @@
     <ClCompile Include="..\..\..\IGraphics\IGraphicsEditorDelegate.cpp">
       <Filter>IGraphics</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Freeze.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="../config.h" />
@@ -378,6 +379,8 @@
     <ClInclude Include="..\..\..\IGraphics\IGraphicsEditorDelegate.h">
       <Filter>IGraphics</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Freeze.h" />
+    <ClInclude Include="..\src\Smoothing.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="resources">
