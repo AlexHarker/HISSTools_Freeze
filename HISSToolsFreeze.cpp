@@ -347,7 +347,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
 {
     if (!pGraphics->NControls())
     {
-        pGraphics->HandleMouseOver(true);
+        pGraphics->EnableMouseOver(true);
         pGraphics->AttachPanelBackground(COLOR_GRAY);
         
         pGraphics->LoadFont("Arial Bold", "Arial", ETextStyle::Bold);
