@@ -125,7 +125,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_21_vector_0[] = { 1 };
     parameters.clear();
-    parameters.write("outputs", fl_21_vector_0, 1);
+    parameters.write("num_outs", fl_21_vector_0, 1);
     mObjects[21] = new FrameLib_Unpack(context, &parameters, mProxy, 1);
     mObjects[21]->addConnection(Connection(mObjects[11], 1), 0);
 
@@ -395,7 +395,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_67_vector_0[] = { 4 };
     parameters.clear();
-    parameters.write("inputs", fl_67_vector_0, 1);
+    parameters.write("num_ins", fl_67_vector_0, 1);
     mObjects[67] = new FrameLib_Pack(context, &parameters, mProxy, 1);
     mObjects[67]->addConnection(Connection(mObjects[64], 0), 0);
     mObjects[67]->addConnection(Connection(mObjects[65], 0), 1);
@@ -449,7 +449,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_76_vector_0[] = { 6 };
     parameters.clear();
-    parameters.write("inputs", fl_76_vector_0, 1);
+    parameters.write("num_ins", fl_76_vector_0, 1);
     mObjects[76] = new FrameLib_Pack(context, &parameters, mProxy, 1);
     mObjects[76]->addConnection(Connection(mObjects[32], 0), 0);
     mObjects[76]->addConnection(Connection(mObjects[32], 0), 1);
@@ -460,7 +460,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_77_vector_0[] = { 2 };
     parameters.clear();
-    parameters.write("inputs", fl_77_vector_0, 1);
+    parameters.write("num_ins", fl_77_vector_0, 1);
     mObjects[77] = new FrameLib_Pack(context, &parameters, mProxy, 1);
     mObjects[77]->addConnection(Connection(mObjects[32], 0), 0);
     mObjects[77]->addConnection(Connection(mObjects[32], 0), 1);
@@ -487,7 +487,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_82_vector_0[] = { 1 };
     parameters.clear();
-    parameters.write("outputs", fl_82_vector_0, 1);
+    parameters.write("num_outs", fl_82_vector_0, 1);
     mObjects[82] = new FrameLib_Unpack(context, &parameters, mProxy, 1);
     mObjects[82]->addConnection(Connection(mObjects[81], 0), 0);
 
@@ -729,7 +729,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_115_vector_0[] = { 8 };
     parameters.clear();
-    parameters.write("outputs", fl_115_vector_0, 1);
+    parameters.write("num_outs", fl_115_vector_0, 1);
     mObjects[115] = new FrameLib_Unpack(context, &parameters, mProxy, 1);
     mObjects[115]->addConnection(Connection(mObjects[113], 0), 0);
 
@@ -801,7 +801,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_129_vector_0[] = { 1 };
     parameters.clear();
-    parameters.write("outputs", fl_129_vector_0, 1);
+    parameters.write("num_outs", fl_129_vector_0, 1);
     mObjects[129] = new FrameLib_Unpack(context, &parameters, mProxy, 1);
     mObjects[129]->addConnection(Connection(mObjects[128], 0), 0);
 
@@ -832,7 +832,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     double fl_134_vector_2[] = { 45 };
     parameters.clear();
     parameters.write("mode", "requested");
-    parameters.write("stddev", fl_134_vector_1, 1);
+    parameters.write("deviation", fl_134_vector_1, 1);
     parameters.write("length", fl_134_vector_2, 1);
     mObjects[134] = new FrameLib_Expand<FrameLib_Gaussian>(context, &parameters, mProxy, 1);
     mObjects[134]->addConnection(Connection(mObjects[45], 0), 0);
