@@ -877,7 +877,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[139]->addConnection(Connection(mObjects[137], 0), 1);
 
     parameters.clear();
-    mObjects[140] = new FrameLib_Expand<FrameLib_Vector<&statLength<double const*>, (FrameLib_Vector_EmptyMode)4> >(context, &parameters, mProxy, 1);
+    mObjects[140] = new FrameLib_Expand<FrameLib_Vector<&statLength<double const*>, (FrameLib_Vector_EmptyModes)4> >(context, &parameters, mProxy, 1);
     mObjects[140]->addConnection(Connection(mObjects[138], 0), 0);
 
     parameters.clear();
