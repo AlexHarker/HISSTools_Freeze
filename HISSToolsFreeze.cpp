@@ -474,8 +474,8 @@ void HISSToolsFreeze::OnFilterTimeChange()
     
     FrameLib_Parameters::AutoSerial serial;
     
-    serial.write("outlo", &lo, 1);
-    serial.write("outhi", &hi, 1);
+    serial.write("out_1", &lo, 1);
+    serial.write("out_2", &hi, 1);
     
     mProxy->sendFromHost(2, &serial);
 }
@@ -489,8 +489,8 @@ void HISSToolsFreeze::OnFilterStrengthChange()
     
     FrameLib_Parameters::AutoSerial serial;
     
-    serial.write("outlo", &lo, 1);
-    serial.write("outhi", &hi, 1);
+    serial.write("out_1", &lo, 1);
+    serial.write("out_2", &hi, 1);
     
     mProxy->sendFromHost(7, &serial);
 }
