@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
+			"minor" : 2,
 			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 123.0, 86.0, 455.0, 272.0 ],
+		"rect" : [ 123.0, 87.0, 455.0, 272.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -37,6 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-18",
@@ -53,7 +54,7 @@
 				"box" : 				{
 					"id" : "obj-17",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 371.0, 109.0, 65.0, 22.0 ],
@@ -106,7 +107,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 160.0, 146.0, 230.0, 22.0 ],
-					"text" : "fl.window~ hann /compensate powoverlin"
+					"text" : "fl.window~ hann /compensate reconstruct"
 				}
 
 			}
@@ -119,8 +120,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 160.0, 109.0, 136.0, 22.0 ],
-					"text" : "fl.ifft~ /maxlength 65536"
+					"patching_rect" : [ 160.0, 109.0, 143.0, 22.0 ],
+					"text" : "fl.ifft~ /max_length 65536"
 				}
 
 			}
@@ -146,7 +147,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 277.0, 58.0, 30.0, 30.0 ]
+					"patching_rect" : [ 284.0, 58.0, 30.0, 30.0 ]
 				}
 
 			}

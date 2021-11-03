@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -149,8 +149,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -195,14 +195,14 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 5,
+											"minor" : 2,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
 ,
 										"classnamespace" : "box",
-										"rect" : [ 59.0, 104.0, 566.0, 360.0 ],
+										"rect" : [ 58.0, 104.0, 624.0, 364.0 ],
 										"bglocked" : 0,
 										"openinpresentation" : 0,
 										"default_fontsize" : 12.0,
@@ -237,7 +237,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 42.0, 254.0, 426.0, 22.0 ],
+													"patching_rect" : [ 42.0, 269.0, 507.0, 22.0 ],
 													"text" : "fl.*~"
 												}
 
@@ -249,7 +249,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 449.0, 218.0, 39.0, 22.0 ],
+													"patching_rect" : [ 530.0, 218.0, 39.0, 22.0 ],
 													"text" : "fl.-~ 1"
 												}
 
@@ -261,7 +261,7 @@
 													"numinlets" : 1,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 449.0, 186.0, 58.0, 22.0 ],
+													"patching_rect" : [ 530.0, 186.0, 58.0, 22.0 ],
 													"text" : "fl.length~"
 												}
 
@@ -288,7 +288,7 @@
 													"numinlets" : 0,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 448.99999466666668, 32.999999539062514, 30.0, 30.0 ]
+													"patching_rect" : [ 529.99999466666668, 32.999999539062514, 30.0, 30.0 ]
 												}
 
 											}
@@ -300,7 +300,7 @@
 													"maxclass" : "outlet",
 													"numinlets" : 1,
 													"numoutlets" : 0,
-													"patching_rect" : [ 41.999998666666684, 291.999999539062514, 30.0, 30.0 ]
+													"patching_rect" : [ 41.999998666666684, 306.999999539062514, 30.0, 30.0 ]
 												}
 
 											}
@@ -311,7 +311,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 237.500005333333263, 118.6676025390625, 82.0, 22.0 ],
+													"patching_rect" : [ 297.500005333333263, 118.6676025390625, 82.0, 22.0 ],
 													"text" : "fl.register~ 40"
 												}
 
@@ -323,8 +323,8 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 237.500005333333263, 152.6676025390625, 166.0, 22.0 ],
-													"text" : "fl.samplerate~ freq->halfnorm"
+													"patching_rect" : [ 297.500005333333263, 152.6676025390625, 211.0, 22.0 ],
+													"text" : "fl.samplerate~ hz->normalised nyquist"
 												}
 
 											}
@@ -344,10 +344,10 @@
 												"box" : 												{
 													"id" : "obj-11",
 													"maxclass" : "newobj",
-													"numinlets" : 3,
+													"numinlets" : 4,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 65.166672000000005, 182.6676025390625, 363.666666666666515, 22.0 ],
+													"patching_rect" : [ 65.166672000000005, 194.6676025390625, 406.666666666666515, 22.0 ],
 													"text" : "fl.tag~ inlo outlo"
 												}
 
@@ -359,8 +359,8 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 65.166672000000005, 152.6676025390625, 166.0, 22.0 ],
-													"text" : "fl.samplerate~ freq->halfnorm"
+													"patching_rect" : [ 65.166672000000005, 152.6676025390625, 211.0, 22.0 ],
+													"text" : "fl.samplerate~ hz->normalised nyquist"
 												}
 
 											}
@@ -371,7 +371,7 @@
 													"numinlets" : 2,
 													"numoutlets" : 1,
 													"outlettype" : [ "" ],
-													"patching_rect" : [ 42.00000533333332, 218.0, 176.0, 22.0 ],
+													"patching_rect" : [ 42.00000533333332, 233.0, 176.0, 22.0 ],
 													"text" : "fl.map~ log 0.002 0.6 0 1 /clip 1"
 												}
 
@@ -399,7 +399,7 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-2", 1 ],
-													"midpoints" : [ 74.666672000000005, 209.83380126953125, 208.50000533333332, 209.83380126953125 ],
+													"midpoints" : [ 74.666672000000005, 224.33380126953125, 208.50000533333332, 224.33380126953125 ],
 													"source" : [ "obj-11", 0 ]
 												}
 
@@ -428,6 +428,7 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-11", 1 ],
+													"midpoints" : [ 307.000005333333263, 184.1676025390625, 203.888894222222177, 184.1676025390625 ],
 													"source" : [ "obj-18", 0 ]
 												}
 
@@ -451,7 +452,7 @@
 , 											{
 												"patchline" : 												{
 													"destination" : [ "obj-13", 0 ],
-													"midpoints" : [ 51.50000533333332, 108.83380126953125, 247.000005333333263, 108.83380126953125 ],
+													"midpoints" : [ 51.50000533333332, 108.83380126953125, 307.000005333333263, 108.83380126953125 ],
 													"order" : 0,
 													"source" : [ "obj-3", 0 ]
 												}
@@ -670,7 +671,7 @@
 								"box" : 								{
 									"id" : "obj-21",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 128.833333333333314, 188.3323974609375, 84.0, 22.0 ],
@@ -733,8 +734,8 @@
 									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 54.83333300000001, 453.3323974609375, 167.00000066666658, 22.0 ],
-									"text" : "fl.lookup~ /mode clip"
+									"patching_rect" : [ 54.83333300000001, 453.3323974609375, 167.000000666666608, 22.0 ],
+									"text" : "fl.lookup~ /edges extend"
 								}
 
 							}
@@ -1000,8 +1001,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}

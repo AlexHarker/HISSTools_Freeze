@@ -3,7 +3,7 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
+			"minor" : 2,
 			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
@@ -37,6 +37,7 @@
 		"tags" : "",
 		"style" : "",
 		"subpatcher_template" : "",
+		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
 					"comment" : "Hopsize (frame)",
@@ -108,7 +109,7 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
+							"minor" : 2,
 							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
@@ -142,6 +143,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "",
+						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-9",
@@ -218,7 +220,7 @@
 								"box" : 								{
 									"id" : "obj-22",
 									"maxclass" : "newobj",
-									"numinlets" : 2,
+									"numinlets" : 3,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 117.0, 262.0, 71.0, 22.0 ],
@@ -504,7 +506,7 @@
 				"box" : 				{
 					"id" : "obj-17",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 552.5, 270.0, 65.0, 22.0 ],
@@ -528,7 +530,7 @@
 				"box" : 				{
 					"id" : "obj-11",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 364.0, 206.0, 84.0, 22.0 ],
@@ -564,7 +566,7 @@
 				"box" : 				{
 					"id" : "obj-8",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 463.666666666666686, 238.0, 78.0, 22.0 ],
@@ -642,8 +644,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 164.666666666666686, 332.0, 139.0, 22.0 ],
-					"text" : "fl.fft~ /maxlength 65536"
+					"patching_rect" : [ 164.666666666666686, 332.0, 140.0, 22.0 ],
+					"text" : "fl.fft~ /max_length 65536"
 				}
 
 			}
@@ -708,7 +710,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 284.666666666666686, 477.0, 30.0, 30.0 ]
+					"patching_rect" : [ 285.666666666666686, 477.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -772,7 +774,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-27", 0 ],
-					"midpoints" : [ 294.166666666666686, 361.5, 594.25, 361.5 ],
+					"midpoints" : [ 295.166666666666686, 361.5, 594.25, 361.5 ],
 					"order" : 0,
 					"source" : [ "obj-20", 1 ]
 				}

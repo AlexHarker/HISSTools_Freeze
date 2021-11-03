@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 1,
-			"revision" : 5,
+			"minor" : 2,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -61,8 +61,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -305,8 +305,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -455,8 +455,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -951,8 +951,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1187,8 +1187,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1651,8 +1651,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 1,
-							"revision" : 5,
+							"minor" : 2,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1735,8 +1735,8 @@
 										"fileversion" : 1,
 										"appversion" : 										{
 											"major" : 8,
-											"minor" : 1,
-											"revision" : 5,
+											"minor" : 2,
+											"revision" : 0,
 											"architecture" : "x64",
 											"modernui" : 1
 										}
@@ -1781,8 +1781,8 @@
 														"fileversion" : 1,
 														"appversion" : 														{
 															"major" : 8,
-															"minor" : 1,
-															"revision" : 5,
+															"minor" : 2,
+															"revision" : 0,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -1903,8 +1903,8 @@
 																		"fileversion" : 1,
 																		"appversion" : 																		{
 																			"major" : 8,
-																			"minor" : 1,
-																			"revision" : 5,
+																			"minor" : 2,
+																			"revision" : 0,
 																			"architecture" : "x64",
 																			"modernui" : 1
 																		}
@@ -1945,8 +1945,8 @@
 																					"numinlets" : 2,
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
-																					"patching_rect" : [ 61.0, 114.0, 166.0, 22.0 ],
-																					"text" : "fl.samplerate~ halfnorm->freq"
+																					"patching_rect" : [ 61.0, 114.0, 211.0, 22.0 ],
+																					"text" : "fl.samplerate~ normalised->hz nyquist"
 																				}
 
 																			}
@@ -2102,8 +2102,8 @@
 																		"fileversion" : 1,
 																		"appversion" : 																		{
 																			"major" : 8,
-																			"minor" : 1,
-																			"revision" : 5,
+																			"minor" : 2,
+																			"revision" : 0,
 																			"architecture" : "x64",
 																			"modernui" : 1
 																		}
@@ -2166,7 +2166,7 @@
 																				"box" : 																				{
 																					"id" : "obj-5",
 																					"maxclass" : "newobj",
-																					"numinlets" : 3,
+																					"numinlets" : 4,
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 349.0, 158.0, 100.0, 22.0 ],
@@ -2178,7 +2178,7 @@
 																				"box" : 																				{
 																					"id" : "obj-6",
 																					"maxclass" : "newobj",
-																					"numinlets" : 3,
+																					"numinlets" : 4,
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 199.0, 158.0, 115.0, 22.0 ],
@@ -2214,7 +2214,7 @@
 																				"box" : 																				{
 																					"id" : "obj-22",
 																					"maxclass" : "newobj",
-																					"numinlets" : 3,
+																					"numinlets" : 4,
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 214.0, 406.0, 86.0, 22.0 ],
@@ -2226,7 +2226,7 @@
 																				"box" : 																				{
 																					"id" : "obj-21",
 																					"maxclass" : "newobj",
-																					"numinlets" : 3,
+																					"numinlets" : 4,
 																					"numoutlets" : 1,
 																					"outlettype" : [ "" ],
 																					"patching_rect" : [ 77.0, 406.0, 86.0, 22.0 ],
@@ -2580,7 +2580,7 @@
 , 																			{
 																				"patchline" : 																				{
 																					"destination" : [ "obj-6", 1 ],
-																					"midpoints" : [ 271.833333333333371, 150.5, 256.5, 150.5 ],
+																					"midpoints" : [ 271.833333333333371, 150.5, 240.5, 150.5 ],
 																					"source" : [ "obj-4", 1 ]
 																				}
 
@@ -2841,8 +2841,8 @@
 														"fileversion" : 1,
 														"appversion" : 														{
 															"major" : 8,
-															"minor" : 1,
-															"revision" : 5,
+															"minor" : 2,
+															"revision" : 0,
 															"architecture" : "x64",
 															"modernui" : 1
 														}
@@ -4251,18 +4251,6 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "signal", "signal", "bang" ],
 					"patching_rect" : [ 33.25, 71.0, 57.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"basictuning" : 440,
-						"followglobaltempo" : 0,
-						"formantcorrection" : 0,
-						"mode" : "basic",
-						"originallength" : [ 353139.200000000011642, "ticks" ],
-						"originaltempo" : 120.0,
-						"pitchcorrection" : 0,
-						"quality" : "basic",
-						"timestretch" : [ 0 ]
-					}
-,
 					"text" : "sfplay~ 2"
 				}
 
@@ -4820,42 +4808,42 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "MS_Process.maxpat",
-				"bootpath" : "~/Documents/Plugin_Work/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
+				"bootpath" : "~/Documents/Development/Plugins/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "iFFT_Output.maxpat",
-				"bootpath" : "~/Documents/Plugin_Work/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
+				"bootpath" : "~/Documents/Development/Plugins/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "FFT_Input.maxpat",
-				"bootpath" : "~/Documents/Plugin_Work/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
+				"bootpath" : "~/Documents/Development/Plugins/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "Resynthesis.maxpat",
-				"bootpath" : "~/Documents/Plugin_Work/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
+				"bootpath" : "~/Documents/Development/Plugins/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "Analysis.maxpat",
-				"bootpath" : "~/Documents/Plugin_Work/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
+				"bootpath" : "~/Documents/Development/Plugins/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "Dynamic_Filter.maxpat",
-				"bootpath" : "~/Documents/Plugin_Work/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
+				"bootpath" : "~/Documents/Development/Plugins/iPlug2/Projects/HISSTools_Freeze/src/_Max_Patch/Version_2",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1

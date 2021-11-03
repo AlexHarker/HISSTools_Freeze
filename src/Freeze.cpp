@@ -75,7 +75,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_11_vector_0[] = { 65536 };
     parameters.clear();
-    parameters.write("maxlength", fl_11_vector_0, 1);
+    parameters.write("max_length", fl_11_vector_0, 1);
     mObjects[11] = new FrameLib_Expand<FrameLib_FFT>(context, &parameters, mProxy, 1);
     mObjects[11]->addConnection(Connection(mObjects[10], 0), 0);
 
@@ -195,7 +195,8 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[34]->addConnection(Connection(mObjects[33], 0), 0);
 
     parameters.clear();
-    parameters.write("mode", "freq->halfnorm");
+    parameters.write("mode", "hz->normalised");
+    parameters.write("normalisation", "nyquist");
     mObjects[35] = new FrameLib_Expand<FrameLib_SampleRate>(context, &parameters, mProxy, 1);
     mObjects[35]->addConnection(Connection(mObjects[34], 0), 0);
 
@@ -206,7 +207,8 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[36]->addConnection(Connection(mObjects[33], 0), 0);
 
     parameters.clear();
-    parameters.write("mode", "freq->halfnorm");
+    parameters.write("mode", "hz->normalised");
+    parameters.write("normalisation", "nyquist");
     mObjects[37] = new FrameLib_Expand<FrameLib_SampleRate>(context, &parameters, mProxy, 1);
     mObjects[37]->addConnection(Connection(mObjects[36], 0), 0);
 
@@ -583,7 +585,8 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[95]->addConnection(Connection(mObjects[32], 0), 0);
 
     parameters.clear();
-    parameters.write("mode", "halfnorm->freq");
+    parameters.write("mode", "normalised->hz");
+    parameters.write("normalisation", "nyquist");
     mObjects[96] = new FrameLib_Expand<FrameLib_SampleRate>(context, &parameters, mProxy, 1);
     mObjects[96]->addConnection(Connection(mObjects[95], 0), 0);
 
@@ -892,7 +895,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[142]->addConnection(Connection(mObjects[141], 0), 1);
 
     parameters.clear();
-    parameters.write("mode", "clip");
+    parameters.write("edges", "extend");
     mObjects[143] = new FrameLib_Expand<FrameLib_Lookup>(context, &parameters, mProxy, 1);
     mObjects[143]->addConnection(Connection(mObjects[142], 0), 0);
     mObjects[143]->addConnection(Connection(mObjects[139], 0), 1);
@@ -957,7 +960,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_155_vector_0[] = { 65536 };
     parameters.clear();
-    parameters.write("maxlength", fl_155_vector_0, 1);
+    parameters.write("max_length", fl_155_vector_0, 1);
     mObjects[155] = new FrameLib_Expand<FrameLib_iFFT>(context, &parameters, mProxy, 1);
     mObjects[155]->addConnection(Connection(mObjects[154], 0), 0);
     mObjects[155]->addConnection(Connection(mObjects[151], 0), 1);
@@ -980,7 +983,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     parameters.clear();
     parameters.write("window", "hann");
-    parameters.write("compensate", "powoverlin");
+    parameters.write("compensate", "reconstruct");
     mObjects[159] = new FrameLib_Expand<FrameLib_Window>(context, &parameters, mProxy, 1);
     mObjects[159]->addConnection(Connection(mObjects[155], 0), 0);
     mObjects[159]->addConnection(Connection(mObjects[158], 0), 1);
