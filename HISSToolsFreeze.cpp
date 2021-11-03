@@ -184,7 +184,7 @@ public:
     void OnInit() override
     {
         if (GetParam() != nullptr)
-            mName = GetParam()->GetNameForHost();
+            mName = GetParam()->GetName();
     }
     
     // Mousing Functions
