@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 123.0, 87.0, 455.0, 272.0 ],
+		"rect" : [ 123.0, 87.0, 516.0, 268.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -42,11 +42,11 @@
 				"box" : 				{
 					"id" : "obj-18",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 371.0, 70.0, 49.0, 22.0 ],
-					"text" : "fl.==~ 2"
+					"patching_rect" : [ 371.0, 70.0, 128.0, 22.0 ],
+					"text" : "fl.expr~ 1-(in1==2)*0.5"
 				}
 
 			}
@@ -57,8 +57,8 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 371.0, 109.0, 65.0, 22.0 ],
-					"text" : "fl.tag~ sqrt"
+					"patching_rect" : [ 371.0, 109.0, 94.0, 22.0 ],
+					"text" : "fl.tag~ exponent"
 				}
 
 			}
@@ -259,7 +259,7 @@
 				"type" : "iLaX"
 			}
 , 			{
-				"name" : "fl.equals~.mxo",
+				"name" : "fl.expr~.mxo",
 				"type" : "iLaX"
 			}
  ],
