@@ -110,7 +110,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[17]->addConnection(Connection(mObjects[15], 0), 1);
 
     parameters.clear();
-    parameters.write("expr", "in1 * 2 * pi");
+    parameters.write("expression", "in1 * 2 * pi");
     mObjects[18] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
     mObjects[18]->addConnection(Connection(mObjects[17], 0), 0);
 
@@ -217,17 +217,17 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[38]->addConnection(Connection(mObjects[37], 0), 0);
     mObjects[38]->addConnection(Connection(mObjects[35], 0), 1);
 
-    double fl_39_vector_1[] = { 0.002000 };
-    double fl_39_vector_2[] = { 0.600000 };
+    double fl_39_vector_1[] = { 0.002 };
+    double fl_39_vector_2[] = { 0.59999999999999998 };
     double fl_39_vector_3[] = { 0 };
     double fl_39_vector_4[] = { 1 };
     double fl_39_vector_5[] = { 1 };
     parameters.clear();
     parameters.write("mode", "log");
-    parameters.write("inlo", fl_39_vector_1, 1);
-    parameters.write("inhi", fl_39_vector_2, 1);
-    parameters.write("outlo", fl_39_vector_3, 1);
-    parameters.write("outhi", fl_39_vector_4, 1);
+    parameters.write("in_1", fl_39_vector_1, 1);
+    parameters.write("in_2", fl_39_vector_2, 1);
+    parameters.write("out_1", fl_39_vector_3, 1);
+    parameters.write("out_2", fl_39_vector_4, 1);
     parameters.write("clip", fl_39_vector_5, 1);
     mObjects[39] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
     mObjects[39]->addConnection(Connection(mObjects[33], 0), 0);
@@ -253,10 +253,10 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     double fl_43_vector_4[] = { 600 };
     parameters.clear();
     parameters.write("mode", "exp");
-    parameters.write("inlo", fl_43_vector_1, 1);
-    parameters.write("inhi", fl_43_vector_2, 1);
-    parameters.write("outlo", fl_43_vector_3, 1);
-    parameters.write("outhi", fl_43_vector_4, 1);
+    parameters.write("in_1", fl_43_vector_1, 1);
+    parameters.write("in_2", fl_43_vector_2, 1);
+    parameters.write("out_1", fl_43_vector_3, 1);
+    parameters.write("out_2", fl_43_vector_4, 1);
     mObjects[43] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
     mObjects[43]->addConnection(Connection(mObjects[42], 0), 0);
     mObjects[43]->addConnection(Connection(mObjects[41], 0), 1);
@@ -291,13 +291,13 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[49]->addConnection(Connection(mObjects[11], 1), 0);
 
     parameters.clear();
-    parameters.write("expr", "round(in2 / (in1 * 1000)) + 1");
+    parameters.write("expression", "round(in2 / (in1 * 1000)) + 1");
     mObjects[50] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
     mObjects[50]->addConnection(Connection(mObjects[48], 0), 0);
     mObjects[50]->addConnection(Connection(mObjects[49], 0), 1);
 
     parameters.clear();
-    parameters.write("expr", "round(2 / in1) + 1");
+    parameters.write("expression", "round(2 / in1) + 1");
     mObjects[51] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
     mObjects[51]->addConnection(Connection(mObjects[48], 0), 0);
 
@@ -346,7 +346,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[58]->addConnection(Connection(mObjects[54], 0), 1);
 
     parameters.clear();
-    parameters.write("expr", "max(in1, exp(-4*pi*pi))");
+    parameters.write("expression", "max(in1, exp(-4*pi*pi))");
     mObjects[59] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
     mObjects[59]->addConnection(Connection(mObjects[58], 0), 0);
 
@@ -408,7 +408,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     parameters.clear();
     mObjects[69] = new FrameLib_Expand<FrameLib_BinaryOp<Binary_Functor<&fmax> > >(context, &parameters, mProxy, 1);
-    double fl_69_inputs_1[] = { 0.010000 };
+    double fl_69_inputs_1[] = { 0.01 };
     mObjects[69]->setFixedInput(1, fl_69_inputs_1 , 1);
     mObjects[69]->addConnection(Connection(mObjects[68], 0), 0);
 
@@ -418,7 +418,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     double fl_71_vector_0[] = { 2 };
     parameters.clear();
     parameters.write("num_ins", fl_71_vector_0, 1);
-    parameters.write("mode", "high");
+    parameters.write("order", "high");
     mObjects[71] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
     mObjects[71]->addConnection(Connection(mObjects[70], 0), 0);
     mObjects[71]->addConnection(Connection(mObjects[32], 0), 1);
@@ -471,7 +471,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[78]->addConnection(Connection(mObjects[77], 0), 0);
 
     parameters.clear();
-    parameters.write("expr", "in1 * 2 * pi");
+    parameters.write("expression", "in1 * 2 * pi");
     mObjects[79] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
     mObjects[79]->addConnection(Connection(mObjects[78], 0), 0);
 
@@ -520,14 +520,14 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_88_vector_1[] = { 0 };
     double fl_88_vector_2[] = { 1 };
-    double fl_88_vector_3[] = { 0.500000 };
-    double fl_88_vector_4[] = { 0.500000 };
+    double fl_88_vector_3[] = { 0.5 };
+    double fl_88_vector_4[] = { 0.5 };
     parameters.clear();
     parameters.write("mode", "linear");
-    parameters.write("inlo", fl_88_vector_1, 1);
-    parameters.write("inhi", fl_88_vector_2, 1);
-    parameters.write("outlo", fl_88_vector_3, 1);
-    parameters.write("outhi", fl_88_vector_4, 1);
+    parameters.write("in_1", fl_88_vector_1, 1);
+    parameters.write("in_2", fl_88_vector_2, 1);
+    parameters.write("out_1", fl_88_vector_3, 1);
+    parameters.write("out_2", fl_88_vector_4, 1);
     mObjects[88] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
     mObjects[88]->addConnection(Connection(mObjects[87], 0), 0);
     mObjects[88]->addConnection(Connection(mObjects[86], 0), 1);
@@ -541,21 +541,21 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_90_vector_1[] = { 0 };
     double fl_90_vector_2[] = { 1 };
-    double fl_90_vector_3[] = { 0.500000 };
-    double fl_90_vector_4[] = { 0.500000 };
+    double fl_90_vector_3[] = { 0.5 };
+    double fl_90_vector_4[] = { 0.5 };
     parameters.clear();
     parameters.write("mode", "linear");
-    parameters.write("inlo", fl_90_vector_1, 1);
-    parameters.write("inhi", fl_90_vector_2, 1);
-    parameters.write("outlo", fl_90_vector_3, 1);
-    parameters.write("outhi", fl_90_vector_4, 1);
+    parameters.write("in_1", fl_90_vector_1, 1);
+    parameters.write("in_2", fl_90_vector_2, 1);
+    parameters.write("out_1", fl_90_vector_3, 1);
+    parameters.write("out_2", fl_90_vector_4, 1);
     mObjects[90] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
     mObjects[90]->addConnection(Connection(mObjects[83], 0), 0);
     mObjects[90]->addConnection(Connection(mObjects[89], 0), 1);
 
     parameters.clear();
     mObjects[91] = new FrameLib_Expand<FrameLib_Register>(context, &parameters, mProxy, 1);
-    double fl_91_inputs_1[] = { 0.010000 };
+    double fl_91_inputs_1[] = { 0.01 };
     mObjects[91]->setFixedInput(1, fl_91_inputs_1 , 1);
     mObjects[91]->addConnection(Connection(mObjects[90], 0), 0);
 
@@ -594,10 +594,10 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     double fl_97_vector_5[] = { 1 };
     parameters.clear();
     parameters.write("mode", "log");
-    parameters.write("inlo", fl_97_vector_1, 1);
-    parameters.write("inhi", fl_97_vector_2, 1);
-    parameters.write("outlo", fl_97_vector_3, 1);
-    parameters.write("outhi", fl_97_vector_4, 1);
+    parameters.write("in_1", fl_97_vector_1, 1);
+    parameters.write("in_2", fl_97_vector_2, 1);
+    parameters.write("out_1", fl_97_vector_3, 1);
+    parameters.write("out_2", fl_97_vector_4, 1);
     parameters.write("clip", fl_97_vector_5, 1);
     mObjects[97] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
     mObjects[97]->addConnection(Connection(mObjects[96], 0), 0);
@@ -614,10 +614,10 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     double fl_99_vector_5[] = { 1 };
     parameters.clear();
     parameters.write("mode", "linear");
-    parameters.write("inlo", fl_99_vector_1, 1);
-    parameters.write("inhi", fl_99_vector_2, 1);
-    parameters.write("outlo", fl_99_vector_3, 1);
-    parameters.write("outhi", fl_99_vector_4, 1);
+    parameters.write("in_1", fl_99_vector_1, 1);
+    parameters.write("in_2", fl_99_vector_2, 1);
+    parameters.write("out_1", fl_99_vector_3, 1);
+    parameters.write("out_2", fl_99_vector_4, 1);
     parameters.write("clip", fl_99_vector_5, 1);
     mObjects[99] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
     mObjects[99]->addConnection(Connection(mObjects[98], 0), 0);
@@ -647,10 +647,10 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     double fl_103_vector_5[] = { 1 };
     parameters.clear();
     parameters.write("mode", "linear");
-    parameters.write("inlo", fl_103_vector_1, 1);
-    parameters.write("inhi", fl_103_vector_2, 1);
-    parameters.write("outlo", fl_103_vector_3, 1);
-    parameters.write("outhi", fl_103_vector_4, 1);
+    parameters.write("in_1", fl_103_vector_1, 1);
+    parameters.write("in_2", fl_103_vector_2, 1);
+    parameters.write("out_1", fl_103_vector_3, 1);
+    parameters.write("out_2", fl_103_vector_4, 1);
     parameters.write("clip", fl_103_vector_5, 1);
     mObjects[103] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
     mObjects[103]->addConnection(Connection(mObjects[98], 0), 0);
@@ -668,7 +668,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_106_vector_1[] = { 1 };
     parameters.clear();
-    parameters.write("expr", "in1 + in3 * (in2 - in1) ");
+    parameters.write("expression", "in1 + in3 * (in2 - in1) ");
     parameters.write("trigger_ins", fl_106_vector_1, 1);
     mObjects[106] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
     mObjects[106]->addConnection(Connection(mObjects[105], 0), 0);
@@ -678,7 +678,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     double fl_107_vector_0[] = { 2 };
     parameters.clear();
     parameters.write("num_ins", fl_107_vector_0, 1);
-    parameters.write("mode", "high");
+    parameters.write("order", "high");
     mObjects[107] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
     mObjects[107]->addConnection(Connection(mObjects[106], 0), 0);
     mObjects[107]->addConnection(Connection(mObjects[80], 0), 1);
@@ -697,7 +697,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     double fl_110_vector_0[] = { 2 };
     parameters.clear();
     parameters.write("num_ins", fl_110_vector_0, 1);
-    parameters.write("mode", "high");
+    parameters.write("order", "high");
     mObjects[110] = new FrameLib_Expand<FrameLib_Prioritise>(context, &parameters, mProxy, 1);
     mObjects[110]->addConnection(Connection(mObjects[75], 0), 0);
     mObjects[110]->addConnection(Connection(mObjects[80], 0), 1);
@@ -715,7 +715,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_113_vector_1[] = { 1 };
     parameters.clear();
-    parameters.write("expr", "in1+in3*(in2-in1) ");
+    parameters.write("expression", "in1+in3*(in2-in1) ");
     parameters.write("trigger_ins", fl_113_vector_1, 1);
     mObjects[113] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
     mObjects[113]->addConnection(Connection(mObjects[112], 0), 0);
@@ -781,7 +781,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[124]->addConnection(Connection(mObjects[123], 0), 1);
 
     parameters.clear();
-    parameters.write("expr", "wrap(in1, -pi, pi)");
+    parameters.write("expression", "wrap(in1, -pi, pi)");
     mObjects[125] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
     mObjects[125]->addConnection(Connection(mObjects[124], 0), 0);
 
@@ -819,7 +819,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     parameters.clear();
     mObjects[132] = new FrameLib_Expand<FrameLib_BinaryOp<Binary_Functor<&pow> > >(context, &parameters, mProxy, 1);
-    double fl_132_inputs_1[] = { 0.600000 };
+    double fl_132_inputs_1[] = { 0.59999999999999998 };
     mObjects[132]->setFixedInput(1, fl_132_inputs_1 , 1);
     mObjects[132]->addConnection(Connection(mObjects[131], 0), 0);
 
@@ -855,10 +855,10 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     double fl_137_vector_4[] = { 2 };
     parameters.clear();
     parameters.write("mode", "linear");
-    parameters.write("inlo", fl_137_vector_1, 1);
-    parameters.write("inhi", fl_137_vector_2, 1);
-    parameters.write("outlo", fl_137_vector_3, 1);
-    parameters.write("outhi", fl_137_vector_4, 1);
+    parameters.write("in_1", fl_137_vector_1, 1);
+    parameters.write("in_2", fl_137_vector_2, 1);
+    parameters.write("out_1", fl_137_vector_3, 1);
+    parameters.write("out_2", fl_137_vector_4, 1);
     mObjects[137] = new FrameLib_Expand<FrameLib_Map>(context, &parameters, mProxy, 1);
     mObjects[137]->addConnection(Connection(mObjects[135], 0), 0);
     mObjects[137]->addConnection(Connection(mObjects[136], 0), 1);
@@ -877,7 +877,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[139]->addConnection(Connection(mObjects[137], 0), 1);
 
     parameters.clear();
-    mObjects[140] = new FrameLib_Expand<FrameLib_Vector<&statLength<double const*>, (FrameLib_Vector_EmptyModes)4> >(context, &parameters, mProxy, 1);
+    mObjects[140] = new FrameLib_Expand<FrameLib_Vector<&statLength<double const*>, (FrameLib_Vector_Defaults)4> >(context, &parameters, mProxy, 1);
     mObjects[140]->addConnection(Connection(mObjects[138], 0), 0);
 
     parameters.clear();
@@ -919,7 +919,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     double fl_148_vector_1[] = { 1, 0, 0 };
     parameters.clear();
-    parameters.write("expr", "in1 + in3 * (in2 - in1) ");
+    parameters.write("expression", "in1 + in3 * (in2 - in1) ");
     parameters.write("trigger_ins", fl_148_vector_1, 3);
     mObjects[148] = new FrameLib_Expand<FrameLib_Expression>(context, &parameters, mProxy, 1);
     mObjects[148]->addConnection(Connection(mObjects[147], 0), 0);
