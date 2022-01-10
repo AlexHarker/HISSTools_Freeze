@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="UserMacros">
     <IPLUG2_ROOT>$(ProjectDir)..\..\..</IPLUG2_ROOT>
-    <DEPENDENCIES_ROOT>$(ProjectDir)..\dependencies\build</DEPENDENCIES_ROOT>
+    <DEPENDENCIES_ROOT>$(ProjectDir)..\dependencies\build\$(Platform)</DEPENDENCIES_ROOT>
     <HISSTOOLS_PLUGINLIB_PATH>$(ProjectDir)..\..\HISSTools_PluginLib</HISSTOOLS_PLUGINLIB_PATH>
     <HISSTOOLS_PLUGIN_PATHS>$(HISSTOOLS_PLUGINLIB_PATH)\HISSTools_Graphics;$(HISSTOOLS_PLUGINLIB_PATH)\HISSTools_UI;</HISSTOOLS_PLUGIN_PATHS>
     <FRAMELIB_PATH>$(IPLUG2_ROOT)\..\FrameLib</FRAMELIB_PATH>
