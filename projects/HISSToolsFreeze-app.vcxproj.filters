@@ -92,6 +92,7 @@
     <ClCompile Include="..\..\..\IGraphics\Drawing\IGraphicsSkia.cpp">
       <Filter>IGraphics\Drawing</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Freeze.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\HISSToolsFreeze.h" />
@@ -285,6 +286,8 @@
     <ClInclude Include="..\..\..\IGraphics\Drawing\IGraphicsSkia.h">
       <Filter>IGraphics\Drawing</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Freeze.h" />
+    <ClInclude Include="..\src\Smoothing.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="resources">
