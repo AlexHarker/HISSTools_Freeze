@@ -486,7 +486,6 @@
 			remoteGlobalIDString = B81999DD278C6B46001F43E8;
 			remoteInfo = Info_Plists;
 		};
-		};
 		B8E42C7223D1E11F00FFE184 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -2312,13 +2311,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B866C700275436DD009464FC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
@@ -2496,21 +2488,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "python ../scripts/prepare_info_plists.py\n";
-		};
-		B866C6FF275436DD009464FC /* Run Script - prepare_resources-mac.py */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script - prepare_resources-mac.py";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "python ../scripts/prepare_resources-mac.py";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
