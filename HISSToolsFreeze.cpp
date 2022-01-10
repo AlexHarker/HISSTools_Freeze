@@ -299,7 +299,7 @@ private:
 };
 
 HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
-: Plugin(info, MakeConfig(kNumParams, kNumPrograms)), mProxy(new FromPlugProxy()), mDSP(mProxy)
+: iplug::Plugin(info, MakeConfig(kNumParams, kNumPrograms)), mProxy(new FromPlugProxy()), mDSP(mProxy)
 {
     GetParam(kFFTSize)->InitEnum("FFT Size", 3, 7);
     GetParam(kFFTSize)->SetDisplayText(0, "512");

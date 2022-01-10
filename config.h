@@ -6,7 +6,7 @@
 #define PLUG_MFR_ID 'AHAR'
 #define PLUG_URL_STR "www.alexanderjharker.co.uk"
 #define PLUG_EMAIL_STR "A.Harker@hud.ac.uk"
-#define PLUG_COPYRIGHT_STR "Copyright 2019 Alex Harker"
+#define PLUG_COPYRIGHT_STR "Copyright 2019-2022 Alex Harker"
 #define PLUG_CLASS_NAME HISSToolsFreeze
 
 #define BUNDLE_NAME "HISSToolsFreeze"

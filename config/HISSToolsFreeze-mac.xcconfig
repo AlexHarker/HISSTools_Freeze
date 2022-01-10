@@ -13,7 +13,7 @@ IPLUG2_ROOT = ../../..
 // the basename of the vst, vst3, app, component, aaxplugin
 BINARY_NAME = HISSToolsFreeze
 
-FRAMELIB_PATH = $SRCROOT/../../../../../FrameLib
+FRAMELIB_PATH = $SRCROOT/../../../../FrameLib
 FRAMELIB_INC_PATHS = $(FRAMELIB_PATH)/FrameLib_Framework $(FRAMELIB_PATH)/FrameLib_Exports $(FRAMELIB_PATH)/FrameLib_Objects/**
 FRAMELIB_LINK_FLAGS = $SRCROOT/../dependencies/build/libframelib_objects.a -framework Accelerate
 
@@ -60,14 +60,8 @@ ARCHS = x86_64 arm64
 GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO
 
 // Flags to pass to compiler for all builds
-GCC_CFLAGS = -Wno-write-strings -mfpmath=sse -msse -msse2 -msse3 //-mavx
-
-// Uncomment to enable relaxed IEEE compliance
-//GCC_FAST_MATH = YES
-
-// uncomment this to enable codesigning - necessary for AUv3 delivery
-//CODE_SIGN_IDENTITY=Mac Developer
-
+GCC_CFLAGS[arch=x86_64] = -Wno-write-strings -mfpmath=sse -msse -msse2 -msse3
+GCC_CFLAGS[arch=arm64] = -Wno-write-strings
 
 MACOSX_DEPLOYMENT_TARGET = 10.9
 

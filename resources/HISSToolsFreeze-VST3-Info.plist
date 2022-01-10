@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>HISSToolsFreeze</string>
 	<key>CFBundleGetInfoString</key>
-	<string>HISSToolsFreeze v1.0.0 Copyright 2019 Alex Harker</string>
+	<string>HISSToolsFreeze v1.0.0 Copyright 2019-2022 Alex Harker</string>
 	<key>CFBundleIdentifier</key>
 	<string>co.uk.AlexHarker.vst3.HISSToolsFreeze</string>
 	<key>CFBundleInfoDictionaryVersion</key>
