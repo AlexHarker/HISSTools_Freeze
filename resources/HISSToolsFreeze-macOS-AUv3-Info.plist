@@ -9,7 +9,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>HISSToolsFreeze v1.0.0 Copyright 2019-2022 Alex Harker</string>
 	<key>CFBundleIdentifier</key>
-	<string>co.uk.AlexHarker.app.HISSToolsFreeze.AUv3</string>
+	<string>com.AlexHarker.app.HISSToolsFreeze.AUv3</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>HISSToolsFreeze.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>co.uk.AlexHarker.app.HISSToolsFreeze</string>
+	<string>com.AlexHarker.app.HISSToolsFreeze</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
