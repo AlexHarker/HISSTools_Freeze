@@ -42,6 +42,7 @@
 				B8E42C7323D1E11F00FFE184 /* PBXTargetDependency */,
 				B8E42C7523D1E12200FFE184 /* PBXTargetDependency */,
 				B8E42C7723D1E12300FFE184 /* PBXTargetDependency */,
+				B866C75727545674009464FC /* PBXTargetDependency */,
 			);
 			name = AllPlugs;
 			productName = AllPlugs;
@@ -339,6 +340,25 @@
 		4FFBB93020863B0E00DDD0E7 /* fbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8158C1205D50EB00393585 /* fbuffer.cpp */; };
 		4FFBB93420863B0E00DDD0E7 /* coreiids.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8158E0205D50EB00393585 /* coreiids.cpp */; };
 		4FFBB93520863B0E00DDD0E7 /* vstnoteexpressiontypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F81588E205D50EB00393585 /* vstnoteexpressiontypes.cpp */; };
+		B866C702275436DD009464FC /* IPlugTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FDAC0E6207D76C600299363 /* IPlugTimer.cpp */; };
+		B866C703275436DD009464FC /* IControls.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F63695920A463090022C370 /* IControls.cpp */; };
+		B866C704275436DD009464FC /* IGraphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F03A55820A4621000EBDFFB /* IGraphics.cpp */; };
+		B866C705275436DD009464FC /* IPlugPaths.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F344020C0226200487201 /* IPlugPaths.mm */; };
+		B866C706275436DD009464FC /* IControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F6369E920A466470022C370 /* IControl.cpp */; };
+		B866C707275436DD009464FC /* IGraphicsMac.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1F58120E4AFEE004157C8 /* IGraphicsMac.mm */; };
+		B866C708275436DD009464FC /* ITextEntryControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4FCE29D521D6ED70004BCBA1 /* ITextEntryControl.cpp */; };
+		B866C709275436DD009464FC /* IPopupMenuControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A82F5213DE80300BE63A4 /* IPopupMenuControl.cpp */; };
+		B866C70B275436DD009464FC /* IGraphicsEditorDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C10DE20BA2796006320CD /* IGraphicsEditorDelegate.cpp */; };
+		B866C70C275436DD009464FC /* IGraphicsNanoVG_src.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6369DC20A464BB0022C370 /* IGraphicsNanoVG_src.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		B866C70D275436DD009464FC /* HISSToolsFreeze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F3862ED2014BBEC0009F402 /* HISSToolsFreeze.cpp */; };
+		B866C70E275436DD009464FC /* IPlugAPIBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D8ED13B63BA40032E0F3 /* IPlugAPIBase.cpp */; };
+		B866C70F275436DD009464FC /* IGraphicsMac_view.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1F58620E4AFEF004157C8 /* IGraphicsMac_view.mm */; };
+		B866C710275436DD009464FC /* IPlugProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F61A8202807B9003F2573 /* IPlugProcessor.cpp */; };
+		B866C711275436DD009464FC /* IPlugPluginBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F35DEAB207E5C5A00867D8F /* IPlugPluginBase.cpp */; };
+		B866C712275436DD009464FC /* Freeze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3AFEB23C3868C0034A16F /* Freeze.cpp */; };
+		B866C713275436DD009464FC /* IGraphicsCoreText.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F6FD2AF22675B6300FC59E6 /* IGraphicsCoreText.mm */; };
+		B866C714275436DD009464FC /* IPlugParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F78D90413B63BA50032E0F3 /* IPlugParameter.cpp */; };
+		B866C71F275437A5009464FC /* IPlugCLAP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B866C71D2754379F009464FC /* IPlugCLAP.cpp */; };
 		B885CBC52304AE7300D73128 /* IPlugProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F61A8202807B9003F2573 /* IPlugProcessor.cpp */; };
 		B8B3AFED23C3868C0034A16F /* Freeze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3AFEB23C3868C0034A16F /* Freeze.cpp */; };
 		B8B3AFEE23C3868C0034A16F /* Freeze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8B3AFEB23C3868C0034A16F /* Freeze.cpp */; };
@@ -486,6 +506,12 @@
 			remoteGlobalIDString = B81999DD278C6B46001F43E8;
 			remoteInfo = Info_Plists;
 		};
+		B866C75627545674009464FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B866C6FE275436DD009464FC;
+			remoteInfo = CLAP;
 		};
 		B8E42C7223D1E11F00FFE184 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -927,6 +953,66 @@
 		B80983CB23CA49C10047727E /* HISSTools_Pointers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_Pointers.hpp; sourceTree = "<group>"; };
 		B80983CC23CA49C10047727E /* HISSTools_ThreadSafety.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HISSTools_ThreadSafety.hpp; sourceTree = "<group>"; };
 		B80983CD23CA49C10047727E /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		B81999CF278C69FA001F43E8 /* reducing-param-queue.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "reducing-param-queue.hh"; sourceTree = "<group>"; };
+		B81999D0278C69FA001F43E8 /* plugin.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = plugin.hh; sourceTree = "<group>"; };
+		B81999D1278C69FA001F43E8 /* plugin.hxx */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = plugin.hxx; sourceTree = "<group>"; };
+		B81999D2278C69FA001F43E8 /* misbehaviour-handler.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "misbehaviour-handler.hh"; sourceTree = "<group>"; };
+		B81999D3278C69FA001F43E8 /* keywords.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = keywords.hh; sourceTree = "<group>"; };
+		B81999D4278C69FB001F43E8 /* heap.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = heap.hh; sourceTree = "<group>"; };
+		B81999D5278C69FB001F43E8 /* param-queue.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "param-queue.hh"; sourceTree = "<group>"; };
+		B81999D6278C69FB001F43E8 /* event-list.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "event-list.hh"; sourceTree = "<group>"; };
+		B81999D7278C69FB001F43E8 /* host-proxy.hxx */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "host-proxy.hxx"; sourceTree = "<group>"; };
+		B81999D8278C69FB001F43E8 /* reducing-param-queue.hxx */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "reducing-param-queue.hxx"; sourceTree = "<group>"; };
+		B81999D9278C69FB001F43E8 /* host-proxy.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "host-proxy.hh"; sourceTree = "<group>"; };
+		B81999DA278C69FB001F43E8 /* checking-level.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "checking-level.hh"; sourceTree = "<group>"; };
+		B81999DB278C69FB001F43E8 /* plugin-proxy.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "plugin-proxy.hh"; sourceTree = "<group>"; };
+		B866C71A275436DD009464FC /* HISSToolsFreeze.clap */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HISSToolsFreeze.clap; sourceTree = BUILT_PRODUCTS_DIR; };
+		B866C71D2754379F009464FC /* IPlugCLAP.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugCLAP.cpp; path = ../../../IPlug/CLAP/IPlugCLAP.cpp; sourceTree = "<group>"; };
+		B866C71E2754379F009464FC /* IPlugCLAP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IPlugCLAP.h; path = ../../../IPlug/CLAP/IPlugCLAP.h; sourceTree = "<group>"; };
+		B866C7222754390A009464FC /* clap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clap.h; sourceTree = "<group>"; };
+		B866C7232754390A009464FC /* audio-buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "audio-buffer.h"; sourceTree = "<group>"; };
+		B866C7242754390A009464FC /* version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		B866C7252754390A009464FC /* plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plugin.h; sourceTree = "<group>"; };
+		B866C7262754390A009464FC /* host.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = host.h; sourceTree = "<group>"; };
+		B866C7272754390A009464FC /* all.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = all.h; sourceTree = "<group>"; };
+		B866C72A2754390A009464FC /* preset-load.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "preset-load.h"; sourceTree = "<group>"; };
+		B866C72B2754390A009464FC /* check-for-update.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "check-for-update.h"; sourceTree = "<group>"; };
+		B866C72C2754390A009464FC /* midi-mappings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "midi-mappings.h"; sourceTree = "<group>"; };
+		B866C72D2754390A009464FC /* vst3-convert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "vst3-convert.h"; sourceTree = "<group>"; };
+		B866C72E2754390A009464FC /* track-info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "track-info.h"; sourceTree = "<group>"; };
+		B866C72F2754390A009464FC /* vst2-convert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "vst2-convert.h"; sourceTree = "<group>"; };
+		B866C7302754390A009464FC /* quick-controls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "quick-controls.h"; sourceTree = "<group>"; };
+		B866C7312754390A009464FC /* thread-pool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "thread-pool.h"; sourceTree = "<group>"; };
+		B866C7322754390A009464FC /* tuning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tuning.h; sourceTree = "<group>"; };
+		B866C7332754390A009464FC /* file-reference.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "file-reference.h"; sourceTree = "<group>"; };
+		B866C7342754390A009464FC /* params.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = params.h; sourceTree = "<group>"; };
+		B866C7352754390A009464FC /* fd-support.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fd-support.h"; sourceTree = "<group>"; };
+		B866C7362754390A009464FC /* note-name.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "note-name.h"; sourceTree = "<group>"; };
+		B866C7372754390A009464FC /* gui-x11.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gui-x11.h"; sourceTree = "<group>"; };
+		B866C7382754390A009464FC /* gui-win32.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gui-win32.h"; sourceTree = "<group>"; };
+		B866C7392754390A009464FC /* note-ports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "note-ports.h"; sourceTree = "<group>"; };
+		B866C73A2754390A009464FC /* audio-ports-config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "audio-ports-config.h"; sourceTree = "<group>"; };
+		B866C73B2754390A009464FC /* gui-cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gui-cocoa.h"; sourceTree = "<group>"; };
+		B866C73C2754390A009464FC /* thread-check.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "thread-check.h"; sourceTree = "<group>"; };
+		B866C73D2754390A009464FC /* latency.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = latency.h; sourceTree = "<group>"; };
+		B866C73E2754390A009464FC /* timer-support.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "timer-support.h"; sourceTree = "<group>"; };
+		B866C73F2754390A009464FC /* gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.h; sourceTree = "<group>"; };
+		B866C7402754390A009464FC /* log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = log.h; sourceTree = "<group>"; };
+		B866C7412754390A009464FC /* gui-free-standing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gui-free-standing.h"; sourceTree = "<group>"; };
+		B866C7422754390A009464FC /* audio-ports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "audio-ports.h"; sourceTree = "<group>"; };
+		B866C7432754390A009464FC /* state.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = state.h; sourceTree = "<group>"; };
+		B866C7442754390A009464FC /* event-filter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "event-filter.h"; sourceTree = "<group>"; };
+		B866C7452754390A009464FC /* render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = render.h; sourceTree = "<group>"; };
+		B866C7462754390A009464FC /* events.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = events.h; sourceTree = "<group>"; };
+		B866C7472754390A009464FC /* id.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = id.h; sourceTree = "<group>"; };
+		B866C7482754390A009464FC /* color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = color.h; sourceTree = "<group>"; };
+		B866C7492754390A009464FC /* stream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stream.h; sourceTree = "<group>"; };
+		B866C74A2754390A009464FC /* string-sizes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "string-sizes.h"; sourceTree = "<group>"; };
+		B866C74B2754390A009464FC /* macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
+		B866C74C2754390A009464FC /* process.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = process.h; sourceTree = "<group>"; };
+		B866C74D2754390A009464FC /* chmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chmap.h; sourceTree = "<group>"; };
+		B866C74E2754390A009464FC /* hash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hash.h; sourceTree = "<group>"; };
+		B866C74F2754390A009464FC /* fixedpoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fixedpoint.h; sourceTree = "<group>"; };
 		B8B3AFEB23C3868C0034A16F /* Freeze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Freeze.cpp; sourceTree = "<group>"; };
 		B8B3AFEC23C3868C0034A16F /* Freeze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Freeze.h; sourceTree = "<group>"; };
 		B8E22A0A220268C4007CBF4C /* IPlugVST3_ProcessorBase.cpp */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.cpp.cpp; name = IPlugVST3_ProcessorBase.cpp; path = ../../../IPlug/VST3/IPlugVST3_ProcessorBase.cpp; sourceTree = "<group>"; tabWidth = 2; };
@@ -1002,6 +1088,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B866C715275436DD009464FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1072,6 +1165,7 @@
 				4FC3EFC42086C0A600BD11FA /* HISSToolsFreezeVST3Controller.a */,
 				4F78BE0222E73D0800AD537E /* AUv3Framework.framework */,
 				4F3EE1F0231438D000004786 /* HISSToolsFreeze.app */,
+				B866C71A275436DD009464FC /* HISSToolsFreeze.clap */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1317,6 +1411,7 @@
 				4F3907762013EBE800DDA490 /* AUv3 */,
 				4F4CC4241549BEBF00A9EA21 /* AAX */,
 				4F78D9FA13B63CA10032E0F3 /* APP */,
+				B866C71C27543783009464FC /* CLAP */,
 				4F3E69001409743C00C4D749 /* VST3 */,
 				4F78D9F713B63C710032E0F3 /* VST2 */,
 				4F78D8E613B63BA40032E0F3 /* IPlug_include_in_plug_hdr.h */,
@@ -1855,6 +1950,114 @@
 			path = HISSTools_Utility;
 			sourceTree = "<group>";
 		};
+		B866C71C27543783009464FC /* CLAP */ = {
+			isa = PBXGroup;
+			children = (
+				B866C720275438EE009464FC /* CLAP_SDK */,
+				B866C71D2754379F009464FC /* IPlugCLAP.cpp */,
+				B866C71E2754379F009464FC /* IPlugCLAP.h */,
+			);
+			name = CLAP;
+			sourceTree = "<group>";
+		};
+		B866C720275438EE009464FC /* CLAP_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				B866C7212754390A009464FC /* clap */,
+				B866C75027543918009464FC /* helpers */,
+			);
+			name = CLAP_SDK;
+			sourceTree = "<group>";
+		};
+		B866C7212754390A009464FC /* clap */ = {
+			isa = PBXGroup;
+			children = (
+				B866C7222754390A009464FC /* clap.h */,
+				B866C7232754390A009464FC /* audio-buffer.h */,
+				B866C7242754390A009464FC /* version.h */,
+				B866C7252754390A009464FC /* plugin.h */,
+				B866C7262754390A009464FC /* host.h */,
+				B866C7272754390A009464FC /* all.h */,
+				B866C7282754390A009464FC /* ext */,
+				B866C7462754390A009464FC /* events.h */,
+				B866C7472754390A009464FC /* id.h */,
+				B866C7482754390A009464FC /* color.h */,
+				B866C7492754390A009464FC /* stream.h */,
+				B866C74A2754390A009464FC /* string-sizes.h */,
+				B866C74B2754390A009464FC /* macros.h */,
+				B866C74C2754390A009464FC /* process.h */,
+				B866C74D2754390A009464FC /* chmap.h */,
+				B866C74E2754390A009464FC /* hash.h */,
+				B866C74F2754390A009464FC /* fixedpoint.h */,
+			);
+			name = clap;
+			path = ../../../Dependencies/IPlug/CLAP_SDK/include/clap;
+			sourceTree = "<group>";
+		};
+		B866C7282754390A009464FC /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				B866C7292754390A009464FC /* draft */,
+				B866C7342754390A009464FC /* params.h */,
+				B866C7352754390A009464FC /* fd-support.h */,
+				B866C7362754390A009464FC /* note-name.h */,
+				B866C7372754390A009464FC /* gui-x11.h */,
+				B866C7382754390A009464FC /* gui-win32.h */,
+				B866C7392754390A009464FC /* note-ports.h */,
+				B866C73A2754390A009464FC /* audio-ports-config.h */,
+				B866C73B2754390A009464FC /* gui-cocoa.h */,
+				B866C73C2754390A009464FC /* thread-check.h */,
+				B866C73D2754390A009464FC /* latency.h */,
+				B866C73E2754390A009464FC /* timer-support.h */,
+				B866C73F2754390A009464FC /* gui.h */,
+				B866C7402754390A009464FC /* log.h */,
+				B866C7412754390A009464FC /* gui-free-standing.h */,
+				B866C7422754390A009464FC /* audio-ports.h */,
+				B866C7432754390A009464FC /* state.h */,
+				B866C7442754390A009464FC /* event-filter.h */,
+				B866C7452754390A009464FC /* render.h */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
+		B866C7292754390A009464FC /* draft */ = {
+			isa = PBXGroup;
+			children = (
+				B866C72A2754390A009464FC /* preset-load.h */,
+				B866C72B2754390A009464FC /* check-for-update.h */,
+				B866C72C2754390A009464FC /* midi-mappings.h */,
+				B866C72D2754390A009464FC /* vst3-convert.h */,
+				B866C72E2754390A009464FC /* track-info.h */,
+				B866C72F2754390A009464FC /* vst2-convert.h */,
+				B866C7302754390A009464FC /* quick-controls.h */,
+				B866C7312754390A009464FC /* thread-pool.h */,
+				B866C7322754390A009464FC /* tuning.h */,
+				B866C7332754390A009464FC /* file-reference.h */,
+			);
+			path = draft;
+			sourceTree = "<group>";
+		};
+		B866C75027543918009464FC /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B81999DA278C69FB001F43E8 /* checking-level.hh */,
+				B81999D6278C69FB001F43E8 /* event-list.hh */,
+				B81999D4278C69FB001F43E8 /* heap.hh */,
+				B81999D9278C69FB001F43E8 /* host-proxy.hh */,
+				B81999D7278C69FB001F43E8 /* host-proxy.hxx */,
+				B81999D3278C69FA001F43E8 /* keywords.hh */,
+				B81999D2278C69FA001F43E8 /* misbehaviour-handler.hh */,
+				B81999D5278C69FB001F43E8 /* param-queue.hh */,
+				B81999DB278C69FB001F43E8 /* plugin-proxy.hh */,
+				B81999D0278C69FA001F43E8 /* plugin.hh */,
+				B81999D1278C69FA001F43E8 /* plugin.hxx */,
+				B81999CF278C69FA001F43E8 /* reducing-param-queue.hh */,
+				B81999D8278C69FB001F43E8 /* reducing-param-queue.hxx */,
+			);
+			name = helpers;
+			path = ../../../Dependencies/IPlug/CLAP_HELPERS/include/clap/helpers;
+			sourceTree = "<group>";
+		};
 		B8B3AFEA23C3864E0034A16F /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -2114,6 +2317,26 @@
 			productReference = 4FFBB93B20863B0E00DDD0E7 /* HISSToolsFreeze.vst3 */;
 			productType = "com.apple.product-type.bundle";
 		};
+		B866C6FE275436DD009464FC /* CLAP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B866C716275436DD009464FC /* Build configuration list for PBXNativeTarget "CLAP" */;
+			buildPhases = (
+				B866C6FF275436DD009464FC /* Run Script - prepare_resources-mac.py */,
+				B866C700275436DD009464FC /* Resources */,
+				B866C701275436DD009464FC /* Sources */,
+				B866C715275436DD009464FC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B81999F1278C6B5D001F43E8 /* PBXTargetDependency */,
+			);
+			name = CLAP;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = IPlugExample;
+			productReference = B866C71A275436DD009464FC /* HISSToolsFreeze.clap */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2188,6 +2411,10 @@
 					B81999DD278C6B46001F43E8 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
+					B866C6FE275436DD009464FC = {
+						DevelopmentTeam = 76XBB8EK7J;
+						ProvisioningStyle = Manual;
+					};
 					B8E42C6C23D1E11900FFE184 = {
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = 76XBB8EK7J;
@@ -2225,6 +2452,7 @@
 				4FB600121567CB0A0020189A /* AAX */,
 				4FFBB8F820863B0E00DDD0E7 /* VST3P */,
 				4F39075F2013EBA300DDA490 /* AUv3 */,
+				B866C6FE275436DD009464FC /* CLAP */,
 				4FC3EFC32086C0A600BD11FA /* VST3C */,
 				4F78BE0122E73D0800AD537E /* AUv3Framework */,
 				4F3EE1BA231438D000004786 /* AUv3App */,
@@ -2845,6 +3073,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B866C701275436DD009464FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B866C71F275437A5009464FC /* IPlugCLAP.cpp in Sources */,
+				B866C702275436DD009464FC /* IPlugTimer.cpp in Sources */,
+				B866C703275436DD009464FC /* IControls.cpp in Sources */,
+				B866C704275436DD009464FC /* IGraphics.cpp in Sources */,
+				B866C705275436DD009464FC /* IPlugPaths.mm in Sources */,
+				B866C706275436DD009464FC /* IControl.cpp in Sources */,
+				B866C707275436DD009464FC /* IGraphicsMac.mm in Sources */,
+				B866C708275436DD009464FC /* ITextEntryControl.cpp in Sources */,
+				B866C709275436DD009464FC /* IPopupMenuControl.cpp in Sources */,
+				B866C70B275436DD009464FC /* IGraphicsEditorDelegate.cpp in Sources */,
+				B866C70C275436DD009464FC /* IGraphicsNanoVG_src.m in Sources */,
+				B866C70D275436DD009464FC /* HISSToolsFreeze.cpp in Sources */,
+				B866C70E275436DD009464FC /* IPlugAPIBase.cpp in Sources */,
+				B866C70F275436DD009464FC /* IGraphicsMac_view.mm in Sources */,
+				B866C710275436DD009464FC /* IPlugProcessor.cpp in Sources */,
+				B866C711275436DD009464FC /* IPlugPluginBase.cpp in Sources */,
+				B866C712275436DD009464FC /* Freeze.cpp in Sources */,
+				B866C713275436DD009464FC /* IGraphicsCoreText.mm in Sources */,
+				B866C714275436DD009464FC /* IPlugParameter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2937,6 +3191,11 @@
 			isa = PBXTargetDependency;
 			target = B81999DD278C6B46001F43E8 /* Info_Plists */;
 			targetProxy = B81999F5278C6B96001F43E8 /* PBXContainerItemProxy */;
+		};
+		B866C75727545674009464FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B866C6FE275436DD009464FC /* CLAP */;
+			targetProxy = B866C75627545674009464FC /* PBXContainerItemProxy */;
 		};
 		B8E42C7323D1E11F00FFE184 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4268,6 +4527,102 @@
 			};
 			name = Tracer;
 		};
+		B81999DF278C6B46001F43E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 76XBB8EK7J;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B81999E0278C6B46001F43E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 76XBB8EK7J;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B81999E1278C6B46001F43E8 /* Tracer */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 76XBB8EK7J;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Tracer;
+		};
+		B866C717275436DD009464FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = "$(CLAP_PATH)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(EXTRA_PLUGIN_DEFS)",
+					"$(EXTRA_VST2_DEFS)",
+					"$(CLAP_DEFS)",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(CLAP_SDK)/include",
+					"$(EXTRA_INC_PATHS)",
+					"$(IPLUG_INC_PATHS)",
+				);
+				INFOPLIST_FILE = "../resources/HISSToolsFreeze-CLAP-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AlexHarker.clao.${BINARY_NAME}";
+				SKIP_INSTALL = NO;
+				WARNING_CFLAGS = "-Wno-main";
+				WRAPPER_EXTENSION = clap;
+			};
+			name = Debug;
+		};
+		B866C718275436DD009464FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = "$(CLAP_PATH)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(EXTRA_PLUGIN_DEFS)",
+					"$(EXTRA_VST2_DEFS)",
+					"$(CLAP_DEFS)",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(CLAP_SDK)/include",
+					"$(EXTRA_INC_PATHS)",
+					"$(IPLUG_INC_PATHS)",
+				);
+				INFOPLIST_FILE = "../resources/HISSToolsFreeze-CLAP-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AlexHarker.clao.${BINARY_NAME}";
+				SKIP_INSTALL = NO;
+				WARNING_CFLAGS = "-Wno-main";
+				WRAPPER_EXTENSION = clap;
+			};
+			name = Release;
+		};
+		B866C719275436DD009464FC /* Tracer */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = "$(CLAP_PATH)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(EXTRA_PLUGIN_DEFS)",
+					"$(EXTRA_VST2_DEFS)",
+					"$(CLAP_DEFS)",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(CLAP_SDK)/include",
+					"$(EXTRA_INC_PATHS)",
+					"$(IPLUG_INC_PATHS)",
+				);
+				INFOPLIST_FILE = "../resources/HISSToolsFreeze-CLAP-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AlexHarker.clao.${BINARY_NAME}";
+				SKIP_INSTALL = NO;
+				WARNING_CFLAGS = "-Wno-main";
+				WRAPPER_EXTENSION = clap;
+			};
+			name = Tracer;
+		};
 		B8E42C6D23D1E11900FFE184 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4411,6 +4766,26 @@
 				4FFBB93820863B0E00DDD0E7 /* Debug */,
 				4FFBB93920863B0E00DDD0E7 /* Release */,
 				4FFBB93A20863B0E00DDD0E7 /* Tracer */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B81999DE278C6B46001F43E8 /* Build configuration list for PBXAggregateTarget "Info_Plists" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B81999DF278C6B46001F43E8 /* Debug */,
+				B81999E0278C6B46001F43E8 /* Release */,
+				B81999E1278C6B46001F43E8 /* Tracer */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B866C716275436DD009464FC /* Build configuration list for PBXNativeTarget "CLAP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B866C717275436DD009464FC /* Debug */,
+				B866C718275436DD009464FC /* Release */,
+				B866C719275436DD009464FC /* Tracer */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
