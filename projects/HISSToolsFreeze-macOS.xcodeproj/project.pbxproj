@@ -24,7 +24,7 @@
 		};
 		B81999DD278C6B46001F43E8 /* Info_Plists */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = B81999DE278C6B46001F43E8 /* Build configuration list for PBXAggregateTarget "Info_Plists" */;
+			buildConfigurationList = B8F4827127909A4F00ACBF03 /* Build configuration list */;
 			buildPhases = (
 				B81999F4278C6B7A001F43E8 /* ShellScript */,
 			);
@@ -33,17 +33,18 @@
 			name = Info_Plists;
 			productName = Info_Plists;
 		};
-		B8E42C6C23D1E11900FFE184 /* AllPlugs */ = {
+		B8E42C6C23D1E11900FFE184 /* Finished Plugs */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = B8E42C7123D1E11900FFE184 /* Build configuration list for PBXAggregateTarget "AllPlugs" */;
+			buildConfigurationList = B8E42C7123D1E11900FFE184 /* Build configuration list for PBXAggregateTarget "Finished Plugs" */;
 			buildPhases = (
+				B8F4827227909A6500ACBF03 /* ShellScript */,
 			);
 			dependencies = (
 				B8E42C7323D1E11F00FFE184 /* PBXTargetDependency */,
 				B8E42C7523D1E12200FFE184 /* PBXTargetDependency */,
 				B8E42C7723D1E12300FFE184 /* PBXTargetDependency */,
 			);
-			name = AllPlugs;
+			name = "Finished Plugs";
 			productName = AllPlugs;
 		};
 /* End PBXAggregateTarget section */
@@ -459,13 +460,6 @@
 			remoteInfo = Info_Plists;
 		};
 		B81999EC278C6B57001F43E8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B81999DD278C6B46001F43E8;
-			remoteInfo = Info_Plists;
-		};
-		B81999F0278C6B5D001F43E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
@@ -2217,6 +2211,7 @@
 			targets = (
 				B81999DD278C6B46001F43E8 /* Info_Plists */,
 				4F78DAF113B643600032E0F3 /* All */,
+				B8E42C6C23D1E11900FFE184 /* Finished Plugs */,
 				4FD16A0813B63081001D0217 /* APP */,
 				4F20EEC8132C69FE0030E34C /* VST2 */,
 				4F9828AA140A9EB700F3FCC1 /* VST3 */,
@@ -2227,7 +2222,6 @@
 				4FC3EFC32086C0A600BD11FA /* VST3C */,
 				4F78BE0122E73D0800AD537E /* AUv3Framework */,
 				4F3EE1BA231438D000004786 /* AUv3App */,
-				B8E42C6C23D1E11900FFE184 /* AllPlugs */,
 			);
 		};
 /* End PBXProject section */
@@ -2488,6 +2482,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "python ../scripts/prepare_info_plists.py\n";
+		};
+		B8F4827227909A6500ACBF03 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "../scripts/dist-mac-main.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2899,11 +2911,6 @@
 			isa = PBXTargetDependency;
 			target = B81999DD278C6B46001F43E8 /* Info_Plists */;
 			targetProxy = B81999EC278C6B57001F43E8 /* PBXContainerItemProxy */;
-		};
-		B81999F1278C6B5D001F43E8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B81999DD278C6B46001F43E8 /* Info_Plists */;
-			targetProxy = B81999F0278C6B5D001F43E8 /* PBXContainerItemProxy */;
 		};
 		B81999F3278C6B72001F43E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4269,6 +4276,32 @@
 			};
 			name = Tracer;
 		};
+		B8F4826E27909A4F00ACBF03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Info_Plists;
+			};
+			name = Debug;
+		};
+		B8F4826F27909A4F00ACBF03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = Info_Plists;
+			};
+			name = Release;
+		};
+		B8F4827027909A4F00ACBF03 /* Tracer */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Info_Plists;
+			};
+			name = Tracer;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4392,12 +4425,22 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8E42C7123D1E11900FFE184 /* Build configuration list for PBXAggregateTarget "AllPlugs" */ = {
+		B8E42C7123D1E11900FFE184 /* Build configuration list for PBXAggregateTarget "Finished Plugs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8E42C6D23D1E11900FFE184 /* Debug */,
 				B8E42C6E23D1E11900FFE184 /* Release */,
 				B8E42C6F23D1E11900FFE184 /* Tracer */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B8F4827127909A4F00ACBF03 /* Build configuration list */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B8F4826E27909A4F00ACBF03 /* Debug */,
+				B8F4826F27909A4F00ACBF03 /* Release */,
+				B8F4827027909A4F00ACBF03 /* Tracer */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
