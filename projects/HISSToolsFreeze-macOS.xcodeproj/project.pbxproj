@@ -24,7 +24,7 @@
 		};
 		B81999DD278C6B46001F43E8 /* Info_Plists */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = B8F4827127909A4F00ACBF03 /* Build configuration list */;
+			buildConfigurationList = B8F4827127909A4F00ACBF03 /* Build configuration list for PBXAggregateTarget "Info_Plists" */;
 			buildPhases = (
 				B81999F4278C6B7A001F43E8 /* ShellScript */,
 			);
@@ -604,7 +604,6 @@
 		4F5369C520C446430089212E /* PolyphaseIIR2Designer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PolyphaseIIR2Designer.h; sourceTree = "<group>"; };
 		4F5369C620C446430089212E /* FPUUpsampler2x.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPUUpsampler2x.h; sourceTree = "<group>"; };
 		4F5369C720C446430089212E /* PolyphaseIIR2Designer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PolyphaseIIR2Designer.cpp; sourceTree = "<group>"; };
-		4F5369C820C446430089212E /* Array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Array.h; sourceTree = "<group>"; };
 		4F5369C920C446430089212E /* FPUStageProc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPUStageProc.h; sourceTree = "<group>"; };
 		4F5369CA20C446430089212E /* readme.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		4F5369CB20C446430089212E /* FPUDownsampler2x.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPUDownsampler2x.h; sourceTree = "<group>"; };
@@ -657,7 +656,7 @@
 		4F78D90513B63BA50032E0F3 /* IPlugMidi.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = IPlugMidi.h; path = ../../../IPlug/IPlugMidi.h; sourceTree = SOURCE_ROOT; tabWidth = 2; };
 		4F78DB5F13B6462B0032E0F3 /* HISSToolsFreeze.component */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HISSToolsFreeze.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F7E6F2920DEC3DE00A5F641 /* favicon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = favicon.ico; sourceTree = "<group>"; };
-		4F7E6F2B20DEC3DE00A5F641 /* IPlugWAM-standalone.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "IPlugWAM-standalone.html"; sourceTree = "<group>"; };
+		4F7E6F2B20DEC3DE00A5F641 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		4F7E6F2D20DEC3DE00A5F641 /* IPlugWAM-awp.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "IPlugWAM-awp.js"; sourceTree = "<group>"; };
 		4F7E6F2F20DEC3DE00A5F641 /* IPlugWAM-awn.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "IPlugWAM-awn.js"; sourceTree = "<group>"; };
 		4F8157DD205D50EA00393585 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -1250,7 +1249,6 @@
 				4F5369C520C446430089212E /* PolyphaseIIR2Designer.h */,
 				4F5369C620C446430089212E /* FPUUpsampler2x.h */,
 				4F5369C720C446430089212E /* PolyphaseIIR2Designer.cpp */,
-				4F5369C820C446430089212E /* Array.h */,
 				4F5369C920C446430089212E /* FPUStageProc.h */,
 				4F5369CA20C446430089212E /* readme.txt */,
 				4F5369CB20C446430089212E /* FPUDownsampler2x.h */,
@@ -1390,7 +1388,7 @@
 			isa = PBXGroup;
 			children = (
 				4F7E6F2920DEC3DE00A5F641 /* favicon.ico */,
-				4F7E6F2B20DEC3DE00A5F641 /* IPlugWAM-standalone.html */,
+				4F7E6F2B20DEC3DE00A5F641 /* index.html */,
 				4F7E6F2C20DEC3DE00A5F641 /* scripts */,
 			);
 			name = Template;
@@ -4435,7 +4433,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8F4827127909A4F00ACBF03 /* Build configuration list */ = {
+		B8F4827127909A4F00ACBF03 /* Build configuration list for PBXAggregateTarget "Info_Plists" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8F4826E27909A4F00ACBF03 /* Debug */,
