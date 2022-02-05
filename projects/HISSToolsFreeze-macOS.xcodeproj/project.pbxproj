@@ -1001,7 +1001,7 @@
 			isa = PBXGroup;
 			children = (
 				B80983A823CA49C10047727E /* HISSTools_PluginLib */,
-				B8B3AFEA23C3864E0034A16F /* src */,
+				B8B3AFEA23C3864E0034A16F /* source */,
 				52FBBED30D0CF143001C8B8A /* config.h */,
 				4F3862EE2014BBEC0009F402 /* HISSToolsFreeze.h */,
 				4F3862ED2014BBEC0009F402 /* HISSToolsFreeze.cpp */,
@@ -1846,15 +1846,15 @@
 			path = HISSTools_Utility;
 			sourceTree = "<group>";
 		};
-		B8B3AFEA23C3864E0034A16F /* src */ = {
+		B8B3AFEA23C3864E0034A16F /* source */ = {
 			isa = PBXGroup;
 			children = (
 				B8B3AFEB23C3868C0034A16F /* Freeze.cpp */,
 				B8B3AFEC23C3868C0034A16F /* Freeze.h */,
 				B809839F23C9DABA0047727E /* Smoothing.h */,
 			);
-			name = src;
-			path = ../src;
+			name = source;
+			path = ../source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

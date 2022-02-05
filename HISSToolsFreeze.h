@@ -1,9 +1,10 @@
 #pragma once
 
 #include "IPlug_include_in_plug_hdr.h"
-#include "src/Freeze.h"
 
-#include "src/Smoothing.h"
+#include "source/Freeze.h"
+#include "source/Smoothing.h"
+
 #include <FrameLib_FromHost.h>
 
 const int kNumPrograms = 1;
