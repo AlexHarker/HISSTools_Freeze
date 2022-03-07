@@ -1004,7 +1004,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
 
     for (auto it = mObjects.begin(); it != mObjects.end(); it++)
     {
-        (*it)->autoOrderingConnections();
+        (*it)->makeAutoOrderingConnections();
 
         if ((*it)->handlesAudio())
             mAudioObjects.push_back(*it);
