@@ -2,13 +2,19 @@
 #include "Freeze.h"
 #include "FrameLib_Objects.h"
 
-Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumAudioOuts(0), mProxy(proxy)
+Freeze::Freeze(FrameLib_Proxy *proxy, FrameLib_Thread::Priorities priorities)
+: mGlobal(nullptr)
+, mProcessingQueue(initialise(priorities))
+, mNumAudioIns(0)
+, mNumAudioOuts(0)
+, mProxy(proxy)
 {
     using Connection = FrameLib_Object<FrameLib_Multistream>::Connection;
 
-    FrameLib_Global::get(&mGlobal, FrameLib_Thread::defaultPriorities());
     FrameLib_Context context(mGlobal, this);
     FrameLib_Parameters::AutoSerial parameters;
+
+    mProcessingQueue->setTimeOuts();
 
     mObjects.resize(163);
 
@@ -879,7 +885,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     mObjects[139]->addConnection(Connection(mObjects[137], 0), 1);
 
     parameters.clear();
-    mObjects[140] = new FrameLib_Expand<FrameLib_Vector<&statLength<double const*>, (FrameLib_Vector_Defaults)4> >(context, &parameters, mProxy, 1);
+    mObjects[140] = new FrameLib_Expand<FrameLib_Vector<&stat_length<double const*>,4> >(context, &parameters, mProxy, 1);
     mObjects[140]->addConnection(Connection(mObjects[138], 0), 0);
 
     parameters.clear();
@@ -1006,12 +1012,20 @@ Freeze::Freeze(FrameLib_Proxy *proxy) : mGlobal(nullptr), mNumAudioIns(0), mNumA
     {
         (*it)->makeAutoOrderingConnections();
 
-        if ((*it)->handlesAudio())
-            mAudioObjects.push_back(*it);
+        if ((*it)->handlesAudio() && (*it)->getType() != ObjectType::Output)
+            mAudioInObjects.push_back(*it);
+        if ((*it)->handlesAudio() && (*it)->getType() == ObjectType::Output)
+            mAudioOutObjects.push_back(*it);
 
         mNumAudioIns += (*it)->getNumAudioIns();
         mNumAudioOuts += (*it)->getNumAudioOuts();
     }
+}
+
+FrameLib_Context Freeze::initialise(FrameLib_Thread::Priorities priorities)
+{
+    FrameLib_Global::get(&mGlobal, priorities);
+    return FrameLib_Context(mGlobal, this);
 }
 
 Freeze::~Freeze()
@@ -1020,7 +1034,8 @@ Freeze::~Freeze()
         delete *it;
 
     mObjects.clear();
-    mAudioObjects.clear();
+    mAudioInObjects.clear();
+    mAudioOutObjects.clear();
     delete mProxy;
     FrameLib_Global::release(&mGlobal);
 }
@@ -1033,9 +1048,19 @@ void Freeze::reset(double samplerate, unsigned long maxvectorsize)
 
 void Freeze::process(double **inputs, double **outputs, unsigned long blockSize)
 {
-    for (auto it = mAudioObjects.begin(); it != mAudioObjects.end(); it++)
+    FrameLib_AudioQueue queue;
+
+    for (auto it = mAudioInObjects.begin(); it != mAudioInObjects.end(); it++)
     {
-        (*it)->blockUpdate(inputs, outputs, blockSize);
+        (*it)->blockUpdate(inputs, outputs, blockSize, queue);
+
+        inputs += (*it)->getNumAudioIns();
+        outputs += (*it)->getNumAudioOuts();
+    }
+
+    for (auto it = mAudioOutObjects.begin(); it != mAudioOutObjects.end(); it++)
+    {
+        (*it)->blockUpdate(inputs, outputs, blockSize, queue);
 
         inputs += (*it)->getNumAudioIns();
         outputs += (*it)->getNumAudioOuts();
