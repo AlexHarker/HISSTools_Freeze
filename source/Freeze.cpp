@@ -885,7 +885,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy, FrameLib_Thread::Priorities priorities)
     mObjects[139]->addConnection(Connection(mObjects[137], 0), 1);
 
     parameters.clear();
-    mObjects[140] = new FrameLib_Expand<FrameLib_Vector<&stat_length<double const*>,4> >(context, &parameters, mProxy, 1);
+    mObjects[140] = new FrameLib_Expand<FrameLib_Vector<&stat_length<double const*>,(FrameLib_Vector_Defaults)4> >(context, &parameters, mProxy, 1);
     mObjects[140]->addConnection(Connection(mObjects[138], 0), 0);
 
     parameters.clear();
@@ -1048,19 +1048,21 @@ void Freeze::reset(double samplerate, unsigned long maxvectorsize)
 
 void Freeze::process(double **inputs, double **outputs, unsigned long blockSize)
 {
-    FrameLib_AudioQueue queue;
-
-    for (auto it = mAudioInObjects.begin(); it != mAudioInObjects.end(); it++)
     {
-        (*it)->blockUpdate(inputs, outputs, blockSize, queue);
+        FrameLib_AudioQueue queue;
 
-        inputs += (*it)->getNumAudioIns();
-        outputs += (*it)->getNumAudioOuts();
+        for (auto it = mAudioInObjects.begin(); it != mAudioInObjects.end(); it++)
+        {
+            (*it)->blockUpdate(inputs, outputs, blockSize, queue);
+
+            inputs += (*it)->getNumAudioIns();
+            outputs += (*it)->getNumAudioOuts();
+        }
     }
 
     for (auto it = mAudioOutObjects.begin(); it != mAudioOutObjects.end(); it++)
     {
-        (*it)->blockUpdate(inputs, outputs, blockSize, queue);
+        (*it)->blockUpdate(inputs, outputs, blockSize);
 
         inputs += (*it)->getNumAudioIns();
         outputs += (*it)->getNumAudioOuts();
