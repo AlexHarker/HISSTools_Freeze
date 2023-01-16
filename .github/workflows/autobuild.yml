@@ -164,7 +164,7 @@ jobs:
         run: |
              mkdir -p iPlug2/Projects/HISSTools_Freeze/dependencies/build/
              xcodebuild -project 'FrameLib/framelib.xcodeproj' -scheme 'framelib_objects' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
-             mv FrameLib/build/libframelib_objects.a iPlug2/Projects/HISSTools_Freeze/dependencies/build/libframelib_objects.a
+             mv FrameLib/build/lib/libframelib_objects.a iPlug2/Projects/HISSTools_Freeze/dependencies/build/libframelib_objects.a
              xcodebuild -project 'iPlug2/Projects/HISSTools_Freeze/projects/HISSToolsFreeze-macOS.xcodeproj' -scheme 'Finished Plugs' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES  
       - name: Zip All
         run: iPlug2/Projects/HISSTools_Freeze/scripts/dist-zip.sh
