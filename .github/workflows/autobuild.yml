@@ -46,10 +46,10 @@ jobs:
           repository: 'AlexHarker/HISSTools_PluginLib'
           path: "iPlug2/Projects/HISSTools_PluginLib"
       - name: Checkout FrameLib
-          uses: actions/checkout@v3
-          with:
-            repository: 'AlexHarker/FrameLib'
-            path: "FrameLib"
+        uses: actions/checkout@v3
+        with:
+          repository: 'AlexHarker/FrameLib'
+          path: "FrameLib"
       - name: Build Windows Plugins
         run: |
              msbuild "iPlug2/Projects/HISSTools_Freeze/HISSToolsFreeze.sln" "/t:HISSToolsFreeze-vst2;HISSToolsFreeze-vst3" /p:configuration="release" /p:platform=win32 /v:q /clp:ErrorsOnly /nologo /m
@@ -122,10 +122,10 @@ jobs:
           repository: 'AlexHarker/HISSTools_PluginLib'
           path: "iPlug2/Projects/HISSTools_PluginLib"
       - name: Checkout FrameLib
-          uses: actions/checkout@v3
-          with:
-            repository: 'AlexHarker/FrameLib'
-            path: "FrameLib"
+        uses: actions/checkout@v3
+        with:
+          repository: 'AlexHarker/FrameLib'
+          path: "FrameLib"
       - name: Download Windows Builds
         uses: actions/download-artifact@v3
         with:
