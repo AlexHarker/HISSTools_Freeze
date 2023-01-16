@@ -162,7 +162,9 @@ jobs:
              xcrun notarytool store-credentials "AJH-NOTARISE" --apple-id $APPLE_ID --team-id $TEAM_ID --password $APP_SPECIFIC_PWD
       - name: Build Mac Plugins
         run: |
+             mkdir --parents iPlug2/Projects/HISSTools_Freeze/dependencies/build
              xcodebuild -project 'FrameLib/framelib.xcodeproj' -scheme 'framelib_objects' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
+             mv FrameLib/build/libframelib_objects.a iPlug2/Projects/HISSTools_Freeze/dependencies/build/libframelib_objects.a
              xcodebuild -project 'iPlug2/Projects/HISSTools_Freeze/projects/HISSToolsFreeze-macOS.xcodeproj' -scheme 'Finished Plugs' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES  
       - name: Zip All
         run: iPlug2/Projects/HISSTools_Freeze/scripts/dist-zip.sh
