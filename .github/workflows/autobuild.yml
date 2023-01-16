@@ -57,7 +57,7 @@ jobs:
              msbuild "FrameLib/FrameLib.sln" "/t:framelib_objects" /p:configuration="Release" "/p:platform=x86" /v:q /clp:ErrorsOnly /nologo /m
              msbuild "FrameLib/FrameLib.sln" "/t:framelib_objects" /p:configuration="Release" "/p:platform=x64" /v:q /clp:ErrorsOnly /nologo /m
              Move-Item -Path FrameLib\build\Release_Win32\framelib.lib -Destination iPlug2\Projects\HISSTools_Freeze\dependencies\build\Win32\framelib.lib
-             Move-Item -Path FrameLib\build\Win32\framelib_objects.lib -Destination iPlug2\Projects\HISSTools_Freeze\dependencies\build\Win32\framelib_objects.lib
+             Move-Item -Path FrameLib\build\Release_Win32\framelib_objects.lib -Destination iPlug2\Projects\HISSTools_Freeze\dependencies\build\Win32\framelib_objects.lib
              Move-Item -Path FrameLib\build\Release_x64\framelib.lib -Destination iPlug2\Projects\HISSTools_Freeze\dependencies\build\x64\framelib.lib
              Move-Item -Path FrameLib\build\Release_x64\framelib_objects.lib -Destination iPlug2\Projects\HISSTools_Freeze\dependencies\build\x64\framelib_objects.lib
              msbuild "iPlug2/Projects/HISSTools_Freeze/HISSToolsFreeze.sln" "/t:HISSToolsFreeze-vst2;HISSToolsFreeze-vst3" /p:configuration="release" /p:platform=win32 /v:q /clp:ErrorsOnly /nologo /m
