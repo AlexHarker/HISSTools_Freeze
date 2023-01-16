@@ -52,7 +52,8 @@ jobs:
           path: "FrameLib"
       - name: Build Windows Plugins
         run: |
-             msbuild "FrameLib/FrameLib.sln" "/t:framelib_objects" /p:configuration="Release" "/p:platform=win32;x64" /v:q /clp:ErrorsOnly /nologo /m
+             msbuild "FrameLib/FrameLib.sln" "/t:framelib_objects" /p:configuration="Release" "/p:platform=win32" /v:q /clp:ErrorsOnly /nologo /m
+             msbuild "FrameLib/FrameLib.sln" "/t:framelib_objects" /p:configuration="Release" "/p:platform=x64" /v:q /clp:ErrorsOnly /nologo /m
              msbuild "iPlug2/Projects/HISSTools_Freeze/HISSToolsFreeze.sln" "/t:HISSToolsFreeze-vst2;HISSToolsFreeze-vst3" /p:configuration="release" /p:platform=win32 /v:q /clp:ErrorsOnly /nologo /m
              msbuild "iPlug2/Projects/HISSTools_Freeze/HISSToolsFreeze.sln" "/t:HISSToolsFreeze-vst2;HISSToolsFreeze-vst3" /p:configuration="release" /p:platform=x64 /v:q /clp:ErrorsOnly /nologo /m
       - name: Prepare Windows Uploads
