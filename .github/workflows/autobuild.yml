@@ -175,6 +175,6 @@ jobs:
           fail_on_unmatched_files: true
           files: iPlug2/Projects/HISSTools_Freeze/build-mac/HISSTools_Freeze.zip
           target_commitish: ${{ github.sha }}
-          body: This is an automated build of the HIRT Package. 
+          body: This is an automated build of HISSTools_Freeze. 
           generate_release_notes: true
     
