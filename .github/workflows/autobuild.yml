@@ -52,6 +52,8 @@ jobs:
           path: "FrameLib"
       - name: Build Windows Plugins
         run: |
+             New-Item -Path 'iPlug2\Projects\HISSTools_Freeze\dependencies\build\Win32' -ItemType Directory
+             New-Item -Path 'iPlug2\Projects\HISSTools_Freeze\dependencies\build\x64' -ItemType Directory
              msbuild "FrameLib/FrameLib.sln" "/t:framelib_objects" /p:configuration="Release" "/p:platform=x86" /v:q /clp:ErrorsOnly /nologo /m
              msbuild "FrameLib/FrameLib.sln" "/t:framelib_objects" /p:configuration="Release" "/p:platform=x64" /v:q /clp:ErrorsOnly /nologo /m
              Move-Item -Path FrameLib\build\Release_Win32\framelib.lib -Destination iPlug2\Projects\HISSTools_Freeze\dependencies\build\Win32\framelib.lib
