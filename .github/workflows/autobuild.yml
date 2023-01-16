@@ -52,6 +52,7 @@ jobs:
           path: "FrameLib"
       - name: Build Windows Plugins
         run: |
+             msbuild "FrameLib/FrameLib.sln" "/t:framelib_objects" /p:configuration="Release" "/p:platform=win32;x64" /v:q /clp:ErrorsOnly /nologo /m
              msbuild "iPlug2/Projects/HISSTools_Freeze/HISSToolsFreeze.sln" "/t:HISSToolsFreeze-vst2;HISSToolsFreeze-vst3" /p:configuration="release" /p:platform=win32 /v:q /clp:ErrorsOnly /nologo /m
              msbuild "iPlug2/Projects/HISSTools_Freeze/HISSToolsFreeze.sln" "/t:HISSToolsFreeze-vst2;HISSToolsFreeze-vst3" /p:configuration="release" /p:platform=x64 /v:q /clp:ErrorsOnly /nologo /m
       - name: Prepare Windows Uploads
@@ -153,7 +154,9 @@ jobs:
              security set-key-partition-list -S apple-tool:,apple:, -s -k "$KEYCHAINPATH" -D "$CERT_BASE64" -t private "$KEYCHAINPATH"
              xcrun notarytool store-credentials "AJH-NOTARISE" --apple-id $APPLE_ID --team-id $TEAM_ID --password $APP_SPECIFIC_PWD
       - name: Build Mac Plugins
-        run: xcodebuild -project 'iPlug2/Projects/HISSTools_Freeze/projects/HISSToolsFreeze-macOS.xcodeproj' -scheme 'Finished Plugs' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES  
+        run: |
+             xcodebuild -project 'FrameLib/framelib.xcodeproj' -scheme 'framelib_objects' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
+             xcodebuild -project 'iPlug2/Projects/HISSTools_Freeze/projects/HISSToolsFreeze-macOS.xcodeproj' -scheme 'Finished Plugs' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES  
       - name: Zip All
         run: iPlug2/Projects/HISSTools_Freeze/scripts/dist-zip.sh
       - name: Make release
