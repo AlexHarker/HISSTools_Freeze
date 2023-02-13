@@ -429,8 +429,8 @@ void HISSToolsFreeze::OnReset()
 {
     mDSP.reset(GetSampleRate(), GetBlockSize());
     
-    mGainSmoother.reset(GetSampleRate());
-    mWidthSmoother.reset(GetSampleRate());
+    mGainSmoother.reset(DBToAmp(GetParam(kGain)->Value()), GetSampleRate());
+    mWidthSmoother.reset(DBToAmp(GetParam(kWidth)->Value()), GetSampleRate());
     
     mLastGain = mGainSmoother.target();
     mLastWidth = mWidthSmoother.target();
