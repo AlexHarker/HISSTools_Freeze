@@ -6,6 +6,7 @@ on:
       - '**'
 jobs:
   deploy-win:
+    if: false
     runs-on: windows-2019
     steps:
       - name: Add msbuild to PATH
@@ -92,7 +93,7 @@ jobs:
           path: "win-builds"
   deploy-mac:
     runs-on: macos-11
-    needs: deploy-win
+    #needs: deploy-win
     steps:
       - name: Checkout iPlug2
         uses: actions/checkout@v3
@@ -135,6 +136,7 @@ jobs:
           repository: 'AlexHarker/FrameLib'
           path: "FrameLib"
       - name: Download Windows Builds
+        if: false
         uses: actions/download-artifact@v3
         with:
           name: deploy-win
