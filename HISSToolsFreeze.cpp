@@ -21,7 +21,7 @@ public:
     
     Design() : HISSTools_Design_Scheme(true)
     {
-        HISSTools_Color_Spec *col1 = new HISSTools_Color_Spec(0.7, 0.0, 0.0, 0.9);
+        HISSTools_Color_Spec *col1 = new HISSTools_Color_Spec(0.7, 0.0, 0.4, 0.9);
         HISSTools_Color_Spec *col2 = new HISSTools_Color_Spec(0.5, 0.5, 0.0, 0.9);
         HISSTools_Color_Spec *col3 = new HISSTools_Color_Spec(0.1, 0.5, 0.2, 0.9);
         HISSTools_Color_Spec *col4 = new HISSTools_Color_Spec(0.0, 0.5, 0.5, 0.9);
