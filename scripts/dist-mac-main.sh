@@ -18,5 +18,5 @@ fi
 cp "$BASEDIR/../manual/HISSTools_Freeze_User_Guide.pdf" "$EXPORT_PATH/" || exit 1
 
 "$BASEDIR/dist-mac-notarize.sh" "$EXPORT_PATH" HISSToolsFreeze.component "$AUDIO_PATH/Components" || exit 1
-"$BASEDIR/dist-mac-notarize.sh" "$EXPORT_PATH" HISSToolsFreeze.vst "$AUDIO_PATH/VST" || exit 1
-"$BASEDIR/dist-mac-notarize.sh" "$EXPORT_PATH" HISSToolsFreeze.vst3 "$AUDIO_PATH/VST3" || exit 1
+#"$BASEDIR/dist-mac-notarize.sh" "$EXPORT_PATH" HISSToolsFreeze.vst "$AUDIO_PATH/VST" || exit 1
+#"$BASEDIR/dist-mac-notarize.sh" "$EXPORT_PATH" HISSToolsFreeze.vst3 "$AUDIO_PATH/VST3" || exit 1

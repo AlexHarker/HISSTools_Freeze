@@ -5,6 +5,8 @@
 #include <HISSTools_Controls.hpp>
 #include "IControls.h"
 
+#include <syslog.h>
+
 enum Modes
 {
     kRegular,
@@ -737,8 +739,13 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
             outputIssue = true;
     }
     
-    if (outputIssue)
-        printf("Output Issue");
-    if (inputIssue)
-        printf("Input Issue");
+    if (outputIssue || inputIssue)
+    {
+        openlog("Freeze", (LOG_CONS|LOG_PERROR|LOG_PID), LOG_USER);
+        if (outputIssue)
+            syslog(0, "%s", "Output Issue");
+        if (inputIssue)
+            syslog(0, "%s", "Input Issue");
+        closelog();
+    }
 }
