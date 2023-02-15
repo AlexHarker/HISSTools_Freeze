@@ -618,6 +618,11 @@ void HISSToolsFreeze::ClearManualTriggers(int nFrames)
 
 void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrames)
 {
+    auto issueValue = [] (double x)
+    {
+        return std::isinf(x) || std::isnan(x) || std::abs(x) > 1.5;
+    };
+    
     Modes mode = (Modes) GetParam(kMode)->Int();
     
     double* manualTriggers = mManualTriggers.Get();
@@ -656,10 +661,16 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
     
     // Get Input
     
+    bool inputIssue = false;
+    bool outputIssue = false;
+    
     for (int i = 0; i < nFrames; i++)
     {
         outputs[0][i] = plugInputs[0][i];
         outputs[1][i] = plugInputs[1][i];
+        
+        if (issueValue(outputs[0][i]) || issueValue(outputs[1][i]))
+            inputIssue = true;
     }
     
     // Sampling
@@ -721,5 +732,13 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
         
         outputs[0][i] = (M + S);
         outputs[1][i] = (M - S);
+        
+        if (issueValue(outputs[0][i]) || issueValue(outputs[1][i]))
+            outputIssue = true;
     }
+    
+    if (outputIssue)
+        printf("Output Issue");
+    if (inputIssue)
+        printf("Input Issue");
 }
