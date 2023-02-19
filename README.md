@@ -53,4 +53,4 @@ CeReNeM - The University of Huddersfield
 Contact:
 ---------------------------------
 
-* ajharker@gmail.com
+* A.Harker@hud.ac.uk
