@@ -1,7 +1,7 @@
 HISSTools Freeze
 ========
 
-![HISSTools Freeze UI](plugin-image.png | width=100)
+![HISSTools Freeze UI](plugin-image.png)
 
 HISSTools Freeze is a lightweight plugin for spectral freezing and morphing based on DSP built in [FrameLib](https://github.com/AlexHarker/FrameLib).
 * HISSTools Freeze was originally built for teaching purposes at the University of Huddersfield.
@@ -26,11 +26,11 @@ To Build the Plugin:
 - The [HISSTools_PlugiLib](https://github.com/AlexHarker/HISSTools_PluginLib) repo is also required to be placed next to this one before building (e.g. iPlug2/Projects).
 - The [FrameLib](https://github.com/AlexHarker/HISSTools_PluginLib) repo is also required to be placed next to the iPlug 2 repo before building (i.e. at iPlug2/../FrameLib).
 - You must build the FrameLib libs (for 'Deployment' on mac or the 'Static' configuration on windows) and place the resultant libs in the following location in **this** repo before building the plugin:
-  - Mac: 
-    - ./dependencies/build/libframelib_objects.a
-  - Windows:
-    - ./dependencies/build/framelib.lib
-    - .dependencies/build/framelib_objects.lib
+  - *Mac:* 
+    - ```./dependencies/build/libframelib_objects.a```
+  - *Windows:*
+    - ```./dependencies/build/framelib.lib```
+    - ```.dependencies/build/framelib_objects.lib```
 - The supplied Xcode workspace and Visual Studio solution should then build the valid plugin formats (AUv2 / VST2 / VST3) correctly.
 
 HISSTools Freeze Makes Use Of:
