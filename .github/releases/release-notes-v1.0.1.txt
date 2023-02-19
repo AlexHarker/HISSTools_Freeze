@@ -5,5 +5,6 @@ Download the zip below to install the plugin.
 Changes since the last release:
 
 - fixed serious reset bug causing noise bursts or no audio
+- fixed a bug with on windows causing random sampling to cease for higher parameter values
 - reduced binary sizes on Mac
 - updated manual
