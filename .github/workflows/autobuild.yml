@@ -2,7 +2,7 @@ name: build-github
 on:
   push:
     # Pattern matched against refs/tags
-    tags:        
+    tags:
       - '**'
 jobs:
   deploy-win:
@@ -141,7 +141,7 @@ jobs:
           path: "iPlug2/Projects/HISSTools_Freeze/build-mac/HISSTools_Freeze/Windows/"
       - name: Setup Keychain and Identities
         shell: bash
-        env:  
+        env:
           TEAM_ID: ${{ secrets.TEAM_ID }}
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APP_SPECIFIC_PWD: ${{ secrets.APP_SPECIFIC_PWD }}
@@ -165,7 +165,7 @@ jobs:
              mkdir -p iPlug2/Projects/HISSTools_Freeze/dependencies/build/
              xcodebuild -project 'FrameLib/framelib.xcodeproj' -scheme 'framelib_objects' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
              mv FrameLib/build/lib/libframelib_objects.a iPlug2/Projects/HISSTools_Freeze/dependencies/build/libframelib_objects.a
-             xcodebuild -project 'iPlug2/Projects/HISSTools_Freeze/projects/HISSToolsFreeze-macOS.xcodeproj' -scheme 'Finished Plugs' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES  
+             xcodebuild -project 'iPlug2/Projects/HISSTools_Freeze/projects/HISSToolsFreeze-macOS.xcodeproj' -scheme 'Finished Plugs' -destination 'platform=OS X,arch=x86_64' -configuration Deployment -quiet build CODE_SIGNING_ALLOWED=YES
       - name: Zip All
         run: iPlug2/Projects/HISSTools_Freeze/scripts/dist-zip.sh
       - name: Make release
@@ -175,6 +175,5 @@ jobs:
           fail_on_unmatched_files: true
           files: iPlug2/Projects/HISSTools_Freeze/build-mac/HISSTools_Freeze.zip
           target_commitish: ${{ github.sha }}
-          body: This is an automated build of HISSTools_Freeze. 
+          body: This is an automated build of HISSTools_Freeze.
           generate_release_notes: true
-    
