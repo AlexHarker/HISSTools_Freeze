@@ -299,7 +299,10 @@ private:
 };
 
 HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
-: iplug::Plugin(info, MakeConfig(kNumParams, kNumPrograms)), mProxy(new FromPlugProxy()), mDSP(mProxy)
+: iplug::Plugin(info, MakeConfig(kNumParams, kNumPrograms))
+, mProxy(new FromPlugProxy())
+, mDSP(mProxy)
+, mRandom(std::random_device()())
 {
     GetParam(kFFTSize)->InitEnum("FFT Size", 3, 7);
     GetParam(kFFTSize)->SetDisplayText(0, "512");
@@ -632,6 +635,9 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
     dspInputs[1] = outputs[1];
     dspInputs[2] = triggers;
 
+
+    std::uniform_real_distribution<> randDist(0.0, 1.0);
+    
     // Parameters
     
     double sampling = GetParam(kSample)->Value();
@@ -686,7 +692,7 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
         case kRandomised:
         {
             for (int i = 0; i < nFrames; i++)
-                triggers[i] = (std::rand() / (RAND_MAX + 1.0)) > threshold;
+                triggers[i] = randDist(mRandom) > threshold;
             ClearManualTriggers(nFrames);
             break;
         }

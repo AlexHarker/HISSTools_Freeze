@@ -7,6 +7,8 @@
 
 #include <FrameLib_FromHost.h>
 
+#include <random>
+
 const int kNumPrograms = 1;
 
 enum EParams
@@ -70,6 +72,8 @@ private:
     double mLastGain;
     double mLastWidth;
     double mPhase;
+    
+    std::minstd_rand mRandom;
     
     WDL_Mutex mManualTriggerMutex;
 };
