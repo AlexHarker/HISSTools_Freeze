@@ -1,0 +1,9 @@
+This is an automated build of the HISSTools Freeze plugin.
+This is a stable release version.
+Download the zip below to install the plugin.
+
+Changes since the last release:
+
+- fixed serious reset bug causing noise bursts or no audio
+- reduced binary sizes on Mac
+- updated manual
