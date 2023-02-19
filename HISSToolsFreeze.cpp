@@ -626,7 +626,7 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
     double* plugInputs[2];
     
     plugInputs[0] = inputs[0];
-    plugInputs[1] = NChannelsConnected(kInput) > 1 ?  inputs[1] : inputs[0];
+    plugInputs[1] = NChannelsConnected(kInput) > 1 ? inputs[1] : inputs[0];
     
     dspInputs[0] = outputs[0];
     dspInputs[1] = outputs[1];
@@ -703,7 +703,6 @@ void HISSToolsFreeze::ProcessBlock(double** inputs, double** outputs, int nFrame
             break;
         }
     }
-    
     
     // Main process
     
