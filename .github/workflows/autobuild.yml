@@ -141,6 +141,7 @@ jobs:
         with:
           repository: 'AlexHarker/FrameLib'
           path: "FrameLib"
+          ref: "rosetta-build"
       - name: Download Windows Builds
         uses: actions/download-artifact@v3
         with:

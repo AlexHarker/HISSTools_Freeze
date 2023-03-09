@@ -1,0 +1,8 @@
+This is an automated build of the HISSTools Freeze plugin.
+This is a stable release version.
+Download the zip below to install the plugin.
+
+Changes since the last release:
+
+- this version runs correctly on Rosetta
+- if you are running under intel with no issues the non-Rosetta version is preferrable
