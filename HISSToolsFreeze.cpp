@@ -52,67 +52,67 @@ public:
         HISSTools_Color_Spec dialTextShadowCS(HISSTools_Color(0.00, 0.00, 0.00, 1.0));
         HISSTools_Shadow *dialTextShadowSpec = new HISSTools_Shadow(shadowCS, 0, 0, 3);
         
-        addShadow("Panel", "lightShadow", panelShadowSpec);
-        addShadow("DialValue", dialTextShadowSpec);
+        AddShadow("Panel", "lightShadow", panelShadowSpec);
+        AddShadow("DialValue", dialTextShadowSpec);
 
-        addColorSpec("PanelFill", "upper", panelFillCS);
-        addColorSpec("PanelFill", "main", panelFillCS);
-        addColorSpec("PanelFill", "thick", blackCS);
+        AddColorSpec("PanelFill", "upper", panelFillCS);
+        AddColorSpec("PanelFill", "main", panelFillCS);
+        AddColorSpec("PanelFill", "thick", blackCS);
         
-        addColorSpec("ButtonHandleLabelOff", "alt", greyCS);
-        addColorSpec("ButtonHandleOff", "alt", activeOffFillCS);
-        addColorSpec("ButtonHandleOn", "alt", activeFillCS);
+        AddColorSpec("ButtonHandleLabelOff", "alt", greyCS);
+        AddColorSpec("ButtonHandleOff", "alt", activeOffFillCS);
+        AddColorSpec("ButtonHandleOn", "alt", activeFillCS);
         
-        addShadow("TextBlock", "name", shadowSpec);
+        AddShadow("TextBlock", "name", shadowSpec);
         
         HISSTools_Color_Spec *textColor = new HISSTools_Color_Spec(0.9, 0.9, 0.9, 0.80);
         HISSTools_Text *nameTxt = new HISSTools_Text(34, "Arial Bold");
         
-        addColorSpec("TextBlock", "name", textColor);
-        addTextStyle("TextBlock", "name", nameTxt);
+        AddColorSpec("TextBlock", "name", textColor);
+        AddTextStyle("TextBlock", "name", nameTxt);
         
         HISSTools_Color_Spec *labelColor = new HISSTools_Color_Spec(0.9, 0.9, 0.9, 0.80);
         HISSTools_Text *labelTxt = new HISSTools_Text(20, "Arial Bold");
         
-        addColorSpec("TextBlock", "label", labelColor);
-        addTextStyle("TextBlock", "label", labelTxt);
+        AddColorSpec("TextBlock", "label", labelColor);
+        AddTextStyle("TextBlock", "label", labelTxt);
         
-        addColorSpec("DialIndicator", "1", col1);
-        addColorSpec("DialIndicator", "2", col2);
-        addColorSpec("DialIndicator", "3", col3);
-        addColorSpec("DialIndicator", "4", col4);
+        AddColorSpec("DialIndicator", "1", col1);
+        AddColorSpec("DialIndicator", "2", col2);
+        AddColorSpec("DialIndicator", "3", col3);
+        AddColorSpec("DialIndicator", "4", col4);
         
-        addDimension("PanelRoundnessTL","tighter", 5);
-        addDimension("PanelRoundnessTR","tighter", 5);
-        addDimension("PanelRoundnessBL","tighter", 5);
-        addDimension("PanelRoundnessBR","tighter", 5);
+        AddDimension("PanelRoundnessTL","tighter", 5);
+        AddDimension("PanelRoundnessTR","tighter", 5);
+        AddDimension("PanelRoundnessBL","tighter", 5);
+        AddDimension("PanelRoundnessBR","tighter", 5);
         
-        addDimension("DialRefValue", "gain", 2.0/7.0);
-        addDimension("DialRefValue", "vol", 6.0/7.0);
+        AddDimension("DialRefValue", "gain", 2.0/7.0);
+        AddDimension("DialRefValue", "vol", 6.0/7.0);
         
-        addDimension("DialDiameter", "smallNormalLabel", 60);
-        addDimension("DialDiameter", "medium", 74);
+        AddDimension("DialDiameter", "smallNormalLabel", 60);
+        AddDimension("DialDiameter", "medium", 74);
 
-        addDimension("DialTextArea", "medium", 23);
-        addDimension("DialTextArea", "smallNormalLabel", 20);
+        AddDimension("DialTextArea", "medium", 23);
+        AddDimension("DialTextArea", "smallNormalLabel", 20);
 
-        addTextStyle("DialValue", "medium", new HISSTools_Text(13, "Arial Bold"));
-        addTextStyle("DialValue", "smallNormalLabel", new HISSTools_Text(12, "Arial Bold"));
+        AddTextStyle("DialValue", "medium", new HISSTools_Text(13, "Arial Bold"));
+        AddTextStyle("DialValue", "smallNormalLabel", new HISSTools_Text(12, "Arial Bold"));
 
-        addDimension("ValueTextArea", "spacious", 25);
+        AddDimension("ValueTextArea", "spacious", 25);
         
-        addFlag("ValueDrawTriangle", "small", false);
-        addFlag("ValueDrawLabel", "nolabel", false);
+        AddFlag("ValueDrawTriangle", "small", false);
+        AddFlag("ValueDrawLabel", "nolabel", false);
         
-        addFlag("ValueLabelBelow", true);
-        addFlag("ValueLabelBelow", "above", false);
-        addFlag("DialDrawValOnlyOnMO", true);
+        AddFlag("ValueLabelBelow", true);
+        AddFlag("ValueLabelBelow", "above", false);
+        AddFlag("DialDrawValOnlyOnMO", true);
         
-        addDimension("ValueWidth", 84);
-        addDimension("ValueWidth", "mode", 100);
+        AddDimension("ValueWidth", 84);
+        AddDimension("ValueWidth", "mode", 100);
         
-        addDimension("ValueHeight", 20);
-        addDimension("ValueHeight", "mode", 26);
+        AddDimension("ValueHeight", 20);
+        AddDimension("ValueHeight", "mode", 26);
     }
 };
 
@@ -132,34 +132,34 @@ public:
         
         mX = x;
         mY = y;
-        mW = w <= 0 ? scheme->getDimension("ButtonWidth", type) : w;
-        mH = h <= 0 ? scheme->getDimension("ButtonHeight", type) : h;
+        mW = w <= 0 ? scheme->GetDimension("ButtonWidth", type) : w;
+        mH = h <= 0 ? scheme->GetDimension("ButtonHeight", type) : h;
         
-        double roundness = scheme->getDimension("ButtonRoundness", type);
+        double roundness = scheme->GetDimension("ButtonRoundness", type);
         mRoundness = roundness < 0 ? mH / 2 : roundness;
         
-        mTextPad = scheme->getDimension("ButtonTextPad", type);
+        mTextPad = scheme->GetDimension("ButtonTextPad", type);
         
         // Label Mode
         
-        mLabelMode = scheme->getFlag("ButtonLabelMode", type);
+        mLabelMode = scheme->GetFlag("ButtonLabelMode", type);
         
         // Get Appearance
         
-        mOutlineTK = scheme->getDimension("ButtonOutline", type);
+        mOutlineTK = scheme->GetDimension("ButtonOutline", type);
         
-        mShadow = scheme->getShadow("Button", type);
+        mShadow = scheme->GetShadow("Button", type);
         
-        mTextStyle = scheme->getTextStyle("Button", type);
+        mTextStyle = scheme->GetTextStyle("Button", type);
         
-        mOnCS = scheme->getColorSpec("ButtonHandleOn", type);
-        mOffCS = scheme->getColorSpec("ButtonHandleOff", type);
-        mHandleLabelCS = scheme->getColorSpec("ButtonHandleLabel", type);
-        mHandleLabelOffCS = scheme->getColorSpec("ButtonHandleLabelOff", type);
+        mOnCS = scheme->GetColorSpec("ButtonHandleOn", type);
+        mOffCS = scheme->GetColorSpec("ButtonHandleOff", type);
+        mHandleLabelCS = scheme->GetColorSpec("ButtonHandleLabel", type);
+        mHandleLabelOffCS = scheme->GetColorSpec("ButtonHandleLabelOff", type);
         mHandleLabelOffCS = mHandleLabelOffCS ? mHandleLabelOffCS : mHandleLabelCS;
-        mOutlineCS = scheme->getColorSpec("ButtonOutline", type);
-        mBackgroundLabelCS = scheme->getColorSpec("ButtonBackgroundLabel", type);
-        mInactiveOverlayCS = scheme->getColorSpec("ButtonInactiveOverlay", type);
+        mOutlineCS = scheme->GetColorSpec("ButtonOutline", type);
+        mBackgroundLabelCS = scheme->GetColorSpec("ButtonBackgroundLabel", type);
+        mInactiveOverlayCS = scheme->GetColorSpec("ButtonInactiveOverlay", type);
         
         // Calculate Areas (including shadows and thicknesses)
         
@@ -361,7 +361,7 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         
         auto dialControl = [&](const IRECT& b, int idx, int hs, int vs, const char *types, const char *name = nullptr)
         {
-            double d = scheme.getDimension("DialDiameter", types);
+            double d = scheme.GetDimension("DialDiameter", types);
             IRECT cb = b.GetCentredInside(d).GetVShifted(vs + ovs).GetHShifted(hs);
             
             return new HISSTools_Dial(idx, cb.L, cb.T, types, &scheme, name);
@@ -369,8 +369,8 @@ void HISSToolsFreeze::LayoutUI(IGraphics* pGraphics)
         
         auto valueControl = [&](const IRECT& b, int idx, int hs, int vs, const char *types, const char *name = nullptr)
         {
-            const double w = scheme.getDimension("ValueWidth", types);
-            const double h = scheme.getDimension("ValueHeight", types);
+            const double w = scheme.GetDimension("ValueWidth", types);
+            const double h = scheme.GetDimension("ValueHeight", types);
 
             IRECT cb = b.GetCentredInside(w, h).GetVShifted(vs + ovs).GetHShifted(hs);
             
