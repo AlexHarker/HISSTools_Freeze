@@ -32,16 +32,16 @@ public:
         HISSTools_LICE_VGradient* activeFillCS = new HISSTools_LICE_VGradient;
         HISSTools_LICE_VGradient* activeOffFillCS = new HISSTools_LICE_VGradient;
         
-        activeOffFillCS->addStop(HISSTools_Color(0.415, 0.415, 0.415, 1.0), 0.0);
-        activeOffFillCS->addStop(HISSTools_Color(0.169, 0.169, 0.169, 1.0), 1.0);
+        activeOffFillCS->AddStop(HISSTools_Color(0.415, 0.415, 0.415, 1.0), 0.0);
+        activeOffFillCS->AddStop(HISSTools_Color(0.169, 0.169, 0.169, 1.0), 1.0);
         
-        activeFillCS->addStop(HISSTools_Color(0.6, 0.6, 0.6, 1.0), 0);
-        activeFillCS->addStop(HISSTools_Color(0.3, 0.3, 0.3, 1.0), 1.);
+        activeFillCS->AddStop(HISSTools_Color(0.6, 0.6, 0.6, 1.0), 0);
+        activeFillCS->AddStop(HISSTools_Color(0.3, 0.3, 0.3, 1.0), 1.);
         
         HISSTools_LICE_VGradient* panelFillCS = new HISSTools_LICE_VGradient;
-        panelFillCS->addStop(HISSTools_Color(0.40, 0.40, 0.40, 0.40), 0.0);
-        panelFillCS->addStop(HISSTools_Color(0.35, 0.35, 0.35, 0.45), 0.94);
-        panelFillCS->addStop(HISSTools_Color(0.19, 0.19, 0.19, 0.50), 1.0);
+        panelFillCS->AddStop(HISSTools_Color(0.40, 0.40, 0.40, 0.40), 0.0);
+        panelFillCS->AddStop(HISSTools_Color(0.35, 0.35, 0.35, 0.45), 0.94);
+        panelFillCS->AddStop(HISSTools_Color(0.19, 0.19, 0.19, 0.50), 1.0);
         
         HISSTools_Color_Spec shadowCS(HISSTools_Color(0.00, 0.00, 0.00, 0.90));
         HISSTools_Shadow *shadowSpec = new HISSTools_Shadow(shadowCS, 4, 4, 6);
@@ -166,10 +166,10 @@ public:
         HISSTools_Bounds handleBounds(mX, mY, mLabelMode ? mH : mW, mH);
         HISSTools_Bounds fullBounds(mX, mY, mW, mH);
         
-        handleBounds.addThickness(mOutlineTK);
+        handleBounds.AddThickness(mOutlineTK);
         
-        fullBounds = mShadow->getBlurBounds(handleBounds);
-        fullBounds.include(fullBounds);
+        fullBounds = mShadow->GetBlurBounds(handleBounds);
+        fullBounds.Include(fullBounds);
         
         mRECT = fullBounds;
         SetTargetRECT(handleBounds);
@@ -231,15 +231,15 @@ public:
         
         // Button Rectangle
         
-        vecDraw.startShadow(mShadow, mRECT);
-        vecDraw.setColor(on ? mOnCS : mOffCS);
-        vecDraw.fillRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness);
-        vecDraw.setColor(mOutlineCS);
-        vecDraw.frameRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness, mOutlineTK);
-        vecDraw.renderShadow();
+        vecDraw.StartShadow(mShadow, mRECT);
+        vecDraw.SetColor(on ? mOnCS : mOffCS);
+        vecDraw.FillRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness);
+        vecDraw.SetColor(mOutlineCS);
+        vecDraw.FrameRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness, mOutlineTK);
+        vecDraw.RenderShadow();
         
-        vecDraw.setColor(mLabelMode ? mBackgroundLabelCS : on ? mHandleLabelCS : mHandleLabelOffCS);
-        vecDraw.text(mTextStyle, mName, mLabelMode ? mX + mH + mTextPad : mX, mY, mLabelMode ? mW - (mH + mTextPad) : mW, mH, mLabelMode ?  kHAlignLeft : kHAlignCenter);
+        vecDraw.SetColor(mLabelMode ? mBackgroundLabelCS : on ? mHandleLabelCS : mHandleLabelOffCS);
+        vecDraw.Text(mTextStyle, mName, mLabelMode ? mX + mH + mTextPad : mX, mY, mLabelMode ? mW - (mH + mTextPad) : mW, mH, mLabelMode ?  kHAlignLeft : kHAlignCenter);
         
         // Inactive
         
@@ -247,8 +247,8 @@ public:
         {
             // Inactive Overlay
             
-            vecDraw.setColor(mInactiveOverlayCS);
-            vecDraw.fillRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness);
+            vecDraw.SetColor(mInactiveOverlayCS);
+            vecDraw.FillRoundRect(mX, mY, mLabelMode ? mH : mW, mH, mRoundness);
         }
     }
     
