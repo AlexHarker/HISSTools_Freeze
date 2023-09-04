@@ -1,0 +1,8 @@
+This is an automated build of the HISSTools Freeze plugin.
+This is a stable release version.
+Download the zip below to install the plugin.
+
+Changes since the last release:
+
+- this version runs correctly on mac or windows without AVX instructions (or Apple silicon under Rosetta 2)
+- if you are running under either mac or windows intel with no issues only earlier versions the non-SSE version is preferable
