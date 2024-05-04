@@ -304,14 +304,17 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
 , mDSP(mProxy)
 , mRandom(std::random_device()())
 {
-    GetParam(kFFTSize)->InitEnum("FFT Size", 3, 7);
-    GetParam(kFFTSize)->SetDisplayText(0, "512");
-    GetParam(kFFTSize)->SetDisplayText(1, "1024");
-    GetParam(kFFTSize)->SetDisplayText(2, "2048");
-    GetParam(kFFTSize)->SetDisplayText(3, "4096");
-    GetParam(kFFTSize)->SetDisplayText(4, "8192");
-    GetParam(kFFTSize)->SetDisplayText(5, "16384");
-    GetParam(kFFTSize)->SetDisplayText(6, "32768");
+    GetParam(kFFTSize)->InitEnum("FFT Size", 6, 10);
+    GetParam(kFFTSize)->SetDisplayText(0, "64");
+    GetParam(kFFTSize)->SetDisplayText(1, "128");
+    GetParam(kFFTSize)->SetDisplayText(2, "256");
+    GetParam(kFFTSize)->SetDisplayText(3, "512");
+    GetParam(kFFTSize)->SetDisplayText(4, "1024");
+    GetParam(kFFTSize)->SetDisplayText(5, "2048");
+    GetParam(kFFTSize)->SetDisplayText(6, "4096");
+    GetParam(kFFTSize)->SetDisplayText(7, "8192");
+    GetParam(kFFTSize)->SetDisplayText(8, "16384");
+    GetParam(kFFTSize)->SetDisplayText(9, "32768");
     
     GetParam(kOverlap)->InitEnum("Overlap", 2, 3);
     GetParam(kOverlap)->SetDisplayText(0, "2");
@@ -504,7 +507,7 @@ void HISSToolsFreeze::OnParamChange(int paramIdx, EParamSource source, int sampl
     {
         case kFFTSize:
         {
-            double FFT = 1 << (GetParam(kFFTSize)->Int() + 9);
+            double FFT = 1 << (GetParam(kFFTSize)->Int() + 6);
             mProxy->sendFromHost(1, &FFT, 1);
             break;
         }
