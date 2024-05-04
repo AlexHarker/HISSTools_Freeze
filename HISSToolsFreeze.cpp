@@ -304,7 +304,7 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
 , mDSP(mProxy)
 , mRandom(std::random_device()())
 {
-    GetParam(kFFTSize)->InitEnum("FFT Size", 6, 10);
+    GetParam(kFFTSize)->InitEnum("FFT Size", 6, 12);
     GetParam(kFFTSize)->SetDisplayText(0, "64");
     GetParam(kFFTSize)->SetDisplayText(1, "128");
     GetParam(kFFTSize)->SetDisplayText(2, "256");
@@ -315,7 +315,9 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     GetParam(kFFTSize)->SetDisplayText(7, "8192");
     GetParam(kFFTSize)->SetDisplayText(8, "16384");
     GetParam(kFFTSize)->SetDisplayText(9, "32768");
-    
+    GetParam(kFFTSize)->SetDisplayText(9, "65536");
+    GetParam(kFFTSize)->SetDisplayText(9, "131072");
+
     GetParam(kOverlap)->InitEnum("Overlap", 2, 3);
     GetParam(kOverlap)->SetDisplayText(0, "2");
     GetParam(kOverlap)->SetDisplayText(1, "4");
