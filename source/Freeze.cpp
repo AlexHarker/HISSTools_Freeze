@@ -78,7 +78,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy, FrameLib_Thread::Priorities priorities)
     mObjects[10]->addConnection(Connection(mObjects[7], 0), 0);
     mObjects[10]->addConnection(Connection(mObjects[9], 0), 1);
 
-    double fl_11_vector_0[] = { 65536 };
+    double fl_11_vector_0[] = { 131072 };
     parameters.clear();
     parameters.write("max_length", fl_11_vector_0, 1);
     mObjects[11] = new FrameLib_Expand<FrameLib_FFT>(context, &parameters, mProxy, 1);
@@ -963,7 +963,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy, FrameLib_Thread::Priorities priorities)
     mObjects[154]->addConnection(Connection(mObjects[153], 0), 0);
     mObjects[154]->addConnection(Connection(mObjects[150], 0), 1);
 
-    double fl_155_vector_0[] = { 65536 };
+    double fl_155_vector_0[] = { 131072 };
     parameters.clear();
     parameters.write("max_length", fl_155_vector_0, 1);
     mObjects[155] = new FrameLib_Expand<FrameLib_iFFT>(context, &parameters, mProxy, 1);
