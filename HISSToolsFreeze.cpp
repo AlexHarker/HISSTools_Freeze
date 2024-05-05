@@ -315,8 +315,8 @@ HISSToolsFreeze::HISSToolsFreeze(const InstanceInfo& info)
     GetParam(kFFTSize)->SetDisplayText(7, "8192");
     GetParam(kFFTSize)->SetDisplayText(8, "16384");
     GetParam(kFFTSize)->SetDisplayText(9, "32768");
-    GetParam(kFFTSize)->SetDisplayText(9, "65536");
-    GetParam(kFFTSize)->SetDisplayText(9, "131072");
+    GetParam(kFFTSize)->SetDisplayText(10, "65536");
+    GetParam(kFFTSize)->SetDisplayText(11, "131072");
 
     GetParam(kOverlap)->InitEnum("Overlap", 2, 3);
     GetParam(kOverlap)->SetDisplayText(0, "2");
