@@ -660,7 +660,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 164.666666666666686, 270.0, 318.0, 22.0 ],
-					"text" : "fl.source~ =2 65536 /length 4096"
+					"text" : "fl.source~ =2 131072 /length 4096"
 				}
 
 			}

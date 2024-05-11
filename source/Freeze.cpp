@@ -52,7 +52,7 @@ Freeze::Freeze(FrameLib_Proxy *proxy, FrameLib_Thread::Priorities priorities)
     mObjects[6] = new FrameLib_Expand<FrameLib_Tag>(context, &parameters, mProxy, 1);
     mObjects[6]->addConnection(Connection(mObjects[2], 0), 0);
 
-    double fl_7_vector_0[] = { 65536 };
+    double fl_7_vector_0[] = { 131072 };
     double fl_7_vector_1[] = { 4096 };
     parameters.clear();
     parameters.write("buffer_size", fl_7_vector_0, 1);
