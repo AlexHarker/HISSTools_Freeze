@@ -142,7 +142,7 @@ jobs:
           repository: 'AlexHarker/FrameLib'
           path: "FrameLib"
       - name: Download Windows Builds
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: deploy-win
           path: "iPlug2/Projects/HISSTools_Freeze/build-mac/HISSTools_Freeze/Windows/"
