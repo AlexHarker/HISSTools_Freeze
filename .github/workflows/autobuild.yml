@@ -95,7 +95,7 @@ jobs:
           name: deploy-win
           path: "win-builds"
   deploy-mac:
-    runs-on: macos-11
+    runs-on: macos-latest
     needs: deploy-win
     env:
       release_notes: ${{ github.workspace }}/iPlug2/Projects/HISSTools_Freeze/.github/releases/release-notes-${{ github.ref_name }}.txt
@@ -142,7 +142,7 @@ jobs:
           repository: 'AlexHarker/FrameLib'
           path: "FrameLib"
       - name: Download Windows Builds
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: deploy-win
           path: "iPlug2/Projects/HISSTools_Freeze/build-mac/HISSTools_Freeze/Windows/"
